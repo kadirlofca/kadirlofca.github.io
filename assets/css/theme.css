@@ -11944,3 +11944,17 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
   vertical-align: top;
   text-align: right;
 }
+
+.my-text-center{
+  text-align: center;
+  vertical-align: middle;
+  padding-bottom: 10px;
+}
+
+.my-transparent-button{
+  align-content: center;
+  border: 1px solid #A9C9FF;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
