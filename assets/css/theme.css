@@ -11910,6 +11910,7 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
 }
 
 .my-container {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
