@@ -11948,7 +11948,10 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
 
 .my-text-center{
   text-align: center;
-  padding: 10px;
+  padding-bottom: 12px;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin: 0 auto;
 }
 
 .my-transparent-button{
