@@ -11926,7 +11926,7 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 175px;
+  margin-bottom: 0px;
 }
 
 .my-container-short {
@@ -11939,6 +11939,7 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
   max-width: 55%;
   border-radius: 10px;
   overflow: hidden;
+  display: block;
 }
 
 .my-text-right {
@@ -11967,6 +11968,7 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
 
 .my-transparent-button{
   background: rgba(0, 0, 0, 0);
+  margin-bottom: 125px;
   border-radius: 15px;
   box-shadow:
   0 1.4px 1.1px rgba(0, 0, 0, 0.017),
