@@ -11955,6 +11955,60 @@ div[class^='bg-spring-red'] .border-left, div[class*=' bg-spring-red'] .border-a
 }
 
 .my-transparent-button{
-  border: 2px solid #afcecf;
+  background: rgba(0, 0, 0, 0);
   border-radius: 15px;
+  box-shadow:
+  0 1.4px 1.1px rgba(0, 0, 0, 0.017),
+  0 3.4px 5.3px rgba(0, 0, 0, 0.024),
+  0 6.2px 5px rgba(0, 0, 0, 0.03),
+  0 11.1px 8.4px rgba(0, 0, 0, 0.036),
+  0 20.4px 15.2px rgba(0, 0, 0, 0.043),
+  0 50px 40px rgba(0, 0, 0, 0.06);
+
+  -webkit-transition: box-shadow 0.1s ease-in-out;
+}
+
+.my-transparent-button:hover{
+  box-shadow:
+  0 1.4px 1.1px rgba(0, 0, 0, 0.08),
+  0 3.4px 5.3px rgba(0, 0, 0, 0.012),
+  0 6.2px 5px rgba(0, 0, 0, 0.002),
+  0 11.1px 8.4px rgba(0, 0, 0, 0.016),
+  0 20.4px 15.2px rgba(0, 0, 0, 0.02),
+  0 50px 40px rgba(0, 0, 0, 0.03);
+}
+
+.my-transparent-button:active{
+  box-shadow:
+  0 1.4px 1.1px rgba(0, 0, 0, 0.04),
+  0 3.4px 5.3px rgba(0, 0, 0, 0.006),
+  0 6.2px 5px rgba(0, 0, 0, 0.0001),
+  0 11.1px 8.4px rgba(0, 0, 0, 0.008),
+  0 20.4px 15.2px rgba(0, 0, 0, 0.01),
+  0 50px 40px rgba(0, 0, 0, 0.015);
+} 
+
+.my-link-inline {
+  display: inline-block;
+  background: -webkit-linear-gradient(160deg, #4093bf 0%, #40bfb2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.my-link-inline:hover{
+	-webkit-animation-name: shine;
+	-webkit-animation-duration: 20s;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes shine {
+	0% {
+		background-position: 0px;
+	}
+  50%{
+    background-position: 500px;
+  }
+	100% {
+		background-position: 0px;
+	}
 }
