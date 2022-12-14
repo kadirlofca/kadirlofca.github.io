@@ -1,0 +1,48 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    gap: var(--pad);
+}
+
+/* .cards * {
+    box-sizing: border-box;
+} */
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    padding: var(--pad);
+    margin: 0;
+    border: 4px solid black;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.card:hover{
+    border: 4px solid #ff7f50;
+}
+
+.card img{
+    padding: 0;
+    border-radius: 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.card h3,
+.card p{
+    padding: 0;
+    color: white;
+}
+
+.card:hover h3{
+    color: coral;
+}
+
+.cards a{
+    text-decoration: none;
+    color: white;
+}
