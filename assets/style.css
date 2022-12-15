@@ -2,7 +2,7 @@
 :root{
     --foc: 10vw;
     --pad: 1em;
-    --padbig: 5em;
+    --padbig: 2em;
 }
 
 *::-webkit-scrollbar-track ,
