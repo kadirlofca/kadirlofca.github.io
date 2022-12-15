@@ -40,6 +40,8 @@ header{
     z-index: 99;
     position: fixed;
     height: fit-content;
+    overflow: hidden;
+    transition: all 0.6s;
 }
 
 #header-wave{

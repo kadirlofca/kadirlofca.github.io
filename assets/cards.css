@@ -46,3 +46,13 @@
     text-decoration: none;
     color: white;
 }
+
+.inactive:hover h3{
+    color: white;
+}
+
+.inactive:hover {
+    border: 4px solid black;
+    cursor: default;
+}
+
