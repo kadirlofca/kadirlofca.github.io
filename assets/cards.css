@@ -5,15 +5,11 @@
     gap: var(--pad);
 }
 
-/* .cards * {
-    box-sizing: border-box;
-} */
-
 .card{
     display: flex;
     flex-direction: column;
     align-content: flex-start;
-    padding: var(--pad);
+    padding: var(--padsmall);
     margin: 0;
     border: 4px solid black;
     border-radius: 10px;

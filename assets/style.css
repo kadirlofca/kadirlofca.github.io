@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200;400;700&family=Unbounded:wght@200;400;700&display=swap');
 :root{
     --foc: 10vw;
+    --padsmall: 0.5em;
     --pad: 1em;
     --padbig: 2em;
 }
