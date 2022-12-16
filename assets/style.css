@@ -32,7 +32,7 @@ html, body, header{
 }
 
 footer{
-    padding-top: calc(var(--pad) * 6);
+    padding-top: calc(var(--pad));
     padding-bottom: min(var(--foc), 256px);
 }
 
@@ -81,7 +81,7 @@ header{
 }
 
 .conbar{
-    margin-top: calc(var(--pad) * 6);
+    margin-top: calc(var(--pad));
     word-spacing: 25px;
 }
 
@@ -141,6 +141,7 @@ h1{
 h2{
     font-size: 1.7em;
     font-weight: 400;
+    color: hsl(16, 65%, 65%);
 }
 
 h3{
