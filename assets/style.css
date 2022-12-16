@@ -50,6 +50,15 @@ header{
     transition: all 0.6s;
 }
 
+img {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    pointer-events: none;
+}
+
 .navbar{
     padding: var(--pad);
     background-color: black;
