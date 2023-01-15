@@ -1,2 +1,0 @@
-# kadirlofca.github.io
- 

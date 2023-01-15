@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Kadir Lofca is a computer science student with experience in virtual reality and game development. This is his portfolio!">
+        <meta name="keywords" content="kadir lofca, kadir, lofca, baturalp, portfolio">
+		<meta name="author" content="Kadir Lofca">
+		<title>Kadir Lofca</title>
+		<link rel="stylesheet" href="./assets/style.css">
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="focus navbox">
+					<div class="navlink"><a href="index.html">Kadir Lofca</a></div>
+
+					<div class="margin-auto"></div>
+
+					<div class="navlink"><a href="collection.html">Collection</a></div>
+					<div class="navlink"><a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a></div>
+					<!-- <div class="navlink"><a href="story.html">Story</a></div> -->
+				</div>
+			</div>
+			<img id="header-wave" src="assets/images/wave.png">
+		</header>
+
+        <div class="hero">
+            <div class="focus">
+                <h3><a href="collection.html">↜COLLECTION</a></h3>
+                <h2>PROJECT</h2>
+                <h1>SLICE & DICE</h1>
+                <p>Clearing a dungeon is no easy task, 6 damage... and you're dead. Before you descend, I give you the Dice of Dunwrath, a powerful weapon if you're lucky enough.
+                    Throw the dice at the orcs to damage them by the number you get, but be careful, orcs can grab the dice and throw it back at you!
+                </p>
+                
+                <div class="infocards">
+                    <div>
+                        <h3>PROJECT INFO</h3>
+                        <ul>
+                            <li><a href="https://kadir-lofca.itch.io/slice-and-dice" rel="noreferrer nofollow noopener" target="_blank">GMTK 2022 submission</a></li>
+                            <li>Single player rogue-like action</li>
+                            <li>RNG based combat</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>DEVELOPMENT INFO</h3>
+                        <ul>
+                            <li>My roles: Designer, Programmer, Artist, Sound Designer</li>
+                            <li>Team size: 2</li>
+                            <li>Tools: C#, Unity, Plastic SCM, Blender, Affinity Designer, Audacity</li>
+                            <li>Development time: 48 hours</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="infocards">
+                    <div>
+                        <h3>MOTIVATION</h3>
+                        <p>GMTK is an annual game jam, so my friend and I were excited to join! The theme was "Roll of the Dice." We brainstormed some ideas and came up with a game where you throw a dice at your enemies to damage them.</p>
+                        <p>At first, we designed the game to have multiple types of dice with unique abilities. But we ultimately decided to not complicate things and develop only the core gameplay within the limited time.</p>
+                    </div>
+                    <img src="assets/images/slicedice_walking.gif">
+                </div>
+                
+                <h3>AIM ASSIST</h3>
+                <img class="infoimg" src="assets/images/slicedice_aimassist.jpg">
+                <p>Slice & Dice is a game with simple controls. By pressing spacebar, the player throws the dice to the nearest enemy! I played around with other
+                    kinds of aim assist (aa), for example; movement direction based aa, mouse position based aa, health-stats based aa. These aim assist techniques
+                    worked, but they made the game more skill-based, which is not what we wanted. I learned that the most simple systems can work better than intricate ones in the right situtations.
+                </p>
+                
+                <h3>COROUTINES FOR ENEMY AI</h3>
+                <img class="infoimg" src="assets/images/slicedice_enemyai.jpg">
+                <p>
+                    The combat logic of the orcs (enemies) is implemented seperate from their pathfinding. I used a coroutine to make an interval in which the orc would wait before trying to throw the dice.
+                    At the end of every interval, the orc checks if it has the dice and if the player (nerd) is in its range. The orc throws the dice at the player if the conditions are met. If any of the conditions
+                    are not met, the Orc waits for another interval.
+                </p>
+
+                <h3>CHARACTER MOVEMENT USING RIGIDBODY</h3>
+                <img class="infoimg" src="assets/images/slicedice_rigidbody.jpg">
+                <p> By attaching rigidbodies to the characters (both the player and the orcs) I was able to easily convert input into movement. 
+                    This was especially useful because my friend was working on the orc AI pathfinding, and he only had to pass a single Vector3 to get the orc moving.
+                </p>
+
+                <div class="infocards">
+                    <img src="assets/images/slicedice_cover.gif">
+                    <div>
+                        <h3>ART & SOUND</h3>
+                        <P>I created the character art using Affinity Designer, modeled and textured the dice using Blender, and created the level. Apart from one mesh, I modeled and textured everything myself.</P>
+                        <P>I animated the characters by stretching and squashing them using their vertical scale.</P>
+                        <p>I imported music from the asset store, but put additional effort into creating my own voiced character. I recorded myself voice acting as the nerd (the player).
+                            When I was satisfied with the recorded audio, I used Audacity to give it some reverb to increase the sense of scale in the dungeon.
+                         </p>
+                    </div>
+                </div>
+                <div class="infocards">
+                    <div>
+                        <h3>RESULT</h3>
+                        <P>We received 4 comments praising the game, but they also pointed out that the game wasn't very clear. I agree with the comments
+                            as the gameplay revolves around a hacky solution to survive the dungeon (player hiding behind cover).
+                        </P>
+                        <p>
+                            I think this game is a major improvement in my portfolio because it has presentable art and audio. After this project, I feel more comfortable
+                            making games from start to finish. I learned a lot and had much fun!
+                        </p>
+                    </div>
+                    <img src="assets/images/slicedice_boss.gif">
+                </div>
+            </div>
+        </div>
+
+        <footer class="focus">
+            <div class="conline"></div>
+            <div class="conbar">
+				<div>
+					<a href="mailto:kadirlofca@outlook.com" rel="noreferrer nofollow noopener" target="_blank">kadirlofca@outlook.com</a>
+					<a href="https://www.linkedin.com/in/kadirlofca/" rel="noreferrer nofollow noopener" target="_blank" >LinkedIn</a>
+					<a href="https://github.com/kadirlofca" rel="noreferrer nofollow noopener" target="_blank">GitHub</a>
+				</div>
+				<div>
+					<a href="index.html">Let's Meet</a>
+					<a href="collection.html">Collection</a>
+					<a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a>
+				</div>
+            </div>
+        </footer>
+	</body>
+
+	<script type="text/javascript" src="assets/js/header.js"></script>
+</html>

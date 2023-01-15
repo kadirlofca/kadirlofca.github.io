@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Kadir Lofca is a computer science student with experience in virtual reality and game development. This is his portfolio!">
+        <meta name="keywords" content="kadir lofca, kadir, lofca, baturalp, portfolio">
+		<meta name="author" content="Kadir Lofca">
+		<title>Kadir Lofca</title>
+		<link rel="stylesheet" href="./assets/style.css">
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="focus navbox">
+					<div class="navlink"><a href="index.html">Kadir Lofca</a></div>
+
+					<div class="margin-auto"></div>
+
+					<div class="navlink"><a href="collection.html">Collection</a></div>
+					<div class="navlink"><a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a></div>
+					<!-- <div class="navlink"><a href="story.html">Story</a></div> -->
+				</div>
+			</div>
+			<img id="header-wave" src="assets/images/wave.png">
+		</header>
+
+        <div class="hero">
+            <div class="focus">
+                <h3><a href="collection.html">↜COLLECTION</a></h3>
+                <h2>PROJECT</h2>
+                <h1>TIME PERCEPTION</h1>
+                <p>
+                    Just like how we feel time passing quicker when we're gaming or watching a movie, we also feel time passing quicker in VR. "Why does this happen?" is a
+                    big question, so I focused on a smaller one; "Does physicality in VR affect time perception?"
+                </p>
+                
+                <div class="infocards">
+                    <div>
+                        <h3>PROJECT INFO</h3>
+                        <ul>
+                            <li>Undergraduate research</li>
+                            <li>Designed VR experience</li>
+                            <li>Made virtual scene match the room around the user</li>
+                            <li>Created life-like VR experience</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>DEVELOPMENT INFO</h3>
+                        <ul>
+                            <li>My roles: Researcher, Designer, Programmer</li>
+                            <li>Team size: 2+2</li>
+                            <li>Tools: C#, R, Unity, RStudio, GitLab, Blender</li>
+                            <li>Development time: 16+ months</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="infocards">
+                    <div>
+                        <h3>MOTIVATION</h3>
+                        <p>
+                            After finishing the Magnolia House, my professor invited me to continue working with him on this project.
+                            This project started at NextGen Interactions as a solution to hazardous material (hazmat)
+                            training. We worked together with the NextGen Interactions team researching if training in VR would produce any undesirable effects, such as the time perception issue.
+                        </p>
+                    </div>
+                    <img src="assets/images/timeperception_magazine.jpg">
+                </div>
+                
+                <div>
+                    <h3>PHYSICALITY</h3>
+                    <p>The physicality of a VR experience relates to the haptic feedback given to the user. In standard VR experiences, the only haptic feedback comes from the controllers in the form of vibrations.
+                    </p>
+                    <p>Passive haptics is the feedback generated from contact with surfaces. When you're touching a wall, you receive feedback as passive haptics.</p>
+                </div>
+
+                <div class="infocards">
+                    <div>
+                        <h3>DESIGN</h3>
+                        <p>I designed a VR experience to collect data about the users' time perception with standard VR equipment, and their time perception in a high-physicality VR setting that uses passive haptics.</p>
+                        <p>
+                            The experience incorporates elements from a hazmat training session. The setting is an office where a hazardous gas is reported to be coming through a vent. The user must navigate the scene in VR
+                            and make their way to the vent. Then, they must hold a device onto the vent to measure the properties of the hazardous gas.
+                        </p>
+                    </div>
+                    <img src="assets/images/timeperception_vents.jpg" style="width: 400px">
+                </div>
+
+                <div>
+                    <p>The data collection happens when the user is at the vent. The device makes a sound once it reaches the vent, and another sound once it completes the scan.
+                        The user must count between these two sounds and tell me their estimation of the time that has passed between the sounds. The system I programmed records 
+                        the actual time that has passed between the two sounds, so I can compare it with the user's estimation later. In order to increase the number of data points,
+                        the user must repeat the process for all 5 vents in the office.
+                    </p>
+                </div>
+
+                <div>
+                    <p>The user repeats the experience 3 times, each time with a different level of physicality:</p>
+                    <ul>
+                        <li>Real World: Participant completes the task in the real world under no VR influence.</li>
+                        <li>Low Physicality: Participant completes the task under standard VR influence (a headset and 2 controllers.)</li>
+                        <li>High Physicality: The participant does not use controllers. Instead, their hands are tracked and they are able to touch objects (passive haptics) they see through the headset.</li>
+                    </ul>
+                </div>
+
+                <div class="infocards">
+                    <img src="assets/images/timeperception_door.jpg">
+                    <div>
+                        <h3>SIMULATING THE ROOM</h3>
+                        <p>In order to achieve the high-physicality level, I created a virtual environment that perfectly simulates the room we used to conduct the experiment.
+                            Because everything in the room is modeled and visible in the virtual environment, the user can just touch and feel the objects as if they weren't in VR.
+                        </p>
+                        <p>But how is the user able to see their hands? I used a Leap Motion device to track the user's hands and display them in VR. Their hands are displayed as 
+                            if they are wearing gloves, I did this so that unmatching skin colors don't take them out of the experience.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <p>NextGen Interactions provided a door that can stand by itself. I attached a Vive tracker to the corner of the door to track and display it in the virtual scene.
+                        This way, the user is able to open and close the door in VR. NextGen Interactions also provided a 3D printed model of the scanning device. I attached another Vive tracker
+                        to it and displayed it in VR.
+                    </p>
+                </div>
+
+                <div class="infocards">
+                    <div>
+                        <h3>MODELING & TEXTURING</h3>
+                        <p>I used Blender to model and UV map the room. To achieve accurate scale, I took measurements of every wall with a tape measure and entered the values into Blender to have a perfect match. I also modeled the door and desks using the same method.</p>
+                        <p>I used Affinity Designer to manually draw the floor texture, but I photoscanned some parts of the room (like the door) because they had more complicated textures. I mapped the scanned photo onto the door.</p>
+                    </div>
+                    <img src="assets/images/timeperception_modeling.jpg">
+                </div>
+
+                <div class="infocards">
+                    <img src="assets/images/timeperception_postorot.jpg">
+                    <div>
+                        <h3>CONVERTING POSITION TO ROTATION</h3>
+                        <p>Due to how I had the door set up, I was only able to utilize the positional data from the Vive tracker, and not the rotational data.
+                            I calculated the direction from the Vive tracker to the door hinge and converted it to a quaternion. I then set the rotation of the door
+                            to that quaternion. This way, the virtual door rotates to match the position of the tracker.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="infocards">
+                    <div>
+                        <h3>AUTOMATING THE PROCESS</h3>
+                        <p>
+                            At first, I would manually transfer collected data to an excel sheet. This quickly became cumbersome as I was dealing with hundreds of data points.
+                            I programmed a <a href="https://github.com/kadirlofca/unity-csvmaker" rel="noreferrer nofollow noopener" target="_blank">tool for Unity</a> to automate the process of writing collected data into a sheet. As data is collected, a Vector2 position and the value
+                            is passed into an instance of the tool, the tool then writes the given value into the given position. Exporting the sheet as a .csv can be requested at any point during the process.
+                        </p>
+                        <p>
+                            After finishing the data collection phase, I utilized libraries such as tidyverse and rstatix in R and RStudio to analyze the data.
+                        </p>
+                    </div>
+                    <img src="assets/images/timeperception_headset.jpg">
+                </div>
+
+                <div class="infocards">
+                    <iframe width="400px" height="222px" src="https://www.youtube.com/embed/buS2w6SWFnU" title="VR Time Perception demonstration." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div>
+                        <h3>RESULT</h3>
+                        <p>
+                            After collecting 480 data points, we found no significant change between low and high physicality time perception. 
+                            Here are some things I did along the way:
+                        </p>
+                        <ul>
+                            <li><a href="https://www.researchgate.net/publication/360089920_Studying_the_Effect_of_Physical_Realism_on_Time_Perception_in_a_HAZMAT_VR_Simulation" rel="noreferrer nofollow noopener" target="_blank">Presented IEEE 2022 poster</a></li>
+                            <li><a href="https://researchmagazine.uncg.edu/spring-2022/press-start-to-begin/" rel="noreferrer nofollow noopener" target="_blank">Got featured on the UNCG Research Magazine</a></li>
+                            <li><a href="https://github.com/kadirlofca/unity-csvmaker" rel="noreferrer nofollow noopener" target="_blank">Made a useful Unity tool</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p>
+                    I worked on this project for 
+                    over a year, and I learned a lot. Not only programming, but management, research, connecting with people. I finished this project as a new person, and I'm grateful
+                    to everyone who helped me!
+                </p>
+            </div>
+        </div>
+
+        <footer class="focus">
+            <div class="conline"></div>
+            <div class="conbar">
+				<div>
+					<a href="mailto:kadirlofca@outlook.com" rel="noreferrer nofollow noopener" target="_blank">kadirlofca@outlook.com</a>
+					<a href="https://www.linkedin.com/in/kadirlofca/" rel="noreferrer nofollow noopener" target="_blank" >LinkedIn</a>
+					<a href="https://github.com/kadirlofca" rel="noreferrer nofollow noopener" target="_blank">GitHub</a>
+				</div>
+				<div>
+					<a href="index.html">Let's Meet</a>
+					<a href="collection.html">Collection</a>
+					<a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a>
+				</div>
+            </div>
+        </footer>
+	</body>
+
+	<script type="text/javascript" src="assets/js/header.js"></script>
+</html>
