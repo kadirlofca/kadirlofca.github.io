@@ -16,7 +16,8 @@ const galleries = Array(
     'vrresearch',
     'about',
     'slicedice',
-    'magnolia'
+    'magnolia',
+    'hackncworkshop'
 );
 
 function resetothers(name){
