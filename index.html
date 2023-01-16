@@ -34,7 +34,14 @@
 
             html {
                 scroll-behavior: smooth;
+                scroll-snap-type: y mandatory;
+
             }   
+
+            header{
+                scroll-snap-align: center;
+                margin-top: 45vh;
+            }
 
             body{
                 padding: var(--gap);
@@ -47,6 +54,7 @@
             footer{
                 margin: var(--gap);
                 margin-top: 100px;
+                margin-bottom: 40vh;
             }
 
             ::selection {
@@ -170,6 +178,7 @@
             .gallery {
                 display: flex;
                 flex-wrap: wrap;
+                scroll-snap-align: center;
             }
 
             .gap{
@@ -224,7 +233,7 @@
 
             .projectbox{
                 padding: 3px;
-                margin-top: 200px;
+                margin-top: 45vh;
                 border: 0px solid var(--accolor);
                 border-radius: 2px;
                 transition: all 0.3s ease-in-out;
@@ -295,6 +304,10 @@
                 .item .text{
                     display: none;
                 }
+
+                p{
+                    font-size: 0.8em;
+                }
             }
             
             b{
@@ -358,10 +371,28 @@
             .tab .center{
                 text-align: center;
             }
+
+            .count{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 300;
+                color: var(--accolor);
+                font-size: 0.65em;
+
+                margin: 0;
+            }
+
+            .mirror{
+                -moz-transform:    scaleX(-1); /* Gecko */
+                -o-transform:      scaleX(-1); /* Opera */
+                -webkit-transform: scaleX(-1); /* Webkit */
+                transform:         scaleX(-1); /* Standard */
+
+                filter: FlipH;                 /* IE 6/7/8 */
+            }
         </style>
     </head>
 	<body>
-        <a id="top"></a>
+        <a id="top" class="top"></a>
         <div class="block" id="mainbody">
             <header class="centered">
                 <!-- AVAILABILITY -->
@@ -377,14 +408,18 @@
                     <a href="https://github.com/kadirlofca" rel="noreferrer nofollow noopener" target="_blank">GitHub</a>
                     <a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a>
                 </div>
+
+                <div>
+                    <br><br><br><br><br><br><a class="unselectable" href="#aboutgallery" style="font-size: 2em;">⇣</a>
+                </div>
             </header>   
             
             <!-- ABOUT ME  -->
             <div>
-                <div class="projectbox" onclick="flipflop('about')" style="margin-top: 100px;">
+                <div class="projectbox" onclick="flipflop('about')">
                     <div class="tab unselectable" id="abouttab" style="display: none;"><div>ABOUT ME</div> </div>
                     <div class="gallery fade-hidden" id="aboutgallery">
-                        <div class="item square unselectable"><p class="title">ABOUT ME</p><p class="text">Tap for details </p></div>
+                        <div class="item square unselectable"><p class="title"><span class="count">0</span> ABOUT ME</p><p class="text">Tap for details </p></div>
                         <div class="item"><img src="assets/images/project/about_the_edge.jpg"></div>
                         <div class="item"><img src="assets/images/project/about_magazinephoto.jpg"></div>
                         <div class="item"><img src="2022-late/assets/images/kroger_3.jpg"></div>
@@ -403,7 +438,7 @@
                 <div class="projectbox" onclick="flipflop('slicedice')">
                     <div class="tab unselectable" id="slicedicetab" style="display: none;"><div>SLICE & DICE GAME</div> <div class="right">JUL 2022</div></div>
                     <div class="gallery fade-hidden" id="slicedicegallery">
-                        <div class="item square unselectable"><p class="title">SLICE & DICE GAME</p><p class="date">JUL 2022</p><p class="text">Game jam submission</p></div>
+                        <div class="item square unselectable"><p class="title"><span class="count">1</span> SLICE & DICE GAME</p><p class="date">JUL 2022</p><p class="text">Game jam submission</p></div>
                         <div class="item"><img src="assets/images/project/slicedice_boss.gif"></div>
                         <div class="item"><img src="assets/images/project/slicedice_combat.gif"></div>
                         <div class="item"><img src="assets/images/project/slicedice_cover.gif"></div>
@@ -425,7 +460,7 @@
                 <div class="projectbox" onclick="flipflop('magnolia')">
                     <div class="tab unselectable" id="magnoliatab" style="display: none;"><div>MAGNOLIA VR TOUR</div> <div class="right">FEB 2021 - AUG 2021</div></div>
                     <div class="gallery fade-hidden" id="magnoliagallery">
-                        <div class="item square unselectable"><p class="title">MAGNOLIA VR TOUR</p><p class="date">FEB 2021 - AUG 2021</p><p class="text">VR Software Development</p></div>
+                        <div class="item square unselectable"><p class="title"><span class="count">2</span> MAGNOLIA VR TOUR</p><p class="date">FEB 2021 - AUG 2021</p><p class="text">VR Software Development</p></div>
                         <div class="item"><img src="assets/images/project/magnolia_solarium.gif"></div>
                         <div class="item"><img src="assets/images/project/magnolia_navmesh.gif"></div>
                         <div class="item"><img src="assets/images/project/magnolia_culling.gif"></div>
@@ -448,7 +483,7 @@
                 <div class="projectbox" onclick="flipflop('vrresearch')">
                     <div class="tab unselectable" id="vrresearchtab" style="display: none;"><div>VR RESEARCH</div> <div class="right">AUG 2021 - JAN 2023</div></div>
                     <div class="gallery fade-hidden" id="vrresearchgallery">
-                        <div class="item square unselectable"><p class="title">VR RESEARCH</p><p class="date">AUG 2021 - JAN 2023</p><p class="text">Undergraduate research</p></div>
+                        <div class="item square unselectable"><p class="title"><span class="count">3</span> VR RESEARCH</p><p class="date">AUG 2021 - JAN 2023</p><p class="text">Undergraduate research</p></div>
                         <div class="item"><img src="assets/images/project/vrresearch_virtual_vs_real.gif"></div>
                         <div class="item"><img src="assets/images/project/vrresearch_multirae_on_vent.jpg"></div>
                         <div class="item"><img src="assets/images/project/vrresearch_headset.jpg"></div>
@@ -478,10 +513,10 @@
 
             <!-- HACKNC WORKSHOP -->
             <div>
-                <div class="projectbox" onclick="flipflop('hackncworkshop')">
+                <div class="projectbox" onclick="flipflop('hackncworkshop')" style="display: none;">
                     <div class="tab unselectable" id="hackncworkshoptab" style="display: none;"><div>GAME DEV WORKSHOP</div> <div class="right">MAY 2022 - NOV 2022</div></div>
                     <div class="gallery fade-hidden" id="hackncworkshopgallery">
-                        <div class="item square unselectable"><p class="title">GAME DEV WORKSHOP</p><p class="date">MAY 2022 - NOV 2022</p><p class="text">HackNC Workshop Instructor</p></div>
+                        <div class="item square unselectable"><p class="title"><span class="count">4</span> GAME DEV WORKSHOP</p><p class="date">MAY 2022 - NOV 2022</p><p class="text">HackNC Workshop Instructor</p></div>
                         <div class="item"><img src="assets/images/project/hackncworkshop_flying_through_space.gif"></div>
                         <div class="item"><img src="assets/images/project/hackncworkshop_universe.jpg"></div>
                         <div class="item"><img src="assets/images/project/hackncworkshop_visual_scripting.jpg"></div>
@@ -499,7 +534,7 @@
             </div>
                 
             <footer class="centered">
-                <a href="#top">Back to top</a>
+                <a id="loadmore" onclick="loadmore()" style="cursor: pointer; display: none;">More ⇣</a> &nbsp; </span> <a href="#top">⇡ Go Up</a>
                 <br>
                 <p class="unselectable"><script>document.write(/\d{4}/.exec(Date())[0])</script> Kadir Lofca - Last Updated JAN 2023</p>
             </footer>
@@ -508,5 +543,6 @@
     <script type="text/javascript" src="assets/js/wobble.js"></script>
     <script type="text/javascript" src="assets/js/flipflop.js"></script>
     <script type="text/javascript" src="assets/js/fadescroll.js"></script>
+    <script type="text/javascript" src="assets/js/loadmore.js"></script>
 	<script src="https://kit.fontawesome.com/d930abb883.js" crossorigin="anonymous"></script>
 </html> 
