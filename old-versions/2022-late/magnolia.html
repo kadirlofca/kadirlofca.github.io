@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Kadir Lofca is a computer science student with experience in virtual reality and game development. This is his portfolio!">
+        <meta name="keywords" content="kadir lofca, kadir, lofca, baturalp, portfolio">
+		<meta name="author" content="Kadir Lofca">
+		<title>Kadir Lofca</title>
+		<link rel="stylesheet" href="./assets/style.css">
+
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="focus navbox">
+					<div class="navlink"><a href="index.html">Kadir Lofca</a></div>
+
+					<div class="margin-auto"></div>
+
+					<div class="navlink"><a href="collection.html">Collection</a></div>
+					<div class="navlink"><a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a></div>
+					<!-- <div class="navlink"><a href="story.html">Story</a></div> -->
+				</div>
+			</div>
+			<img id="header-wave" src="assets/images/wave.png">
+		</header>
+
+        <div class="hero">
+            <div class="focus">
+                <h3><a href="collection.html">↜COLLECTION</a></h3>
+                <h2>PROJECT</h2>
+                <h1>MAGNOLIA HOUSE</h1>
+                <p>
+                    The Magnolia House provided a place to stay for black Americans during segregation. Today, it stands as an
+                    artifact of the past with visitors coming to see the lives of those who stayed there.
+                </p>
+                
+                <div class="infocards">
+                    <div>
+                        <h3>PROJECT INFO</h3>
+                        <ul>
+                            <li>VR tour for the Meta Quest 2</li>
+                            <li>Navigation with teleportation</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>DEVELOPMENT INFO</h3>
+                        <ul>
+                            <li>My roles: Designer, Programmer</li>
+                            <li>Team size: 2</li>
+                            <li>Tools: C#, Unity, GitHub, Blender</li>
+                            <li>Development time: 4 months</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>MOTIVATION</h3>
+                    <p>Magnolia House was my first professional experience. The job posting stated that the position was for graduate
+                        students only, so I wasn't going to apply. My cousin encouraged me, telling me my skills were perfect for the job.
+                        I applied and got the job!
+                    </p>
+                    <p>
+                        I worked with my professor and a client to create this VR tour for people to see
+                        the Magnolia House in the 1950's. Now, the tour is experienced and praised by visitors of the house.
+                    </p>
+                </div>
+
+                <div class="infocards">
+                    <div>
+                        <h3>TUTORIAL</h3>
+                        <p>
+                            Once the user puts on the headset, they find themselves in the corridor of the house. A black stripe surrounding them leads their
+                            eye towards the tutorial panel. From this panel, they learn how to teleport around the house. They push the controller stick to
+                            target the teleportation ray, as they do that, the tutorial panel disappears and leaves the user to explore the house. The user targets
+                            the ray, releases the stick, and teleports.
+                        </p>
+                    </div>
+                    <img src="assets/images/magnolia_tutorialpanel.jpg">
+                </div>
+
+
+                <div class="infocards">
+                    <img src="assets/images/magnolia_teleport.gif">
+                    <div>
+                        <h3>NAVIGATION</h3>
+                        <p>
+                            The user is able to explore both floors of the house by teleporting. I implemented a navmesh that appears when the user is targeting
+                            the teleportation ray. I modeled the navmesh in Blender, I had full control over where the user could explore. Because of this, I was able to leave
+                            some rooms empty and focus on making the explorable rooms look and feel better.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="infocards">
+                    <div>
+                        <h3>LIGHTING & REFLECTIONS</h3>
+                        <p>
+                            I used Unity's lighting and reflection tools to create believable lighting. I positioned lights outside the house next to the windows to simulate
+                            sunlight coming in. The sunlight from the windows are assisted with a little ambient lighting too.
+                        </p>
+                        <p>
+                            The glasses and mirrors utilize the reflection probes I positioned inside each room.
+                        </p>
+                    </div>
+                    <img src="assets/images/magnolia_lighting.gif">
+                </div>
+
+                <div class="infocards">
+                    <img src="assets/images/magnolia_shader.gif">
+                    <div>
+                        <h3>SHADERS & MATERIALS</h3>
+                        <p>
+                            I created the materials and shaders myself using the shader graph tool. 
+                        </p>
+                        <ul>
+                            <li>
+                                Some materials have a noise texture to create imperfections on surfaces to increase believability.
+                            </li>
+                            <li>
+                                Some materials have reflections that bounce light from the reflection probes.
+                            </li>
+                            <li>
+                                I created a diverse set of materials. Materials are opaque, transparent, reflective/non-reflective, emissive/non-emissive.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="infocards">
+                    <div>
+                        <h3>OCCLUSION CULLING & MODEL OPTIMIZATION</h3>
+                        <p>
+                            The amount of lights and reflection probes I used was very taxing on the Meta Quest 2. The framerate was below the 90hz refresh
+                            rate the display was capable of.
+                        </p>
+                        <p>
+                            I optimized the performance by utilizing frustum and occlusion culling inside Unity. But that wasn't enough. The model which was provided
+                            by my team wasn't optimized for a game engine. I used Blender to delete vertices that weren't going to be seen by the user.
+                        </p>
+                    </div>
+                    <img src="assets/images/magnolia_missingNavmesh.jpg">
+                    <img src="assets/images/magnolia_outside.gif">
+                    <img src="assets/images/magnolia_culling.gif">
+                </div>
+
+                <div class="infocards">
+                    <img src="assets/images/magnolia_bedroom.jpg">
+                    <div>
+                        <h3>RESULT</h3>
+                        <p>
+                            We finished the project and launched it on the clients Meta Quest 2 headsets. The visitors of the house responded positively. I learned a lot
+                            about optimization and VR development. 4 months spent well!
+                        </p>
+                    </div>
+                    <img src="assets/images/magnolia_fruit.jpg">
+                    <img src="assets/images/magnolia_navmesh.gif">
+                </div>
+            </div>
+        </div>
+
+        <footer class="focus">
+            <div class="conline"></div>
+            <div class="conbar">
+				<div>
+					<a href="mailto:kadirlofca@outlook.com" rel="noreferrer nofollow noopener" target="_blank">kadirlofca@outlook.com</a>
+					<a href="https://www.linkedin.com/in/kadirlofca/" rel="noreferrer nofollow noopener" target="_blank" >LinkedIn</a>
+					<a href="https://github.com/kadirlofca" rel="noreferrer nofollow noopener" target="_blank">GitHub</a>
+				</div>
+				<div>
+					<a href="index.html">Let's Meet</a>
+					<a href="collection.html">Collection</a>
+					<a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a>
+				</div>
+            </div>
+        </footer>
+	</body>
+
+	<script type="text/javascript" src="assets/js/header.js"></script>
+</html>

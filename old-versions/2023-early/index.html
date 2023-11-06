@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Kadir Lofca Portfolio</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta name="description" content="Software & Game Developer"/>
+        <meta property="og:site_name" content="Kadir Lofca Portfolio"/>
+        <meta property="og:title" content="Kadir Lofca Portfolio"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:description" content="Software & Game Developer"/>
+        <meta property="og:image" content="https://kadirlofca.com/assets/images/favicon/thumbnail.jpg"/>
+        <meta property="og:image:type" content="image/jpeg"/>
+        <meta property="og:image:width" content="1280"/>
+        <meta property="og:image:height" content="800"/>
+        <meta property="og:url" content="https://kadirlofca.com"/>
+        <meta property="twitter:card" content="summary_large_image"/>
+        <link rel="canonical" href="https://kadirlofca.com"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <meta name="google-site-verification" content="bIRVHshPD0WYj-wKFnXXilJjmtdRhdeEOWfaYtQI2U4" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <style>
+            :root{
+                --bgcolor: hsl(165, 35%, 3%);
+                --accolor: hsl(165, 92%, 50%); 
+                --txcolor: hsl(0, 0%, 55%); 
+                --gap: 20px
+            }
+
+            html {
+                scroll-behavior: smooth;
+                scroll-snap-type: y mandatory;
+
+            }   
+
+            header{
+                scroll-snap-align: center;
+                margin-top: 45vh;
+            }
+
+            body{
+                padding: var(--gap);
+
+                background: -webkit-linear-gradient(right, var(--bgcolor), black, var(--bgcolor)); /* Chrome10+, Safari5.1+ */
+                background: -moz-linear-gradient(right, var(--bgcolor), black, var(--bgcolor));    /* FF3.6+ */
+                background: linear-gradient(to right, var(--bgcolor), black, var(--bgcolor));      /* W3C */
+            }
+
+            footer{
+                margin: var(--gap);
+                margin-top: 10vh;
+                margin-bottom: 40vh;
+            }
+
+            ::selection {
+                color: var(--accolor);
+                background: hsl(163, 50%, 15%); /* WebKit/Blink Browsers */
+            }
+            
+            ::-moz-selection {
+                color: var(--accolor);
+                background: hsl(163, 50%, 15%); /* Gecko Browsers */
+            }
+
+            h1{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                color: var(--accolor);
+            }
+
+            h6{
+                margin: 7vh;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                color: var(--accolor);
+            }
+
+            a{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 400;
+                text-decoration: none;
+                color: var(--accolor);
+                border: 0px solid var(--accolor);
+                border-radius: 2px;
+
+                transition: all 0.3s ease-in-out;
+            }
+
+            a:hover, a:active{
+                font-weight: 500;
+                color: black;
+                background-color: var(--accolor);
+                border: 10px solid var(--accolor);
+                border-radius: 2px;
+            }
+
+            p{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 400;
+                color: var(--txcolor);
+            }
+
+            hr{
+                margin-top: 75px;
+                border: none;
+                border-top: 1px dashed var(--txcolor);
+            }
+
+            .block{
+                width: 100%;
+                max-width: 950px;
+                margin: auto;
+            }
+
+            .centered{
+                text-align: center;
+            }
+
+            .twocolumn{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: var(--gap);
+            }
+
+            .twocolumn *{
+                flex: 1;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: justify;
+                text-justify: auto;
+            }
+
+            .rowbox{
+                display: flex;
+                flex-direction: column;
+                gap: var(--gap);
+            }
+
+            .inlineitems{
+                word-spacing: 10px;
+            }
+
+            @keyframes wobb {
+                0%, 100%   {transform: translateY(0px)}
+                25%  {transform: translateY(-2px)}
+                75%  {transform: translateY(2px)}
+            }
+
+            .wobble span {
+                animation-name: wobb;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                animation-duration: 3s;
+                display: inline-block;
+                transform: translateY(0px);
+            }
+
+            .unselectable {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            .smalltext{
+                font-size: 0.9em;
+                filter: brightness(50%);
+            }
+
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                scroll-snap-align: center;
+            }
+
+            .gap{
+                gap: var(--gap);
+            }
+
+            .gallery .item {
+                height: 25vw;
+                max-height: 220px;
+                flex-grow: 1;
+                margin: 3px;
+            }
+
+            .gallery .square{
+                width: 20vw;
+                max-width: 220px;
+                min-width: min-content;
+
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                border-right: 2px solid var(--accolor);
+                border-bottom: 2px solid var(--accolor);
+            }
+
+            .gallery .wideitem {
+                width: 400px;
+                min-width: 280px;
+                flex-grow: 1;
+                margin: 3px;
+            }
+
+            .gallery .item img {
+                max-height: 100%;
+                min-width: 100%;
+                object-fit: cover;
+                vertical-align: bottom;
+                border: 0px;
+                border-radius: 2px;
+            }
+
+            .gallery .text {
+                max-height: 280px;
+                max-width: 280px;
+                flex-grow: 1;
+                
+            }
+            
+            .gallery .text p{
+                margin: 0;
+            }
+
+            .projectbox{
+                padding: 3px;
+                margin-top: 45vh;
+                border: 0px solid var(--accolor);
+                border-radius: 2px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .projectbox:hover, .projectbox:active{
+                background-color: var(--accolor);
+                border: 10px solid var(--accolor);
+                border-radius: 2px;
+                cursor: pointer;
+            }
+
+            .projectbox:hover *, .projectbox:active *{
+                color: black;
+                border-color: black;
+            }
+
+            .projectbox a{
+                text-decoration: underline;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 400;
+                color: var(--txcolor);
+            }
+
+            .projectbox a:hover, .projectbox a:active{
+                border: none;
+                font-weight: 500;
+            }
+
+            .fade-hidden {
+                opacity: 0;
+                transition: all 1.5s;
+            }
+
+            .fade-show{
+                opacity: 1;
+            }
+
+            .justify{
+                text-align: justify;
+                text-justify: auto;
+            }
+            
+            *::-webkit-scrollbar-track ,
+            *::-webkit-scrollbar {
+                background-color: var(--bgcolor);
+                width: 20px;
+            }
+
+            *::-webkit-scrollbar-thumb {
+                border: 10px solid var(--bgcolor);
+                border-right: none;
+                border-radius:2px 0 0 2px;
+                background-color: var(--accolor);
+            }
+
+            *::-webkit-scrollbar-thumb:hover,
+            *::-webkit-scrollbar-thumb:active {
+                border-width: 0;
+            }
+            
+            @media only screen and (max-width: 700px) {
+                .gallery .text {
+                max-height: 600px;
+                max-width: 600px;
+                }
+
+                .item .text{
+                    display: none;
+                }
+
+                p{
+                    font-size: 0.8em;
+                }
+            }
+            
+            b{
+                font-family: 'Montserrat', sans-serif;
+                font-weight:700;
+            }
+
+            #mainbody{
+                animation: fadeInAnimation ease 3s;
+            }
+
+            @keyframes fadeInAnimation {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .title{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                color: var(--accolor);
+
+                margin: 0;
+            }
+
+
+
+            .date{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                font-size: 0.9em;
+                color: var(--txcolor);
+
+                margin: 0;
+            }
+
+            .tab{
+                display: none;
+
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                color: var(--accolor);
+                border-bottom: 2px solid var(--accolor);
+                display: flex;
+
+                margin: 0;
+                margin-bottom: 3px;
+            }
+
+            .tab *{
+                flex: 1;
+            }
+
+            .tab .right{
+                text-align: right;
+            }
+
+            .tab .center{
+                text-align: center;
+            }
+
+            .count{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 300;
+                color: var(--accolor);
+                font-size: 0.65em;
+
+                margin: 0;
+            }
+
+            .mirror{
+                -moz-transform:    scaleX(-1); /* Gecko */
+                -o-transform:      scaleX(-1); /* Opera */
+                -webkit-transform: scaleX(-1); /* Webkit */
+                transform:         scaleX(-1); /* Standard */
+
+                filter: FlipH;                 /* IE 6/7/8 */
+            }
+        </style>
+    </head>
+	<body>
+        <a id="top" class="top"></a>
+        <div class="block" id="mainbody">
+            <header class="centered">
+                <!-- AVAILABILITY -->
+                <h6 class="wobble unselectable">OPEN-TO-WORK</h6>
+                
+                <!-- NAME -->
+                <h1 class="unselectable">Kadir Lofca</h1>
+                
+                <!-- LINKS -->
+                <div class="inlineitems">
+                    <a href="mailto:kadirlofca@outlook.com" rel="noreferrer nofollow noopener" target="_blank">KadirLofca@outlook.com</a>
+                    <a href="https://www.linkedin.com/in/kadirlofca/" rel="noreferrer nofollow noopener" target="_blank" >LinkedIn</a>
+                    <a href="https://github.com/kadirlofca" rel="noreferrer nofollow noopener" target="_blank">GitHub</a>
+                    <a href="assets/files/Kadir-Lofca-Resume.pdf" rel="noreferrer nofollow noopener" target="_blank">Resume</a>
+                </div>
+
+                <div>
+                    <br><br><br><br><br><br><a class="unselectable" href="#aboutgallery" style="font-size: 2em;">⇣</a>
+                </div>
+            </header>   
+            
+            <!-- ABOUT ME  -->
+            <div>
+                <div class="projectbox" onclick="flipflop('about')">
+                    <div class="tab unselectable" id="abouttab" style="display: none;"><div>ABOUT ME</div> </div>
+                    <div class="gallery fade-hidden" id="aboutgallery">
+                        <div class="item square unselectable"><p class="title"><span class="count">0</span> ABOUT ME</p><p class="text">Tap for details </p></div>
+                        <div class="item"><img src="assets/images/project/about_the_edge.jpg"></div>
+                        <div class="item"><img src="assets/images/project/about_magazinephoto.jpg"></div>
+                        <div class="item"><img src="2022-late/assets/images/kroger_3.jpg"></div>
+                        <div class="item"><img src="2022-late/assets/images/kroger_1.jpg"></div>
+                    </div>
+                </div>    
+                <div class="gallery gap unselectable" id="aboutdescription" style="display: none;">
+                    <div class="text"><p><b>Hello!</b> I'm Kadir, a computer science student with 2 years of software development experience.<br> I'm passionate about developing robust systems and innovative mechanics for games.</p></div>
+                    <div class="text"><p><b>Hobbies</b> When I'm not playing or developing games, I love digital drawing and playing ping-pong! I also have a cat (Kroger) that I love!</p></div>
+                    <div class="text inlineitems"><p><b>Skills</b> C# C++ Python<br>Unity Unreal-Engine Visual-Studio<br>GitHub GitLab Microsoft-Teams Slack Asana<br>Blender Photoshop DaVinci-Resolve Audacity</p></div>
+                </div>
+            </div>
+
+            <!-- DICESLICE GAME -->
+            <div>
+                <div class="projectbox" onclick="flipflop('slicedice')">
+                    <div class="tab unselectable" id="slicedicetab" style="display: none;"><div>SLICE & DICE GAME</div> <div class="right">JUL 2022</div></div>
+                    <div class="gallery fade-hidden" id="slicedicegallery">
+                        <div class="item square unselectable"><p class="title"><span class="count">1</span> SLICE & DICE GAME</p><p class="date">JUL 2022</p><p class="text">Game jam submission</p></div>
+                        <div class="item"><img src="assets/images/project/slicedice_boss.gif"></div>
+                        <div class="item"><img src="assets/images/project/slicedice_combat.gif"></div>
+                        <div class="item"><img src="assets/images/project/slicedice_cover.gif"></div>
+                        <div class="item"><img src="assets/images/project/slicedice_walking.gif"></div>
+                    </div>
+                </div>    
+                <div class="gallery gap unselectable" id="slicedicedescription" style="display: none;">
+                    <div class="text"><p><b>Brief: </b>Game I worked on for GMTK 2022. I teamed up with a friend to complete this project within the 48 hour limit.<br><br> <b>My Role</b> <span class="inlineitems">Programmer Game-Designer Artist</span> <br><br> <b>Tools</b> <span class="inlineitems">C# Unity Plastic-SCM Blender Affinity-Designer Audacity</span></p></div>
+                    <div class="text"><p><b>Design </b>Theme of the jam was "Roll of the dice." I designed a game where a physics-based dice would be thrown at enemies to damage them. The game consists of a single level that starts small and ends in a large boss fight.</p></div>
+                    <div class="text"><p><b>Aim Assist </b>Player controls a character from a top down view. This character can pick up and throw a dice to damage the enemies. I programmed an aim assist mechanic that locks onto the closes enemy. This reduced the skill requirement and put more emphasis on the roll of the dice.</p></div>
+                    <div class="text"><p><b>Coroutines </b>Enemies can fight back by picking up the dice thrown by the player. I used a coroutine to make an interval in which the enemy would wait before trying to throw the dice. </p></div>
+                    <div class="text"><p><b>Rigidbody </b>By attaching rigidbodies to the character and enemies I was able to easily convert input into movement. This made dealing with collisions much easier too.</p></div>
+                    <div class="text"><p><b>Art </b>I created the character art using Affinity Designer, modeled and textured the dice and level using Blender. I animated the characters by stretching and squashing them in the y-axis.<br><a href="https://kadir-lofca.itch.io/slice-and-dice" rel="noreferrer nofollow noopener" target="_blank">Play Slice & Dice</a></p></div>
+                </div>                  
+            </div>
+
+            <!-- MAGNOLIA -->
+            <div>
+                <div class="projectbox" onclick="flipflop('magnolia')">
+                    <div class="tab unselectable" id="magnoliatab" style="display: none;"><div>MAGNOLIA VR TOUR</div> <div class="right">FEB 2021 - AUG 2021</div></div>
+                    <div class="gallery fade-hidden" id="magnoliagallery">
+                        <div class="item square unselectable"><p class="title"><span class="count">2</span> MAGNOLIA VR TOUR</p><p class="date">FEB 2021 - AUG 2021</p><p class="text">VR Software Development</p></div>
+                        <div class="item"><img src="assets/images/project/magnolia_solarium.gif"></div>
+                        <div class="item"><img src="assets/images/project/magnolia_navmesh.gif"></div>
+                        <div class="item"><img src="assets/images/project/magnolia_culling.gif"></div>
+                        <div class="item"><img src="assets/images/project/magnolia_shader.gif"></div>
+                    </div>
+                </div>    
+                <div class="gallery gap unselectable" id="magnoliadescription" style="display: none;">
+                    <div class="text"><p><b>Brief: </b>I developed a VR tour of the historic Magnolia House. I worked with an interior architecture student who did the modeling.<br><br> <b>My Role</b> <span class="inlineitems">Programmer UX-Designer</span> <br><br> <b>Tools</b> <span class="inlineitems">C# Unity GitHub Blender SketchUp Audacity</span></p></div>
+                    <div class="text"><p><b>Why </b> My first professional software development experience. I worked for a client to create this incredible VR experience.</p></div>
+                    <div class="text"><p><b>Navigation </b>The user is able to explore both floors of the house by teleporting. I programmed a navmesh that appears when the user is targeting the teleportation ray. </p></div>
+                    <div class="text"><p><b>Lighting </b>I used Unity's lighting and reflection tools to create believable lighting. I positioned lights outside the house next to the windows to simulate sunlight coming in.<br>The glasses and mirrors utilize the reflection probes I positioned inside each room.</p></div>
+                    <div class="text"><p><b>Shaders </b>I created the materials and shaders myself using the shader graph tool. Without imperfections, the environment didn't look believable, so I added noise textures to add detail on surfaces.</p></div>
+                    <div class="text"><p><b>Optimization </b>I optimized the performance by utilizing frustum and occlusion culling inside Unity. But that wasn't enough. The model which was provided by my team wasn't optimized for a game engine. I used Blender to delete vertices that weren't going to be seen by the user.<br><a href="https://cas.uncg.edu/virtual-reality-brings-the-past-to-life-at-magnolia-house/" rel="noreferrer nofollow noopener" target="_blank">News Article</a></p></div>
+                    <div class="text"><p><b></b></p></div>
+                </div>                  
+            </div>
+
+            <!-- VR RESEARCH -->
+            <div>
+                <div class="projectbox" onclick="flipflop('vrresearch')">
+                    <div class="tab unselectable" id="vrresearchtab" style="display: none;"><div>VR RESEARCH</div> <div class="right">AUG 2021 - JAN 2023</div></div>
+                    <div class="gallery fade-hidden" id="vrresearchgallery">
+                        <div class="item square unselectable"><p class="title"><span class="count">3</span> VR RESEARCH</p><p class="date">AUG 2021 - JAN 2023</p><p class="text">Undergraduate research</p></div>
+                        <div class="item"><img src="assets/images/project/vrresearch_virtual_vs_real.gif"></div>
+                        <div class="item"><img src="assets/images/project/vrresearch_multirae_on_vent.jpg"></div>
+                        <div class="item"><img src="assets/images/project/vrresearch_headset.jpg"></div>
+                        <div class="item"><img src="assets/images/project/vrresearch_corridor.jpg"></div>
+                    </div>
+                </div>    
+                    <div class="gallery gap unselectable" id="vrresearchdescription" style="display: none;">
+                        <div class="text"><p><b>Brief: </b>Research I did to find why time is perceived differently in VR. <br> I worked on it for over a year with a team of 4. <br><br> <b>My Role</b> <span class="inlineitems">Programmer Lead-Researcher</span> <br><br> <b>Tools</b> <span class="inlineitems">C# Unity GitLab Blender R RStudio SteamVR OpenXR</span></p></div>
+                        <!-- <div class="text"><p><b>Why </b>After our previous work, my professor offered me to continue working with him on this research. I accepted his offer as I was interested in seeing how research was done.</p></div> -->
+                        <div class="text"><p><b>Simulation </b>For this to be a controlled experiment, I had to simulate a VR equivalent of the room the experiment was conducted in. I use Blender to model the room and Affinity Designer to create textures. I used SteamVR, HTC Vive Trackers, and Leap Motion to track real objects and display them in VR. This created a virtual environment that perfectly matched the real world. I used Unity to simulate the room.</p></div>
+                        <div class="text"><p><b>Automation </b>In order to record hundreds of data points into our database, I programmed a tool for Unity that automates the process. After I finished collecting data with the help of this tool, I used R and RStudio for data analysis.</p></div>
+                        <div class="text"><p><b>Design </b>I designed an experiment that would compare the user's perception of time in VR with physical props and VR with virtual props. This experiment showed us if physicality in VR has an effect on time perception.</p></div>
+                        <div class="text"><p><b>Results </b>Alongside broadening my programming and technical skills, I learned how to do research and critical, unbiased thinking. I put out two research papers and was featured in some articles and a science magazine.</p></div>
+                        <div class="text"><p>
+                            <a href="https://www.researchgate.net/publication/360089920_Studying_the_Effect_of_Physical_Realism_on_Time_Perception_in_a_HAZMAT_VR_Simulation" rel="noreferrer nofollow noopener" target="_blank">· My IEEEVR 2022 Paper</a>
+                            <br>
+                            <a href="assets/files/IEEEVR23_Kadir_Lofca.pdf" rel="noreferrer nofollow noopener" target="_blank">· My IEEEVR 2023 Paper</a>
+                            <br>
+                            <a href="https://researchmagazine.uncg.edu/spring-2022/press-start-to-begin/" rel="noreferrer nofollow noopener" target="_blank">· Research Magazine I'm On</a>
+                            <br>
+                            <a href="https://github.com/kadirlofca/unity-csvmaker" rel="noreferrer nofollow noopener" target="_blank">· Automation Tool For Unity</a>
+                            <br>
+                            <a href="https://www.youtube.com/watch?v=buS2w6SWFnU" rel="noreferrer nofollow noopener" target="_blank">· Video Demonstration</a>
+                        </p></div>
+                    </div>                  
+            </div>
+
+            <!-- HACKNC WORKSHOP -->
+            <div>
+                <div class="projectbox" onclick="flipflop('hackncworkshop')" style="display: none;">
+                    <div class="tab unselectable" id="hackncworkshoptab" style="display: none;"><div>GAME DEV WORKSHOP</div> <div class="right">MAY 2022 - NOV 2022</div></div>
+                    <div class="gallery fade-hidden" id="hackncworkshopgallery">
+                        <div class="item square unselectable"><p class="title"><span class="count">4</span> GAME DEV WORKSHOP</p><p class="date">MAY 2022 - NOV 2022</p><p class="text">HackNC Workshop Instructor</p></div>
+                        <div class="item"><img src="assets/images/project/hackncworkshop_flying_through_space.gif"></div>
+                        <div class="item"><img src="assets/images/project/hackncworkshop_universe.jpg"></div>
+                        <div class="item"><img src="assets/images/project/hackncworkshop_visual_scripting.jpg"></div>
+                        <div class="item"><img src="assets/images/project/hackncworkshop_screenshot.jpg"></div>
+                    </div>
+                </div>    
+                    <div class="gallery gap unselectable" id="hackncworkshopdescription" style="display: none;">
+                        <div class="text"><p><b>Brief: </b>I prepared and instructed a game-dev workshop during Hack NC 2022. Another volunteer joined me later on.<br><br> <b>My Role</b> <span class="inlineitems">Programmer Lead-Instructor Game-Designer</span> <br><br> <b>Tools</b> <span class="inlineitems">Godot Visual-Scripting GitHub</span></p></div>
+                        <div class="text"><p><b>Why </b>Every year, UNC Chapel Hill hosts the HackNC hackathon. Various workshops are held during the event. I was invited to prepare and instruct a game development workshop during HackNC 2022.</p></div>
+                        <div class="text"><p><b>Game </b>I made a game to demonstrate game development fundamentals. The player rotates an ever-speeding spaceship to avoid colliding with planets. A timer is displayed on the screen and their goal is to last long enough and beat their highscore. </p></div>
+                        <div class="text"><p><b>Visual Scripting </b>I used Godot's visual scripting tool for the entire project so hackers who are new to coding can also join the workshop.</p></div>
+                        <div class="text"><p><b>Team </b>I started working on the game and slides solo, but was later joined by another volunteer who helped me. I communicated with other HackNC volunteers and organizers regularly in meetings. </p></div>
+                        <div class="text"><p><b>Workshop </b>I prepared a slideshow in Google Slides. I presented the slides during the workshop through Zoom. I talked about programming, game engines, and game development.<br><a href="https://github.com/kadirlofca/hacknc22-godotgame" rel="noreferrer nofollow noopener" target="_blank">· GitHub Repository</a><br><a href="https://youtu.be/ne-knDxSBXQ" rel="noreferrer nofollow noopener" target="_blank">· Workshop Recording</a></p></div>
+                    </div>                  
+            </div>
+                
+            <footer class="centered">
+                <a id="loadmore" onclick="loadmore()" style="cursor: pointer; display: none;">More ⇣</a> &nbsp; </span> <a href="#top">⇡ Go Up</a>
+                <br>
+                <p class="unselectable"><script>document.write(/\d{4}/.exec(Date())[0])</script> Kadir Lofca - Last Updated JAN 2023</p>
+            </footer>
+        </div>
+	</body>
+    <script type="text/javascript" src="assets/js/wobble.js"></script>
+    <script type="text/javascript" src="assets/js/flipflop.js"></script>
+    <script type="text/javascript" src="assets/js/fadescroll.js"></script>
+    <script type="text/javascript" src="assets/js/loadmore.js"></script>
+	<script src="https://kit.fontawesome.com/d930abb883.js" crossorigin="anonymous"></script>
+</html> 

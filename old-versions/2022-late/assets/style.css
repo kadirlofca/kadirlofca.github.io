@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200;400;700&family=Unbounded:wght@200;400;700&display=swap');
+:root{
+    --foc: 10vw;
+    --padsmall: 0.5em;
+    --pad: 1em;
+    --padbig: 2em;
+}
+
+*::-webkit-scrollbar-track ,
+*::-webkit-scrollbar {
+    background-color: black;
+    width: 15px;
+}
+
+*::-webkit-scrollbar-thumb {
+    border: 7px solid black;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+    background-color: white;
+}
+
+*::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:active {
+    border-width: 0;
+    background-color: coral;
+}
+
+html, body, header{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+footer{
+    padding-top: calc(var(--pad));
+    padding-bottom: min(var(--foc), 256px);
+}
+
+header{
+    z-index: 99;
+    height: 110px;
+    position: fixed;
+    height: fit-content;
+    overflow: hidden;
+    transition: all 0.6s;
+}
+
+#header-wave{
+    width: 100%;
+    height: 75px;
+    padding-bottom: 0;
+    transition: all 0.6s;
+}
+
+img {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    pointer-events: none;
+}
+
+.navbar{
+    padding: var(--pad);
+    background-color: black;
+}
+
+.navbox{
+    gap: 25px;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.navlink{
+    font-family: 'Exo 2', sans-serif;
+    transition: all 0.15s;
+}
+
+.navlink:hover,
+.selected{
+    padding-left: var(--pad);
+    border-left: 2px solid coral;
+}
+
+.conline{
+    margin-left: 6px;
+    height: 20vh;
+    border-left: 3px solid gray;
+}
+
+.conbar{
+    margin-top: calc(var(--pad));
+    word-spacing: 25px;
+}
+
+.hero{
+    margin-top: 150px;
+    display: block;
+}
+
+.focus{
+    max-width: max(var(--foc), 1000px);
+    margin: auto;
+    padding-left: var(--foc);
+    padding-right: var(--foc);
+}
+
+.infocards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-auto-rows: auto;
+    gap: var(--pad);
+
+    padding-top: var(--padbig);
+}
+
+.infocards img{
+    border-radius: 10px;
+}
+
+.infocards *{
+    max-width: 400px;
+}
+
+.infocards h3{
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.infoimg{
+    max-width: 100%;
+}
+
+.margin-auto{
+    margin: auto;
+}
+
+h1, h2, h3{
+    font-family: 'Unbounded', cursive;
+    word-spacing: 10px;
+}
+
+h1{
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+h2{
+    font-size: 1.7em;
+    font-weight: 400;
+    color: hsl(16, 100%, 80%);
+}
+
+h3{
+    font-size: 1.2em;
+    font-weight: 400;
+    padding-top: 2em;
+}
+
+li,
+a,
+p{
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    word-spacing: 3px;
+    color: black;
+}
+
+.navbar a{
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+}
+
+footer a{
+    font-weight: 700;
+    color: gray;
+}
+
+h3 a{
+    color: gray;
+}
+
+a:hover{
+    color: coral;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 501px) {
+    .infocards {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
