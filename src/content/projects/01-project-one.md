@@ -1,9 +1,10 @@
 ---
-title: "The Power Of React Hooks"
-publishedAt: 2023-05-24
-description: "Lorem ipsum dolor sit amet consectetur et ultrices blandit neque ege"
-slug: "the-power-of-react-hooks"
-isPublish: false
+name: "Project One"
+description: "A short project description."
+tech: "Unreal Engine, C++"
+slug: "project-one"
+isPublished: true
+isSelected: true
 ---
 
 ## Vocesque meum remis est neque Neptunus monte

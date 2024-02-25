@@ -1,12 +1,11 @@
 ---
-import type { Project } from "@/data/projects";
+type Props = {
+  name: string;
+  description: string;
+  slug: string;
+};
 
-type Props = Project;
-
-const { title, techs, link } = Astro.props;
-
-const formatTechs = (values: string[]) =>
-  values.toString().replaceAll(",", " • ");
+const { name, description, slug } = Astro.props;
 ---
 
 <>
@@ -14,13 +13,12 @@ const formatTechs = (values: string[]) =>
     (
       <a
         class="group flex w-full cursor-pointer flex-col justify-between gap-itemwide rounded-md border border-kroger-highlight p-4 transition-all duration-200 hover:-translate-y-1 md:flex-row md:items-center"
-        href={link}
-        target="_blank"
+        href={`/projects/${slug}`}
         rel="noreferrer"
       >
         <div class="flex flex-col gap-itemwide md:flex-row md:items-center">
-          <p class="text-kroger-highlight">{title}</p>
-          <p>{formatTechs(techs)}</p>
+          <p class="text-kroger-highlight">{name}</p>
+          <p>{description}</p>
         </div>
 
         <svg

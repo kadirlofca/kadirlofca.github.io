@@ -6,9 +6,22 @@ const postsCollection = defineCollection({
     title: z.string(),
     publishedAt: z.date(),
     description: z.string(),
-    isPublish: z.boolean(),
-    isDraft: z.boolean().default(false),
+    isPublished: z.boolean(),
   }),
 });
 
-export const collections = { posts: postsCollection };
+const projectsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    tech: z.string(),
+    isPublished: z.boolean(),
+    isSelected: z.boolean()
+  }),
+});
+
+export const collections = {
+  posts: postsCollection,
+  projects: projectsCollection,
+};

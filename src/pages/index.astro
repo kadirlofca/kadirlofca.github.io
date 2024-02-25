@@ -9,11 +9,14 @@ import Link from "@/components/shared/Link.astro";
 import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
 
 import presentation from "@/data/presentation";
-import projects from "@/data/projects";
 
 const posts = (await getCollection("posts")).sort(function (first, second) {
   return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
+
+const projects = (await getCollection("projects")).filter(
+  (project) => project.data.isPublished && project.data.isSelected
+);
 ---
 
 <Layout>
@@ -51,17 +54,21 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 
     <article class="flex flex-col gap-itemwide">
       <header class="flex w-full flex-row justify-between gap-itemwide">
-        <h3 class="text-3xl text-kroger-highlight">
-          Selected Projects ({projects.length})
-        </h3>
+        <h3 class="text-3xl text-kroger-highlight">Selected Projects</h3>
         <Link href="/projects" label="See Projects" target="_self" />
       </header>
-      {projects.length === 0 && <p>This isn't supposed to be empty 😐</p>}
+      {projects.length === 0 && <p>This isn't supposed to be empty 😶</p>}
 
       <section class="flex flex-col gap-itemwide">
         {
           projects.length !== 0 &&
-            projects.map((project) => <ProjectCard {...project} />)
+            projects.map((project) => (
+              <ProjectCard
+                name={project.data.name}
+                description={project.data.description}
+                slug={project.slug}
+              />
+            ))
         }
       </section>
     </article>
@@ -78,14 +85,17 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
           posts.length !== 0 &&
             posts
               .slice(0, 2)
-              .map((post) => (
-                <PostCard
-                  publishedAt={post.data.publishedAt}
-                  title={post.data.title}
-                  description={post.data.description}
-                  slug={post.slug}
-                />
-              ))
+              .map(
+                (post) =>
+                  post.data.isPublished && (
+                    <PostCard
+                      publishedAt={post.data.publishedAt}
+                      title={post.data.title}
+                      description={post.data.description}
+                      slug={post.slug}
+                    />
+                  )
+              )
         }
       </section>
     </article> -->
