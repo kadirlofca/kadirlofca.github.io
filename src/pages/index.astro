@@ -39,11 +39,10 @@ const projects = (await getCollection("projects")).filter(
       <div class="flex flex-col gap-itemwide">
         <div class="my-auto">
           <h1
-            class="text-center text-4xl text-kroger-highlight md:text-left md:text-6xl"
+            class="mb-2 text-center text-4xl text-kroger-highlight md:text-left md:text-6xl"
           >
             {presentation.title}
           </h1>
-
           <h2
             class="w-auto max-w-[50ch] text-center leading-6 md:text-left"
             set:html={convertAsteriskToStrongTag(presentation.description)}
@@ -55,9 +54,9 @@ const projects = (await getCollection("projects")).filter(
     <article class="flex flex-col gap-itemwide">
       <header class="flex w-full flex-row justify-between gap-itemwide">
         <h3 class="text-3xl text-kroger-highlight">Selected Projects</h3>
-        <Link href="/projects" label="See Projects" target="_self" />
+        <Link href="/projects" label="More" target="_self" />
       </header>
-      {projects.length === 0 && <p>This isn't supposed to be empty 😶</p>}
+      {projects.length === 0 && <p>There's supposed to be stuff here 😶</p>}
 
       <section class="flex flex-col gap-itemwide">
         {
@@ -76,7 +75,7 @@ const projects = (await getCollection("projects")).filter(
     <!-- <article class="flex flex-col gap-itemwide">
       <header class="flex w-full flex-row justify-between gap-itemwide">
         <h3 class="text-3xl text-kroger-highlight">Latest Posts</h3>
-        <Link href="/posts" label="See Posts" target="_self" />
+        <Link href="/posts" label="More" target="_self" />
       </header>
       {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
 

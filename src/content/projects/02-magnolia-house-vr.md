@@ -1,13 +1,12 @@
 ---
-name: "Project One"
-description: "A short project description."
-tech: "Unreal Engine, C++"
-slug: "project-one"
-isPublished: true
+name: "Magnolia House VR 🏠"
+description: ""
+tech: "HTML & CSS, JavaScript, Astro"
+slug: "magnolia-house-vr"
+isPublished: false
 isSelected: true
 ---
 
-## Vocesque meum remis est neque Neptunus monte
 
 Lorem markdownum nunc _adfuit_ fecisse, `quae pectus`, quod seu mortale suo
 Minerva iussit obortas. Favilla victa; alarum signis barbara, nec _sibi dentes_

@@ -17,7 +17,7 @@ module.exports = {
 
       gap: {
         itemwide: "0.5rem",
-        sectionwide: "7rem",
+        sectionwide: "4rem",
       }
     },
   },

@@ -1,39 +1,35 @@
-.post p {
+.project p, .post p {
   @apply leading-7;
 }
 
-.post code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-orange-500;
+.project h2, .post h2 {
+  @apply mt-6 text-4xl text-kroger-highlight;
 }
 
-.post h2 {
-  @apply mt-6 text-3xl text-neutral-100;
+.project h3, .post h3 {
+  @apply mt-4 text-xl text-kroger-highlight;
 }
 
-.post h3 {
-  @apply mt-4 text-xl text-neutral-100;
+.project code, .post code {
+  @apply rounded-sm bg-neutral-100 px-1 py-[2px] border border-neutral-200 text-kroger-highlight;
 }
 
-.post code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-red-500;
+.project a, .post a {
+  @apply text-orange-600 underline;
 }
 
-.post a {
-  @apply text-neutral-100 underline;
-}
-
-.post ul {
+.project ul, .post ul {
   @apply list-disc;
 }
 
-.post blockquote {
-  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
+.project blockquote, .post blockquote {
+  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-kroger-highlight before:content-[''];
 }
 
-.post pre {
+.project pre, .post pre {
   @apply p-4;
 }
 
-.post pre > code {
+.project pre > code, .post pre > code {
   @apply bg-transparent;
 }

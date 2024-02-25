@@ -13,11 +13,13 @@ const formatTech = (values: string) => values.replaceAll(",", " • ");
   <main class="flex flex-col gap-itemwide">
     <h1 class="text-5xl leading-relaxed text-kroger-highlight">Projects 🗂️</h1>
 
+    {projects.length === 0 && <p>There's supposed to be stuff here 😶</p>}
+
     <article class="flex flex-col gap-itemwide">
       {
         projects.map((project) => (
           <a
-            class="group flex flex-col gap-itemwide border-t border-kroger-highlight py-4 transition-all hover:text-kroger-highlight"
+            class="group flex flex-col gap-itemwide border-t border-kroger-highlight py-4 transition-all hover:px-2"
             href={`/projects/${project.slug}`}
           >
             <div class="flex w-full items-center justify-between">
@@ -31,17 +33,17 @@ const formatTech = (values: string) => values.replaceAll(",", " • ");
                   height="18"
                   viewBox="0 0 18 18"
                   fill="none"
-                  class="transition-all duration-200 group-hover:translate-x-1"
+                  class="transition-all duration-200 group-hover:-translate-x-2"
                 >
                   <path
                     d="M5.25 12.75L12.75 5.25"
-                    stroke="#312618"
+                    stroke="#000000"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                   <path
                     d="M5.25 5.25H12.75V12.75"
-                    stroke="#312618"
+                    stroke="#000000"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
