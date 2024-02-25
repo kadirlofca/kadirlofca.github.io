@@ -56,7 +56,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
         </h3>
         <Link href="/projects" label="See Projects" target="_self" />
       </header>
-      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+      {projects.length === 0 && <p>This isn't supposed to be empty 😐</p>}
 
       <section class="flex flex-col gap-itemwide">
         {
@@ -66,7 +66,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
       </section>
     </article>
 
-    <article class="flex flex-col gap-itemwide">
+    <!-- <article class="flex flex-col gap-itemwide">
       <header class="flex w-full flex-row justify-between gap-itemwide">
         <h3 class="text-3xl text-kroger-highlight">Latest Posts</h3>
         <Link href="/posts" label="See Posts" target="_self" />
@@ -88,6 +88,6 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
               ))
         }
       </section>
-    </article>
+    </article> -->
   </main>
 </Layout>

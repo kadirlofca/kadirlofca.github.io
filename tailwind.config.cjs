@@ -11,13 +11,13 @@ module.exports = {
 
       colors: {
         "sunlight": "#ffffff",
-        "kroger-highlight": "#312618",
+        "kroger-highlight": "#000000",
         "kroger-neutral": "#887863",
       },
 
       gap: {
         itemwide: "0.5rem",
-        sectionwide: "5rem",
+        sectionwide: "7rem",
       }
     },
   },
