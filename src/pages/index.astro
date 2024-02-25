@@ -1,0 +1,93 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Link from "@/components/shared/Link.astro";
+import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
+
+import presentation from "@/data/presentation";
+import projects from "@/data/projects";
+
+const posts = (await getCollection("posts")).sort(function (first, second) {
+  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
+});
+---
+
+<Layout>
+  <main class="flex flex-col gap-sectionwide">
+    <article
+      class="flex flex-col gap-itemwide md:flex-row-reverse md:justify-end"
+    >
+      {
+        presentation.profile && (
+          <Image
+            src={presentation.profile}
+            class="w-1/2 max-w-md self-center rounded-full md:ml-auto md:w-1/3"
+            alt="Kadir Lofca's profile picture."
+            width="100"
+            height="100"
+          />
+        )
+      }
+
+      <div class="flex flex-col gap-itemwide">
+        <div class="my-auto">
+          <h1
+            class="text-center text-4xl text-kroger-highlight md:text-left md:text-6xl"
+          >
+            {presentation.title}
+          </h1>
+
+          <h2
+            class="w-auto max-w-[50ch] text-center leading-6 md:text-left"
+            set:html={convertAsteriskToStrongTag(presentation.description)}
+          />
+        </div>
+      </div>
+    </article>
+
+    <article class="flex flex-col gap-itemwide">
+      <header class="flex w-full flex-row justify-between gap-itemwide">
+        <h3 class="text-3xl text-kroger-highlight">
+          Selected Projects ({projects.length})
+        </h3>
+        <Link href="/projects" label="See Projects" target="_self" />
+      </header>
+      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+
+      <section class="flex flex-col gap-itemwide">
+        {
+          projects.length !== 0 &&
+            projects.map((project) => <ProjectCard {...project} />)
+        }
+      </section>
+    </article>
+
+    <article class="flex flex-col gap-itemwide">
+      <header class="flex w-full flex-row justify-between gap-itemwide">
+        <h3 class="text-3xl text-kroger-highlight">Latest Posts</h3>
+        <Link href="/posts" label="See Posts" target="_self" />
+      </header>
+      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
+
+      <section class="flex flex-col gap-itemwide md:flex-row md:flex-wrap">
+        {
+          posts.length !== 0 &&
+            posts
+              .slice(0, 2)
+              .map((post) => (
+                <PostCard
+                  publishedAt={post.data.publishedAt}
+                  title={post.data.title}
+                  description={post.data.description}
+                  slug={post.slug}
+                />
+              ))
+        }
+      </section>
+    </article>
+  </main>
+</Layout>
