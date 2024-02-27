@@ -11,7 +11,7 @@
 }
 
 .project code, .post code {
-  @apply rounded-sm bg-neutral-100 px-1 py-[2px] border border-neutral-400 text-kroger-highlight;
+  @apply rounded-sm bg-[#faf4ed] px-1 py-[2px] border border-neutral-400 text-kroger-highlight;
 }
 
 .project a, .post a {
@@ -31,9 +31,13 @@
 }
 
 .project pre > code, .post pre > code {
-  @apply bg-transparent;
+  @apply bg-transparent border-0;
 }
 
 .project img, .post pre {
   @apply rounded-md mx-auto w-full md:w-3/4 my-4;
+}
+
+.project .rose-pine-dawn, .post .rose-pine-dawn {
+  @apply rounded-md border border-neutral-400 text-sm text-[0.7rem] md:text-base;
 }
