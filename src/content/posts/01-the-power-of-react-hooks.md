@@ -28,7 +28,7 @@ pictae, vatibus.
 In vir indefessus et patrios veniam. Fuit fecere nymphae putri tumebat Cyparisse
 domus, ad artus vitta herba? Et gaudet pressum aeterna animam. Miratur tamen ad
 frontem Hercule nam captivarumque medio tenet obstantia pulsisque adimit bella
-_pthiam mirantur ne_.
+_pthiam mirantur ne_..
 
 > Lacertis et nomenque oracla exstabat: genitor nitor! Fluctus habes extinctum.
 > Hunc utero iussa ora neque quae trunca tenuit coniciunt passis viro latratu
