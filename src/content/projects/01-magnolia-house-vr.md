@@ -48,6 +48,7 @@ I programmed a floating menu window that follows the user. This menu can be open
 
 After opening the menu, the user can point the controller to the quit button and click to exit the application.
 
-[multae requirit primi]
+An article written about this project:
+[Magnolia House VR Article]
 
-[multae requirit primi]: http://heu.io/
+[Magnolia House VR Article]: https://cas.uncg.edu/virtual-reality-brings-the-past-to-life-at-magnolia-house/
