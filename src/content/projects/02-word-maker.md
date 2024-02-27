@@ -45,7 +45,7 @@ idega
 
 Nice! We have 4-6 letter words that alternate between vowels and consonants. We can call other instructions to further customize our generated words, or we can write our own instructions!
 
-## So, Does It Generate Marketable Names?
+## So, Does It Generate Brandable Names?
 Maybe :D It's too random and often generates words that are hard to pronounce and don't sound great. But if you run it enough you'll come across something nice eventually, obviously that's not good.
 
 ## What's Next?
