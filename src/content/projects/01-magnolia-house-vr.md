@@ -11,7 +11,7 @@ An interior architecture student (Hannah), two professors, and I worked together
 
 ![The solarium in the virtual Historic Magnolia House](../images/magnolia/04-magnolia-solarium.gif)
 
-On January 11 2021, I sent an email to a professor, saying I was interested in working with him on this project. He asked me to create a traffic system in Unity as an assessment. I installed Unity for the first time and programmed a traffic system on a small level. The professor liked what I made and we started working together on the Magnolia House VR project. 
+On January 11, 2021, I emailed a professor expressing my interest in the project. He assigned me the task of creating a Unity traffic system as an assessment. After installing Unity for the first time, I successfully programmed the system on a small level, impressing the professor and initiating our collaboration on the Magnolia House VR project.
 
 ## Project Requirements
 - 3D model of the house and immersive audio
@@ -48,7 +48,7 @@ I programmed a floating menu window that follows the user. This menu can be open
 
 After opening the menu, the user can point the controller to the quit button and click to exit the application.
 
-## Spatial Audio
+### Spatial Audio
 Audio is a big part of immersion. To really sell the environment, I added some audio to the scene; birds chirping outside and music playing inside. But there was a problem, the audio was didn't feel real. When the user moved around the house, the music audio would stay the same whether or not there was a wall between them and the audio source (a music player).
 
 I developed a solution to calculate the distance it would take for the audio to reach the user. By knowing how much the audio needs to travel, I can adjust the music volume to make it feel like walls are muffling the sound. The audio sounded much better this way and users loved it!
