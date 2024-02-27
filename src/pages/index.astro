@@ -54,7 +54,9 @@ const projects = (await getCollection("projects")).filter(
     <article class="flex flex-col gap-itemwide">
       <header class="flex w-full flex-row justify-between gap-itemwide">
         <h3 class="text-3xl text-kroger-highlight">Selected Projects</h3>
-        <Link href="/projects" label="More" target="_self" />
+        <div class="pr-2 pt-2">
+          <Link href="/projects" label="More" target="_self" />
+        </div>
       </header>
       {projects.length === 0 && <p>There's supposed to be stuff here 😶</p>}
 
@@ -75,7 +77,9 @@ const projects = (await getCollection("projects")).filter(
     <!-- <article class="flex flex-col gap-itemwide">
       <header class="flex w-full flex-row justify-between gap-itemwide">
         <h3 class="text-3xl text-kroger-highlight">Latest Posts</h3>
-        <Link href="/posts" label="More" target="_self" />
+          <div class="pr-2 pt-2">
+            <Link href="/posts" label="More" target="_self" />
+          </div>
       </header>
       {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
 
