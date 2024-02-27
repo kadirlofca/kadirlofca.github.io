@@ -11,7 +11,7 @@
 }
 
 .project code, .post code {
-  @apply rounded-sm bg-neutral-100 px-1 py-[2px] border border-neutral-200 text-kroger-highlight;
+  @apply rounded-sm bg-neutral-100 px-1 py-[2px] border border-neutral-400 text-kroger-highlight;
 }
 
 .project a, .post a {
