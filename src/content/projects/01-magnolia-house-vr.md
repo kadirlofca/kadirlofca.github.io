@@ -48,6 +48,12 @@ I programmed a floating menu window that follows the user. This menu can be open
 
 After opening the menu, the user can point the controller to the quit button and click to exit the application.
 
+## Spatial Audio
+Audio is a big part of immersion. To really sell the environment, I added some audio to the scene; birds chirping outside and music playing inside. But there was a problem, the audio was didn't feel real. When the user moved around the house, the music audio would stay the same whether or not there was a wall between them and the audio source (a music player).
+
+I developed a solution to calculate the distance it would take for the audio to reach the user. By knowing how much the audio needs to travel, I can adjust the music volume to make it feel like walls are muffling the sound. The audio sounded much better this way and users loved it!
+
+## Links
 An article written about this project:
 [Magnolia House VR Article]
 
