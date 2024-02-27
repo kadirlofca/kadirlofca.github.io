@@ -12,7 +12,7 @@ module.exports = {
       colors: {
         "sunlight": "#ffffff",
         "kroger-highlight": "#000000",
-        "kroger-neutral": "#887863",
+        "kroger-neutral": "#58442b",
       },
 
       gap: {

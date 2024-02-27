@@ -33,3 +33,7 @@
 .project pre > code, .post pre > code {
   @apply bg-transparent;
 }
+
+.project img, .post pre {
+  @apply rounded-md mx-auto w-full md:w-3/4 my-4;
+}

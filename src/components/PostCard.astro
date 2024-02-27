@@ -18,7 +18,7 @@ const { title, publishedAt, description, slug } = Astro.props;
   <div
     class="flex w-full flex-col justify-between gap-itemwide md:flex-row md:items-center"
   >
-    <p class="text-kroger-highlight">{title}</p>
+    <p class="text-lg text-kroger-highlight">{title}</p>
     <div class="flex flex-row items-center gap-itemwide">
       <p>{formatDate(publishedAt)}</p>
 

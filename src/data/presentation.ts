@@ -16,7 +16,7 @@ const presentation: Presentation = {
   title: "Hi, I'm Kadir",
   profile: "/profile.webp",
   description:
-    "I'm a Turkish software engineer in North Carolina. I make and play games as a hobby and I have a very smart cat named Kroger ❤️",
+    "I'm a software engineer in North Carolina. I make games, hang out with my cat Kroger ❤️ and eat profiteroles 😌",
   socials: [
     {
       label: "GitHub",
