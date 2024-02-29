@@ -18,16 +18,12 @@ const headTags = Astro.props;
 
   <ViewTransitions />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-542FP3EDP1"
   ></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(arg: any, date: any) {
-      window.dataLayer.push({ arg, date });
-    }
-    gtag("js", new Date());
-    gtag("config", "G-542FP3EDP1");
+    window.dataLayer.push("js", new Date());
+    window.dataLayer.push("config", "G-542FP3EDP1");
   </script>
 
   <body
