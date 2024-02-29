@@ -13,11 +13,23 @@ export type Props = HeadTags;
 const headTags = Astro.props;
 ---
 
-<!DOCTYPE html>
 <html lang="en">
   <SEOTags {...headTags} />
 
   <ViewTransitions />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-542FP3EDP1"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(arg: any, date: any) {
+      window.dataLayer.push({ arg, date });
+    }
+    gtag("js", new Date());
+    gtag("config", "G-542FP3EDP1");
+  </script>
+
   <body
     class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-sectionwide overflow-x-hidden bg-sunlight px-10 py-8 text-lg text-kroger-neutral md:text-[1rem]"
   >
