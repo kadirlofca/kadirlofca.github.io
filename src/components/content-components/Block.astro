@@ -1,0 +1,14 @@
+---
+interface Props {
+  class?: string;
+  innerClass?: string;
+}
+
+const { class: className, innerClass } = Astro.props;
+---
+
+<div class={" px-kin-lg py-kin-sm lg:p-kin-min " + className}>
+  <div class={innerClass}>
+    <slot />
+  </div>
+</div>

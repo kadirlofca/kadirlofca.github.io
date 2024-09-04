@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* COLOR VARIABLES */
+  --heights-0: hsl(280, 14%, 8%);
+  --heights-1: hsl(280, 12%, 10%);
+  --heights-2: hsl(280, 8%, 12%);
+  --heights-2-half: hsl(280, 2%, 25%);
+
+  --heights-3: #ff4d00;
+
+  --heights-4: hsl(280, 5%, 90%);
+  --heights-5: hsl(0, 0%, 100%);
+
+  /* FONT SIZE VARIABLES */
+  --body-size-tiny: 0.7rem;
+  --body-size-base: 0.9rem;
+  --subheader-size: 1rem;
+  --header-size: 1.2rem;
+  --title-size: 2.8rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  transition: all 0.2s;
+}
+
+::selection {
+  color: var(--heights-5);
+  background: var(--heights-2);
+}
+
+p,
+a,
+b {
+  font-family: "Hanken Grotesk", serif;
+  color: var(--heights-4);
+  font-size: var(--body-size-base);
+}
+
+b {
+  font-weight: 600;
+}
+
+img {
+  border-radius: 0.375rem;
+}
+
+a:hover {
+  color: var(--heights-3);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--heights-5);
+}
+
+h4 {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: var(--subheader-size);
+  color: var(--heights-5);
+  font-weight: 500;
+  line-height: 1.2;
+  padding-top: 2rem;
+}
+
+h3 {
+  font-family: "Tiny5", sans-serif;
+  font-size: var(--subheader-size);
+  color: var(--heights-3);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: var(--header-size);
+  color: var(--heights-5);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: var(--title-size);
+  color: var(--heights-5);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration-line: underline;
+}
+
+.link:hover {
+  text-decoration-line: none;
+}
+
+.ros {
+  opacity: 0;
+  transform: translateY(2rem);
+  filter: blur(5px);
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.ros-revealed {
+  transform: translateY(0);
+  filter: blur(0px);
+  opacity: 1;
+}

@@ -1,0 +1,37 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import formatDate from "@/utils/formatDate";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <main class="post mx-auto flex w-full max-w-[872px] flex-col gap-itemwide">
+    <header role="presentation">
+      <p class="pl-1 text-xl text-kroger-highlight">
+        {formatDate(post.data.publishedAt)}
+      </p>
+      <h1 class="text-4xl text-kroger-highlight md:text-6xl">
+        {post.data.title}
+      </h1>
+      <p class="italic">{post.data.description}</p>
+    </header>
+
+    <Content />
+  </main>
+</Layout>

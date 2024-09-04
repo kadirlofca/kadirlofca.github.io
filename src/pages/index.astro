@@ -1,106 +1,42 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Block from "../components/content-components/Block.astro";
+import Image from "astro/components/Image.astro";
+import ProjectCard from "../components/content-components/ProjectCard.astro";
+import kadirlofca from "../data/kadirlofca.json";
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import Headshot from "./public/KadirLofca-Headshot.png";
 
-import Layout from "@/layouts/Layout.astro";
-import PostCard from "@/components/PostCard.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
-import Link from "@/components/shared/Link.astro";
-import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
-
-import presentation from "@/data/presentation";
-
-const posts = (await getCollection("posts")).sort(function (first, second) {
-  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
+const projects = await getCollection("projects", ({ data }) => {
+  return data.draft !== true;
 });
-
-const projects = (await getCollection("projects")).filter(
-  (project) => project.data.isPublished && project.data.isSelected
-);
 ---
 
-<Layout>
-  <main class="flex flex-col gap-sectionwide">
-    <article
-      class="flex flex-col gap-itemwide md:flex-row-reverse md:justify-end"
-    >
-      {
-        presentation.profile && (
-          <Image
-            src={presentation.profile}
-            class="w-1/2 max-w-md self-center rounded-full md:ml-auto md:w-1/3"
-            alt="Kadir Lofca's profile picture."
-            width="100"
-            height="100"
-          />
-        )
-      }
-
-      <div class="flex flex-col gap-itemwide">
-        <div class="my-auto">
-          <h1
-            class="mb-2 text-center text-4xl text-kroger-highlight md:text-left md:text-6xl"
-          >
-            {presentation.title}
-          </h1>
-          <h2
-            class="w-auto max-w-[50ch] text-center leading-6 md:text-left"
-            set:html={convertAsteriskToStrongTag(presentation.description)}
-          />
-        </div>
+<Layout title="Kadir Lofca">
+  <main>
+    <Block class="pb-0 lg:pb-0" innerClass="ros flex flex-col-reverse md:flex-row mx-auto max-w-screen-md ">
+      <div class="mx-auto text-center md:text-left">
+        <h3>{kadirlofca.profession}</h3>
+        <h1>{kadirlofca.name}</h1>
+        <a target="_blank" rel="noopener noreferrer" href="https://linktr.ee/haftindie">
+          <h4 class="py-1 text-heights-4 hover:text-heights-3">@haftindie</h4>
+        </a>
+        <!-- <h4 class="my-kin-max text-heights-4">📍 {kadirlofca.location}</h4> -->
+        <hr class="my-kin-lg border-heights-4" />
+        <a target="_blank" rel="noopener noreferrer" class="md:block mr-4 text-heights-4 hover:text-heights-3" href="mailto:kadirlofca@outlook.com">📫 kadirlofca@outlook.com</a>
+        <a target="_blank" rel="noopener noreferrer" class="md:block mr-4 text-heights-4 hover:text-heights-3" href="https://www.linkedin.com/in/kadirlofca/">
+          🟦 linkedin/kadirlofca
+        </a>
+        <a target="_blank" rel="noopener noreferrer" class="md:block mr-4 text-heights-4 hover:text-heights-3" href="https://github.com/kadirlofca">⚪ github/kadirlofca</a>
       </div>
-    </article>
-
-    <article class="flex flex-col gap-itemwide">
-      <header class="flex w-full flex-row justify-between gap-itemwide">
-        <h3 class="text-3xl text-kroger-highlight">Selected Projects</h3>
-        <div class="pr-2 pt-2">
-          <Link href="/projects" label="More" target="_self" />
-        </div>
-      </header>
-      {projects.length === 0 && <p>There's supposed to be stuff here 😶</p>}
-
-      <section class="flex flex-col gap-itemwide">
-        {
-          projects.length !== 0 &&
-            projects.map((project) => (
-              <ProjectCard
-                name={project.data.name}
-                description={project.data.description}
-                slug={project.slug}
-              />
-            ))
-        }
-      </section>
-    </article>
-
-    <!-- <article class="flex flex-col gap-itemwide">
-      <header class="flex w-full flex-row justify-between gap-itemwide">
-        <h3 class="text-3xl text-kroger-highlight">Latest Posts</h3>
-          <div class="pr-2 pt-2">
-            <Link href="/posts" label="More" target="_self" />
-          </div>
-      </header>
-      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
-
-      <section class="flex flex-col gap-itemwide md:flex-row md:flex-wrap">
-        {
-          posts.length !== 0 &&
-            posts
-              .slice(0, 2)
-              .map(
-                (post) =>
-                  post.data.isPublished && (
-                    <PostCard
-                      publishedAt={post.data.publishedAt}
-                      title={post.data.title}
-                      description={post.data.description}
-                      slug={post.slug}
-                    />
-                  )
-              )
-        }
-      </section>
-    </article> -->
+      <div class="mx-auto ml-auto mb-4 w-40 md:w-56 aspect-square overflow-clip rounded-xl bg-heights-2">
+        <Image src={Headshot} alt="Kadir Lofca." />
+      </div>
+    </Block>
+    <Block class="lg:pt-kin-sm" innerClass="group flex flex-col flex-1 max-w-screen-xl mx-auto">
+      <form>
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </form>
+    </Block>
   </main>
 </Layout>

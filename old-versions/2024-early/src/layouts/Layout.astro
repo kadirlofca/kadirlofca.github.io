@@ -1,0 +1,41 @@
+---
+import Header from "../components/Header.astro";
+import SEOTags from "@/components/seo/SEOTags.astro";
+import type { HeadTags } from "@/utils/types/HeadTags";
+import SocialLinks from "@/components/SocialLinks.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import "@/styles/tailwind.css";
+import "@/styles/post.css";
+
+export type Props = HeadTags;
+
+const headTags = Astro.props;
+---
+
+<html lang="en">
+  <SEOTags {...headTags} />
+
+  <ViewTransitions />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-542FP3EDP1"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push("js", new Date());
+    window.dataLayer.push("config", "G-542FP3EDP1");
+  </script>
+
+  <body
+    class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-sectionwide overflow-x-hidden bg-sunlight px-10 py-8 text-lg text-kroger-neutral md:text-[1rem]"
+  >
+    <Header />
+
+    <slot />
+
+    <!-- Footer -->
+    <div class="mt-auto">
+      <SocialLinks />
+    </div>
+  </body>
+</html>

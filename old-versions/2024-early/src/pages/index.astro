@@ -1,0 +1,106 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Link from "@/components/shared/Link.astro";
+import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
+
+import presentation from "@/data/presentation";
+
+const posts = (await getCollection("posts")).sort(function (first, second) {
+  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
+});
+
+const projects = (await getCollection("projects")).filter(
+  (project) => project.data.isPublished && project.data.isSelected
+);
+---
+
+<Layout>
+  <main class="flex flex-col gap-sectionwide">
+    <article
+      class="flex flex-col gap-itemwide md:flex-row-reverse md:justify-end"
+    >
+      {
+        presentation.profile && (
+          <Image
+            src={presentation.profile}
+            class="w-1/2 max-w-md self-center rounded-full md:ml-auto md:w-1/3"
+            alt="Kadir Lofca's profile picture."
+            width="100"
+            height="100"
+          />
+        )
+      }
+
+      <div class="flex flex-col gap-itemwide">
+        <div class="my-auto">
+          <h1
+            class="mb-2 text-center text-4xl text-kroger-highlight md:text-left md:text-6xl"
+          >
+            {presentation.title}
+          </h1>
+          <h2
+            class="w-auto max-w-[50ch] text-center leading-6 md:text-left"
+            set:html={convertAsteriskToStrongTag(presentation.description)}
+          />
+        </div>
+      </div>
+    </article>
+
+    <article class="flex flex-col gap-itemwide">
+      <header class="flex w-full flex-row justify-between gap-itemwide">
+        <h3 class="text-3xl text-kroger-highlight">Selected Projects</h3>
+        <div class="pr-2 pt-2">
+          <Link href="/projects" label="More" target="_self" />
+        </div>
+      </header>
+      {projects.length === 0 && <p>There's supposed to be stuff here 😶</p>}
+
+      <section class="flex flex-col gap-itemwide">
+        {
+          projects.length !== 0 &&
+            projects.map((project) => (
+              <ProjectCard
+                name={project.data.name}
+                description={project.data.description}
+                slug={project.slug}
+              />
+            ))
+        }
+      </section>
+    </article>
+
+    <!-- <article class="flex flex-col gap-itemwide">
+      <header class="flex w-full flex-row justify-between gap-itemwide">
+        <h3 class="text-3xl text-kroger-highlight">Latest Posts</h3>
+          <div class="pr-2 pt-2">
+            <Link href="/posts" label="More" target="_self" />
+          </div>
+      </header>
+      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
+
+      <section class="flex flex-col gap-itemwide md:flex-row md:flex-wrap">
+        {
+          posts.length !== 0 &&
+            posts
+              .slice(0, 2)
+              .map(
+                (post) =>
+                  post.data.isPublished && (
+                    <PostCard
+                      publishedAt={post.data.publishedAt}
+                      title={post.data.title}
+                      description={post.data.description}
+                      slug={post.slug}
+                    />
+                  )
+              )
+        }
+      </section>
+    </article> -->
+  </main>
+</Layout>

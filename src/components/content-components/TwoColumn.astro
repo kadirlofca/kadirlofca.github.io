@@ -1,0 +1,14 @@
+---
+interface Props {}
+
+const {} = Astro.props;
+---
+
+<div class="flex flex-col md:flex-row">
+  <div class="flex-1">
+    <slot name="left-col" />
+  </div>
+  <div class="flex-1">
+    <slot name="right-col" />
+  </div>
+</div>

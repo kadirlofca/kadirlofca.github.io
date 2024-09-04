@@ -1,41 +1,41 @@
 ---
-import Header from "../components/Header.astro";
-import SEOTags from "@/components/seo/SEOTags.astro";
-import type { HeadTags } from "@/utils/types/HeadTags";
-import SocialLinks from "@/components/SocialLinks.astro";
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
 import { ViewTransitions } from "astro:transitions";
+import "../global.css";
 
-import "@/styles/tailwind.css";
-import "@/styles/post.css";
-
-export type Props = HeadTags;
-
-const headTags = Astro.props;
+const gameProgrammerYearsOfExperience: number = Number(new Date().getFullYear) - 2019;
 ---
 
+<!doctype html>
 <html lang="en">
-  <SEOTags {...headTags} />
-
-  <ViewTransitions />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-542FP3EDP1"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push("js", new Date());
-    window.dataLayer.push("config", "G-542FP3EDP1");
-  </script>
-
-  <body
-    class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-sectionwide overflow-x-hidden bg-sunlight px-10 py-8 text-lg text-kroger-neutral md:text-[1rem]"
-  >
-    <Header />
-
-    <slot />
-
-    <!-- Footer -->
-    <div class="mt-auto">
-      <SocialLinks />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content={description
+        ? description
+        : "Kadir Lofca is a gameplay engineer of " +
+          gameProgrammerYearsOfExperience +
+          " years based in North Carolina. He has experience working in teams with various sizes and engines such as Unreal, Unity, and Godot. He specializes in C++ with Unreal Engine."}
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#161817" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-heights-0">
+    <ViewTransitions />
+    <div class={"min-h-lvh max-w-lvw"}>
+      <slot />
     </div>
   </body>
 </html>
+
+<script src="../scripts/reveal-on-scroll.ts"></script>

@@ -1,0 +1,43 @@
+.project p, .post p {
+  @apply leading-7;
+}
+
+.project h2, .post h2 {
+  @apply mt-6 text-4xl text-kroger-highlight;
+}
+
+.project h3, .post h3 {
+  @apply mt-4 text-xl text-kroger-highlight;
+}
+
+.project code, .post code {
+  @apply rounded-sm bg-[#faf4ed] px-1 py-[2px] border border-neutral-400 text-kroger-highlight;
+}
+
+.project a, .post a {
+  @apply text-orange-600 underline;
+}
+
+.project ul, .post ul {
+  @apply list-disc;
+}
+
+.project blockquote, .post blockquote {
+  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-kroger-highlight before:content-[''];
+}
+
+.project pre, .post pre {
+  @apply p-4;
+}
+
+.project pre > code, .post pre > code {
+  @apply bg-transparent border-0;
+}
+
+.project img, .post pre {
+  @apply rounded-md mx-auto w-full md:w-3/4 my-4;
+}
+
+.project .rose-pine-dawn, .post .rose-pine-dawn {
+  @apply rounded-md border border-neutral-400 text-sm text-[0.7rem] md:text-base;
+}

@@ -1,0 +1,11 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="inline-block w-fit h-min gap-y-1 p-kin-max border-2 border-heights-3 rounded-md">
+  <p class="text-body-tiny font-black text-heights-3">{text}</p>
+</div>

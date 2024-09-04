@@ -1,0 +1,19 @@
+{
+    "social": [
+        {
+            "name": "YouTube",
+            "link": "https://www.youtube.com",
+            "iconURL": "./social-icons/icon-youtube.svg"
+        },
+        {
+            "name": "X",
+            "link": "https://www.x.com",
+            "iconURL": "./social-icons/icon-x.svg"
+        },
+        {
+            "name": "LinkedIn",
+            "link": "https://www.linkedin.com",
+            "iconURL": "./social-icons/icon-in.svg"
+        }
+    ]
+}
