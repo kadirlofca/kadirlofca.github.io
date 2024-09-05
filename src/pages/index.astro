@@ -5,7 +5,7 @@ import Image from "astro/components/Image.astro";
 import ProjectCard from "../components/content-components/ProjectCard.astro";
 import kadirlofca from "../data/kadirlofca.json";
 import { getCollection } from "astro:content";
-import Headshot from "./public/KadirLofca-Headshot.png";
+import Headshot from "kadirlofca.github.io/KadirLofca-Headshot.png";
 
 const projects = await getCollection("projects", ({ data }) => {
   return data.draft !== true;
