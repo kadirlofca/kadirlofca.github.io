@@ -6,5 +6,6 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   integrations: [tailwind(), mdx()],
   site: 'https://kadirlofca.com',
-  base: 'https://github.com/kadirlofca/kadirlofca.github.io',
+  base: '/',
+  output: 'static'
 });
