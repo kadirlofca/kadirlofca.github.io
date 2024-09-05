@@ -5,7 +5,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), mdx()],
-  site: 'https://kadirlofca.com',
+  site: 'https://www.kadirlofca.com',
   base: '/',
   output: 'static'
 });
