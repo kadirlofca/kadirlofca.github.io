@@ -152,7 +152,7 @@ declare module 'astro:content' {
 } & { render(): Render[".mdx"] };
 "02-birding.mdx": {
 	id: "02-birding.mdx";
-  slug: "birding-dragon-valley-kiting";
+  slug: "birding";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
