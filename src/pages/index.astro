@@ -33,7 +33,7 @@ const projects = await getCollection("projects", ({ data }) => {
         <Image src={Headshot} alt="Kadir Lofca." />
       </div>
     </Block>
-    <Block class="lg:pt-kin-sm" innerClass="group flex flex-col flex-1 max-w-screen-xl mx-auto">
+    <Block class="lg:pt-kin-sm" innerClass="group flex flex-col flex-1 max-w-screen-2xl mx-auto">
       <form>
         {projects.map((project) => <ProjectCard project={project} />)}
       </form>
