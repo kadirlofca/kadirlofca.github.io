@@ -4,26 +4,38 @@ description: (In Progress) Real-time tactics ♞♜
 role: Gameplay Engineer & Designer
 chips: ["Godot", "C#", "Rust", "Solo Developer"]
 slug: conjurants
-draft: true
+draft: false
 ---
 
 import TwoColumn from "../../components/content-components/TwoColumn.astro";
 
 <TwoColumn>
     <div slot="left-col">
+        #### Gameplay Loop
+        I took inspiration from Clash Royale and Teamfight Tactics. On a 14x20 grid, two opponents spawn units on opposite ends. The units march forward and battle. Each player has a Blood Forger that they must keep alive, or they will lose. Blood Forgers march forward periodically until they meet in the middle and fight until only one is left alive.
+        
+    </div>
+    <div slot="right-col">
+        #### Setting & Story
+        The sophisticated crafts of magic have been forgotten by most. What little knowledge left is practiced by Blood Forgers who fuel the war of Tepra by conjuring relentless armies. Anadeln, a nation bordering the Abyssal Rift, must unite the thrones of Tepra to fight back against the invading forces of Venelit.
+    </div>
+</TwoColumn>
+
+<TwoColumn>
+    <div slot="left-col">
         #### Godot Over Unreal
-        I chose Godot over my usual choice (Unreal) for this project. I needed quick iteration cycles, fast compilation, and proper Git workflow. So far, I am very happy with my choice!
+        I chose Godot Engine over my usual choice (Unreal Engine) for this project. I needed quick iteration cycles, fast compilation, and proper Git workflow. So far, I am very happy with my choice!
     </div>
     <div slot="right-col">
         #### Godot Is Weird
-        adasd
+        In Unreal, an Actor has its logic directly attached to it. In Unity, game objects can have multiple scripts attached to them. In Godot, however, you must composition nodes with a script attached to each.
     </div>
 </TwoColumn>
 
 <TwoColumn>
     <div slot="left-col">
         #### C# in Godot
-        Over the years, I've become familiar with C++ & C#. I decided to use C# as my main language for Conjurants, as it is easy to write, type-safe, and quick to compile.
+        Over the years, I've become familiar with C++ and C#. I decided to use C# as my main language for Conjurants, as it is easy to write, type-safe, and quick to compile.
     </div>
     <div slot="right-col">
         #### Rust Bindings
@@ -34,9 +46,11 @@ import TwoColumn from "../../components/content-components/TwoColumn.astro";
 <TwoColumn>
     <div slot="left-col">
         #### Gameplay Framework
+        Godot gives you freedom to shape your game how you want to. There is no "gameplay framework" (like Unreal's) that provides a base to your game. So I decided to create a plugin very similar to Unreal's Gameplay Framework - this plugin handles player controllers, switching between levels, game modes, posessing avatars, etc.
     </div>
     <div slot="right-col">
         #### Flowfield Pathfinding
+        The 14x20 grid has no obstacles. This means in most cases I will not need any kind of pathfinding, as the units will need to walk in a straight line to reach their target. I use a flowfield to direct the units towards the enemy Blood Forger. And because the Blood Forger is a 2x2 unit, sometimes pathfinding is needed to go around it to reach a target.
     </div>
 </TwoColumn>
 
