@@ -35,7 +35,7 @@ const projects = await getCollection("projects", ({ data }) => {
     </Block>
     <Block class="lg:pt-kin-sm" innerClass="group flex flex-col flex-1 max-w-screen-2xl mx-auto">
       <form>
-        {projects.map((project) => <ProjectCard project={project} />)}
+        {projects.map((project) => <ProjectCard client:load project={project} />)}
       </form>
     </Block>
   </main>
