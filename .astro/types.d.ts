@@ -135,62 +135,66 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"projects": {
+		"game": {
 "00-conjurants.mdx": {
 	id: "00-conjurants.mdx";
   slug: "conjurants";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
 "01-you-are-not-my-cat.mdx": {
 	id: "01-you-are-not-my-cat.mdx";
   slug: "you-are-not-my-cat";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
 "02-birding.mdx": {
 	id: "02-birding.mdx";
   slug: "birding";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
 "03-magnolia-house.mdx": {
 	id: "03-magnolia-house.mdx";
   slug: "magnolia-house";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
 "04-slice-and-dice.mdx": {
 	id: "04-slice-and-dice.mdx";
   slug: "slice-and-dice";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
 "05-deflect-ball.mdx": {
 	id: "05-deflect-ball.mdx";
   slug: "deflect-ball";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
 "06-project-xk.mdx": {
 	id: "06-project-xk.mdx";
   slug: "project-xk";
   body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
+  collection: "game";
+  data: any
 } & { render(): Render[".mdx"] };
+};
+"projects": {
 };
 
 	};
 
 	type DataEntryMap = {
 		"images": {
+};
+"swe": {
 };
 
 	};

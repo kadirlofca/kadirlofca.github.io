@@ -6,6 +6,7 @@ const projectCollection = defineCollection({
         title: z.string(),
         description: z.string(),
         role: z.string(),
+        category: z.string(),
         chips: z.string().array(),
         priority: z.number().optional(),
         draft: z.boolean()

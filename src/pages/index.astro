@@ -5,9 +5,16 @@ import Image from "astro/components/Image.astro";
 import ProjectCard from "../components/content-components/ProjectCard.astro";
 import kadirlofca from "../data/kadirlofca.json";
 import { getCollection } from "astro:content";
+import ProjectChip from "../components/content-components/ProjectChip.astro";
 import Headshot from "../content/images/kadir-lofca.png";
 
-const projects = await getCollection("projects", ({ data }) => {
+interface Astro {
+  category?: string | undefined;
+}
+
+const category = Astro.url.searchParams.get("category") || "";
+console.log(category);
+const projects = await getCollection("game", ({ data }) => {
   return data.draft !== true;
 });
 ---
@@ -33,9 +40,14 @@ const projects = await getCollection("projects", ({ data }) => {
         <Image src={Headshot} alt="Kadir Lofca." />
       </div>
     </Block>
+
+    <div class="p-kin-base border-b-2 border-heights-2 text-heights-2 text-4xl font-bold"></div>
+    <button><ProjectChip text="Software Engineering" /></button>
+    <button><ProjectChip text="Game Development" /></button>
+
     <Block class="lg:pt-kin-sm" innerClass="group flex flex-col flex-1 max-w-screen-2xl mx-auto">
       <form>
-        {projects.map((project) => <ProjectCard client:load project={project} />)}
+        {projects.map((project) => <ProjectCard project={project} />)}
       </form>
     </Block>
   </main>
