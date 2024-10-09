@@ -14,7 +14,7 @@ interface Astro {
 
 const category = Astro.url.searchParams.get("category") || "";
 console.log(category);
-const projects = await getCollection("game", ({ data }) => {
+const projects = await getCollection("projects", ({ data }) => {
   return data.draft !== true;
 });
 ---
@@ -29,7 +29,8 @@ const projects = await getCollection("game", ({ data }) => {
           <h4 class="py-1 text-heights-4 hover:text-heights-3">@haftindie</h4>
         </a>
         <!-- <h4 class="my-kin-max text-heights-4">📍 {kadirlofca.location}</h4> -->
-        <hr class="my-kin-lg border-heights-4" />
+        <!-- <hr class="my-kin-lg border-heights-4" /> -->
+        <hr class="py-kin-lg border-transparent" />
         <a target="_blank" rel="noopener noreferrer" class="md:block mr-4 text-heights-4 hover:text-heights-3" href="mailto:kadirlofca@outlook.com">📫 kadirlofca@outlook.com</a>
         <a target="_blank" rel="noopener noreferrer" class="md:block mr-4 text-heights-4 hover:text-heights-3" href="https://www.linkedin.com/in/kadirlofca/">
           🟦 linkedin/kadirlofca
@@ -41,11 +42,15 @@ const projects = await getCollection("game", ({ data }) => {
       </div>
     </Block>
 
-    <div class="p-kin-base border-b-2 border-heights-2 text-heights-2 text-4xl font-bold"></div>
-    <button><ProjectChip text="Software Engineering" /></button>
-    <button><ProjectChip text="Game Development" /></button>
-
-    <Block class="lg:pt-kin-sm" innerClass="group flex flex-col flex-1 max-w-screen-2xl mx-auto">
+    <Block innerClass="group flex flex-col flex-1 max-w-screen-2xl mx-auto">
+      <div class="flex flex-row">
+        <h1 class="text-heights-4 text-4xl font-bold">Projects</h1>
+        <div class="ml-auto mt-auto">
+          <p class="inline mr-kin-max text-heights-4">Filter</p>
+          <button><ProjectChip class="border-heights-4 text-heights-4 rounded-r-none hover:text-heights-5 hover:border-heights-5" text="Software Engineering" /></button>
+          <button><ProjectChip class="border-heights-4 text-heights-4 rounded-l-none hover:text-heights-5 hover:border-heights-5" text="Game Development" /></button>
+        </div>
+      </div>
       <form>
         {projects.map((project) => <ProjectCard project={project} />)}
       </form>
