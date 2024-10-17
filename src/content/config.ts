@@ -1,3 +1,4 @@
+import { number } from 'astro/zod';
 import { z, defineCollection } from 'astro:content';
 
 const projectCollection = defineCollection({
@@ -8,7 +9,7 @@ const projectCollection = defineCollection({
         role: z.string(),
         category: z.string(),
         chips: z.string().array(),
-        priority: z.number().optional(),
+        priority: z.number().default(Number.MAX_VALUE),
         draft: z.boolean()
     })
 });

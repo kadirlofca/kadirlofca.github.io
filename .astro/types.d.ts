@@ -136,51 +136,65 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"projects": {
-"00-conjurants.mdx": {
-	id: "00-conjurants.mdx";
-  slug: "conjurants";
-  body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
-} & { render(): Render[".mdx"] };
-"01-you-are-not-my-cat.mdx": {
-	id: "01-you-are-not-my-cat.mdx";
-  slug: "you-are-not-my-cat";
-  body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
-} & { render(): Render[".mdx"] };
-"02-birding.mdx": {
-	id: "02-birding.mdx";
+"birding.mdx": {
+	id: "birding.mdx";
   slug: "birding";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".mdx"] };
-"03-magnolia-house.mdx": {
-	id: "03-magnolia-house.mdx";
-  slug: "magnolia-house";
+"conjurants.mdx": {
+	id: "conjurants.mdx";
+  slug: "conjurants";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".mdx"] };
-"04-slice-and-dice.mdx": {
-	id: "04-slice-and-dice.mdx";
-  slug: "slice-and-dice";
-  body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
-} & { render(): Render[".mdx"] };
-"05-deflect-ball.mdx": {
-	id: "05-deflect-ball.mdx";
+"deflect-ball.mdx": {
+	id: "deflect-ball.mdx";
   slug: "deflect-ball";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".mdx"] };
-"06-project-xk.mdx": {
-	id: "06-project-xk.mdx";
+"magnolia-house.mdx": {
+	id: "magnolia-house.mdx";
+  slug: "magnolia-house";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".mdx"] };
+"my-portfolio.mdx": {
+	id: "my-portfolio.mdx";
+  slug: "portfolio";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".mdx"] };
+"project-xk.mdx": {
+	id: "project-xk.mdx";
   slug: "project-xk";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".mdx"] };
+"santai-gg.mdx": {
+	id: "santai-gg.mdx";
+  slug: "santai-gg";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".mdx"] };
+"slice-and-dice.mdx": {
+	id: "slice-and-dice.mdx";
+  slug: "slice-and-dice";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".mdx"] };
+"you-are-not-my-cat.mdx": {
+	id: "you-are-not-my-cat.mdx";
+  slug: "you-are-not-my-cat";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
