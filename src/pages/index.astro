@@ -45,7 +45,7 @@ const projects = await getCollection("projects", ({ data }) => {
     <Block innerClass="group flex flex-col flex-1 max-w-screen-2xl mx-auto">
       <div class="flex flex-row">
         <h1 class="text-heights-4 text-4xl font-bold">Projects</h1>
-        <div class="ml-auto mt-auto">
+        <div class="ml-auto mt-auto hidden">
           <p class="inline mr-kin-max text-heights-4">Filter</p>
           <button><ProjectChip class="border-heights-4 text-heights-4 rounded-r-none hover:text-heights-5 hover:border-heights-5" text="Software Engineering" /></button>
           <button><ProjectChip class="border-heights-4 text-heights-4 rounded-l-none hover:text-heights-5 hover:border-heights-5" text="Game Development" /></button>
