@@ -1,0 +1,46 @@
+---
+import Section from "./Section.astro";
+import Arrow from "../components/Arrow.astro";
+
+import userContactInformation from "../data/user-contact.json";
+import userPersonalInformation from "../data/user-personal.json";
+---
+
+<Section class="flex flex-row p-2">
+  <a class="my-auto hover:brightness-125" href="/"><h1>{userPersonalInformation.userName}</h1></a>
+
+  <!-- USER CONTACT -->
+  <div class="ml-auto hidden flex-col md:flex">
+    <div class="flex flex-row-reverse flex-wrap gap-4">
+      <a class="duration-200 hover:brightness-125" href={`mailto:${userContactInformation.userEmail}`}
+        >{userContactInformation.userEmail}<Arrow class="stroke-primary-foreground" rotate={-45} /></a
+      >
+      {
+        userContactInformation.userSocials.map((social) => (
+          <a class="duration-200 hover:brightness-125" href={social.url}>
+            {social.title}
+            <Arrow class="stroke-primary-foreground" rotate={-45} />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <a
+    class="text-primary-foreground ml-auto px-2 hover:cursor-pointer hover:brightness-125 md:hidden"
+  >
+    {userContactInformation.userEmail}
+    <Arrow class="stroke-primary-foreground" rotate={-45} />
+  </a>
+</Section>
+
+<!-- CREDITS -->
+<Section class="m-auto flex flex-row justify-center gap-8 py-16 text-center">
+  <a
+    class="duration-200 hover:brightness-125"
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://github.com/kadirlofca/backstage"
+    >Site template by Kadir Lofca 
+  <Arrow class="stroke-primary-foreground" rotate={-45} /></a>
+</Section>

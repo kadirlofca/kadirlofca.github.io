@@ -1,0 +1,46 @@
+---
+import Section from "./Section.astro";
+import Arrow from "../components/Arrow.astro";
+import Menu from "../components/reactive/Menu.svelte";
+
+import userContactData from "../data/user-contact.json";
+import userPersonalData from "../data/user-personal.json";
+import CosmeticText from "./CosmeticText.astro";
+
+interface Props {
+  cosmeticText?: string;
+}
+
+const { cosmeticText = "" } = Astro.props;
+---
+
+<Section class="flex max-h-72 min-h-64 justify-between">
+  <div class="mt-auto">
+    <CosmeticText text={cosmeticText} vertical />
+  </div>
+</Section>
+
+<Section class="flex flex-row p-2">
+  <a class="hover:brightness-125" href="/"
+    ><h1 class="text-4xl sm:text-5xl">{userPersonalData.userName}</h1></a
+  >
+
+  <Menu client:load />
+
+  <!-- USER CONTACT -->
+  <div class="ml-auto hidden flex-col gap-4 sm:gap-0 md:flex">
+    <a
+      class="ml-auto duration-200 hover:brightness-125"
+      href={`mailto:${userContactData.userEmail}`}>{userContactData.userEmail}<Arrow class="stroke-primary-foreground" rotate={-45} /></a>
+    <div class="flex flex-row-reverse flex-wrap gap-4">
+      {
+        userContactData.userSocials.map((social) => (
+          <a class="duration-200 hover:brightness-125" href={social.url}>
+            {social.title}
+            <Arrow class="stroke-primary-foreground" rotate={-45} />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Section>

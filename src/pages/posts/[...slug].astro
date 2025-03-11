@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"posts">;
+const post = Astro.props;
+
+const { Content } = await render(post);
+---
+
+<Layout
+  siteTitle={Astro.props.data.title}
+  siteDescription={Astro.props.data.description}
+  headerCosmeticText="POST"
+>
+  <Section class="py-4" />
+
+  <Section class="prose-lg p-4 backdrop-brightness-[60%]">
+    <h2>{Astro.props.data.title}</h2>
+    <Content />
+  </Section>
+</Layout>
