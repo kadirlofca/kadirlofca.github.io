@@ -18,6 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test    
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
