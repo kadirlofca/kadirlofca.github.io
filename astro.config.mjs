@@ -13,6 +13,9 @@ export default defineConfig({
   },
   integrations: [svelte(), mdx(), sitemap()],
   site: siteData.siteUrl,
+  server: {
+    port: 3000
+  },
   redirects: {
     "/posts": "/", // redirect from /posts because that page doesn't exist.
   },
