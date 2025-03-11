@@ -8,11 +8,6 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "packageManager": "pnpm@9.10.0",
-  "engines": {
-    "node": ">=20",
-    "pnpm": "8.15.9"
-  },
   "dependencies": {
     "@astrojs/mdx": "^4.1.0",
     "@astrojs/rss": "^4.0.11",
