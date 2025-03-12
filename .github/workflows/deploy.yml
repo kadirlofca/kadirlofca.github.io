@@ -20,13 +20,6 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 9.10.0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         # with:
