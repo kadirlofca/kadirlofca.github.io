@@ -5,7 +5,7 @@ import { siteTitle, siteDescription } from "../data/site.json";
 export async function GET(context) {
   const posts = await getCollection("posts");
   return rss({
-    title: siteTitel,
+    title: siteTitle,
     description: siteDescription,
     site: context.site,
     items: posts.map((post) => ({
