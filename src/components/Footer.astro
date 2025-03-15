@@ -28,6 +28,7 @@ import userPersonalInformation from "../data/user-personal.json";
 
   <a
     class="text-primary-foreground ml-auto px-2 hover:cursor-pointer hover:brightness-125 md:hidden"
+    href={`mailto:${userContactInformation.userEmail}`}
   >
     {userContactInformation.userEmail}
     <Arrow class="stroke-primary-foreground" rotate={-45} />
