@@ -25,7 +25,7 @@
     {/if}
 {/snippet}
 
-<div class="flex flex-row flex-wrap justify-center gap-2 mt-4">
+<div class="flex flex-row flex-wrap justify-center gap-2 mt-4 text-xl">
     {#each tags as title}
         {@render tag(title)}
     {/each}
