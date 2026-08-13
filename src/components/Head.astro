@@ -1,26 +1,20 @@
 ---
-import "../styles/tailwind.css";
 import siteData from "../data/site.json";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
-  pageTitle: string;
-  pageDescription: string;
-  pageThumbnail?: string;
+  title: string;
+  description: string;
+  ogImage?: string;
 }
 
+const { title, description, ogImage } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const {
-  pageTitle,
-  pageDescription,
-  pageThumbnail = "/blog-placeholder-1.jpg",
-} = Astro.props;
+const ogImageURL = ogImage
+  ? new URL(ogImage, Astro.site)
+  : new URL("/og/default.png", Astro.site);
 ---
 
-<!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
@@ -30,36 +24,74 @@ const {
   href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
-
-<!-- Font preloads -->
-<link
-  rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
-  as="font"
-  type="font/woff"
-  crossorigin
-/>
-
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Primary Meta Tags -->
-<title>{pageTitle}</title>
-<meta name="title" content={pageTitle} />
-<meta name="description" content={pageDescription} />
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={pageTitle} />
-<meta property="og:description" content={pageDescription} />
-<meta property="og:image" content={new URL(pageThumbnail, Astro.url)} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
 
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={pageTitle} />
-<meta property="twitter:description" content={pageDescription} />
-<meta property="twitter:image" content={new URL(pageThumbnail, Astro.url)} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImageURL} />
 
-<ClientRouter />
+<!-- PostHog Analytics — replace YOUR_KEY with your project API key from posthog.com -->
+<script>
+  !(function (t, e) {
+    var o, n, p, r;
+    e.__SV ||
+      ((window.posthog = e),
+      (e._i = []),
+      (e.init = function (i, s, a) {
+        function g(t, e) {
+          var o = e.split(".");
+          2 == o.length && ((t = t[o[0]]), (e = o[1])),
+            (t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            });
+        }
+        (p = t.createElement("script")),
+          (p.type = "text/javascript"),
+          (p.crossOrigin = "anonymous"),
+          (p.async = !0),
+          (p.src = s.api_host + "/static/array.js"),
+          (r = t.getElementsByTagName("script")[0]),
+          r.parentNode.insertBefore(p, r);
+        var u = e;
+        for (
+          void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+            u.people = u.people || [],
+            u.toString = function (t) {
+              var e = "posthog";
+              return (
+                "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+              );
+            },
+            u.people.toString = function () {
+              return u.toString() + " (stub)";
+            },
+            o =
+              "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getSurveys getNextSurveyStep onSessionId setPersonPropertiesForFlags".split(
+                " "
+              ),
+            n = 0;
+          n < o.length;
+          n++
+        )
+          g(u, o[n]);
+        e._i.push([i, s, a]);
+      }),
+      (e.__SV = 1));
+  })(document, window.posthog || []);
+  posthog.init("YOUR_KEY", {
+    api_host: "https://us.i.posthog.com",
+    person_profiles: "identified_only",
+  });
+</script>

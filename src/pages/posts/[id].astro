@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => data.published);
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"posts">;
+const post = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
+const isYouTube = (url: string) =>
+  url.includes("youtube.com") || url.includes("youtu.be");
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  ogImage={`/og/${post.id}.png`}
+>
+  <div class="post-header">
+    <h1>{post.data.title}</h1>
+    <div class="post-meta">
+      <div>{formatDate(post.data.date)}</div>
+      {(post.data.role || post.data.organization) && (
+        <div>
+          {post.data.role}
+          {post.data.role && post.data.organization && " @ "}
+          {post.data.organization}
+          {post.data.location && ` — ${post.data.location}`}
+        </div>
+      )}
+      <div class="post-tags">
+        {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </div>
+  </div>
+
+  {
+    post.data.video && (
+      <div class="video-wrapper">
+        {isYouTube(post.data.video) ? (
+          <iframe src={post.data.video} title={post.data.title} allowfullscreen />
+        ) : (
+          <video src={post.data.video} controls />
+        )}
+      </div>
+    )
+  }
+
+  <div class="prose">
+    <Content />
+  </div>
+</Layout>

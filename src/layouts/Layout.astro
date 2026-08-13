@@ -1,27 +1,29 @@
 ---
+import "../styles/global.css";
 import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 interface Props {
-  siteTitle: string;
-  siteDescription: string;
-  headerCosmeticText: string;
+  title: string;
+  description: string;
+  ogImage?: string;
 }
 
-const { siteTitle, siteDescription, headerCosmeticText } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="bg-primary">
+<html lang="en">
   <head>
-    <Head pageTitle={siteTitle} pageDescription={siteDescription} />
+    <meta charset="utf-8" />
+    <Head title={title} description={description} ogImage={ogImage} />
   </head>
   <body>
-    <main class="min-h-svh">
-      <Header cosmeticText={headerCosmeticText} />
+    <Header />
+    <main>
       <slot />
-      <Footer />
     </main>
+    <Footer />
   </body>
 </html>

@@ -1,73 +1,47 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Section from "../components/Section.astro";
-import Posts from "../components/reactive/Posts.svelte";
-import Tags from "../components/reactive/Tags.svelte";
-import CosmeticText from "../components/CosmeticText.astro";
-
-import siteData from "../data/site.json";
-import userProfessionalData from "../data/user-professional.json";
-import userPersonalData from "../data/user-personal.json";
-import USER_PICTURE from "../../public/user-picture.jpeg";
 import { getCollection } from "astro:content";
+import siteData from "../data/site.json";
 
-const allPosts = (await getCollection('posts')).filter((post) => post.data.published);
+const allPosts = (await getCollection("posts"))
+  .filter((post) => post.data.published)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const heroTags: Set<string> = new Set(
-  allPosts.flatMap((post) => post.data.tags),
-);
-
-const cosmeticTexts: { [section: string]: string } = {
-  header: "PORTFOLIO",
-  hero: "CLICK ON A TAG",
-  about: "ABOUT ME",
-};
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 ---
 
-<Layout
-  siteTitle={siteData.siteTitle}
-  siteDescription={siteData.siteDescription}
-  headerCosmeticText={cosmeticTexts.header}
->
-  <!-- HERO -->
-  <Section
-    class="from-accent/10 relative flex min-h-72 bg-radial-[at_50%_10%] to-transparent pl-4"
-  >
-    <div class="m-auto max-w-md text-center">
-      <span class="text-2xl">{userProfessionalData.professionalDescription}</span>
-      <Tags client:load tags={heroTags} />
-    </div>
-    <CosmeticText text={cosmeticTexts.hero} vertical />
-  </Section>
-
-  <!-- POSTS -->
-  <Section class="">
-    <Posts client:load allPosts={allPosts} />
-  </Section>
-
-  <!-- ABOUT -->
-  <Section class="relative flex min-h-96 from-accent/10 bg-radial-[at_50%_90%] to-transparent">
-    <span class="absolute"
-      ><CosmeticText text={cosmeticTexts.about} vertical /></span
-    >
-
-    <div
-      class="mx-auto flex max-w-3xl flex-col gap-16 px-8 pt-32 pb-16 md:flex-row md:p-16"
-    >
-      <div
-        class="group/image rounded-interactive bg-accent mx-auto my-auto aspect-square h-48 w-48 md:mx-0"
-      >
-        <img
-          class="rounded-interactive h-48 w-48 md:scale-110 md:-rotate-z-12 overflow-clip object-cover duration-200 md:group-hover/image:scale-[101%] md:group-hover/image:-rotate-z-0"
-          src={USER_PICTURE.src}
-          alt={`${userPersonalData.userName}'s profile picture.`}
-        />
-      </div>
-
-      <div class="my-auto text-pretty">
-        <h1 class="text-xl">Hi.</h1>
-        <p>{userPersonalData.userIntroduction}</p>
-      </div>
-    </div>
-  </Section>
+<Layout title={siteData.siteTitle} description={siteData.siteDescription}>
+  <ul class="posts-list">
+    {
+      allPosts.map((post) => (
+        <li class="post-card">
+          <a href={`/posts/${post.id}`}>
+            <div class="post-title">{post.data.title}</div>
+            <div class="post-meta">
+              <div>{formatDate(post.data.date)}</div>
+              {(post.data.role || post.data.organization) && (
+                <div>
+                  {post.data.role}
+                  {post.data.role && post.data.organization && " @ "}
+                  {post.data.organization}
+                  {post.data.location && ` — ${post.data.location}`}
+                </div>
+              )}
+              <div class="post-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div class="post-description">{post.data.description}</div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>

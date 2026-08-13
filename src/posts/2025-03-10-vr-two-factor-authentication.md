@@ -1,38 +1,41 @@
 ---
 published: true
-title: XR Kinetic Authentication 🔒
-description: A novel method of authentication for extended reality devices that
-  uses 'something you do' factor.
+title: XR Kinetic Authentication — IEEE VR Contest Winner
+description: Won Best 3DUI Authentication Method at IEEE VR Shanghai by engineering a novel continuous 2FA framework for XR using motion-matched hardware keys and Morse Code OTP input.
 tags:
   - C#
   - Unity
-  - Cybersecurity
-date: 2025-03-10
+  - VR
+  - XR
+  - Security
+date: 2022-10-01
+organization: IEEE VR
+location: Shanghai, China
+role: VR Engineer & Researcher
 ---
-In the fast-evolving field of Extended Reality (XR), ensuring secure user authentication while maintaining an immersive experience is a challenge. To address this issue, we developed a continuous authentication technique that combines **Time-Based One-Time Passwords (TOTP)**, **haptic feedback**, and **kinetic activity**.
 
-We won the **IEEE VR 2023 Best 3DUI Contest Award!**
+## Overview
 
-## Concept and Design
+We won **Best 3DUI Authentication Method** at the IEEE VR Shanghai 3DUI Contest. The project was a novel Two-Factor Authentication framework designed specifically for XR — addressing the problem that traditional authentication is disruptive and insecure inside immersive VR sessions.
 
-The concept behind our authentication technique is rooted in the need for continuous user verification during an XR session. Traditional authentication methods can become cumbersome. Our approach, while still requiring manual entry of a TOTP, continuously authenticates the user by matching the XR device's movements to a second device attached to the user.
+## The Problem
 
-**The Key**
+Authenticating in XR is awkward. Typing a password breaks immersion, shoulder surfing is easier in shared physical spaces, and most session-based systems only authenticate at login — leaving sessions vulnerable to device takeover after the fact.
 
-The novelty of this approach comes from _the key,_ a device that the user owns and carries on their body. The key is able to output vibrations and analyze movements using a gyroscope.
+## The Solution: Continuous Kinetic Authentication
 
-### Time-Based One-Time Passwords (TOTP)
+Our system authenticates the user *continuously* throughout the session, not just at login. The key component is a custom-built hardware security device — **the Key** — that the user carries on their body.
 
-Initially, the user is asked to enter a TOTP through their XR device. The TOTP code presents itself as morse code vibrations outputted by the key. The user feels the vibrations and inputs them to a user interface in their XR display. A nice side affect of using vibrations for the TOTP is that it makes shoulder surfing harder for attackers.
+**Initial authentication — Morse Code OTP:**
+The Key outputs a Time-Based One-Time Password (TOTP) as haptic vibrations in Morse Code. The user feels the vibrations and inputs the pattern into a UI inside their XR display. Using vibrations instead of a visible code makes shoulder surfing significantly harder for attackers.
 
-### Kinetic Activity
+**Continuous authentication — Motion Matching:**
+After the initial TOTP, the system continuously compares the motion of the XR controller against the motion of the Key using gyroscope data. If they diverge — meaning the controller and the Key are no longer moving together — the user is prompted to re-authenticate. A legitimate user carrying the Key moves with it naturally; an attacker who grabbed the headset won't have the Key.
 
-After the TOTP authentication, the user is continuously authenticated by checking if the XR device movements match movements of the key. When there is a mismatch in their movements, the user is taken out of the experience and prompted to re-authenticate.
+## Engineering
 
-## IEEE VR 3DUI Contest Award
+I developed the C# algorithms in Unity that synchronize the disparate hardware data streams from the HTC Vive controller and the external sensor, handling clock drift and sampling rate differences to produce accurate motion comparisons. I also programmed the motion-tracking hardware to interface with the SteamVR environment and designed the Morse Code OTP input method within the 3D UI.
 
-Our project stood out in the IEEE VR 3DUI Contest due to its innovative approach to solving the problem of continuous authentication in XR environments. We were recognized for the novelty of our technique, the user-centric design, and the seamless integration of TOTP, haptic feedback, and kinetic activity. The award was a testament to the hard work and creativity that went into designing a solution that enhances both security and user experience in immersive virtual spaces.
+## Recognition
 
-## Conclusion
-
-By combining modern authentication techniques with haptic and motion-based interaction, we have demonstrated that secure authentication can coexist with the immersive nature of XR. The IEEE VR 3DUI Contest Award is a proud acknowledgment of the innovation and effort put into this project, which has the potential to shape the future of authentication in XR technologies.
+The IEEE VR 3DUI Contest recognized the project for the novelty of the continuous verification approach, the user-centric design, and the seamless integration of TOTP, haptic feedback, and kinetic activity in an XR context.

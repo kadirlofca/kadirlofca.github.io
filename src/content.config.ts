@@ -9,6 +9,10 @@ const posts = defineCollection({
     tags: z.string().array(),
     description: z.string(),
     date: z.coerce.date(),
+    video: z.string().url().optional(),
+    organization: z.string().optional(),
+    location: z.string().optional(),
+    role: z.string().optional(),
   }),
 });
 
