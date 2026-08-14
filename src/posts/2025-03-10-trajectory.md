@@ -1,6 +1,6 @@
 ---
 published: false
-title: Trajectory 🚗
+title: Trajectory
 description: jhkgj
 tags:
   - hg

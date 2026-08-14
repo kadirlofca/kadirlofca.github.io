@@ -1,0 +1,122 @@
+---
+import userContact from "../data/user-contact.json";
+import USER_PICTURE from "../../public/user-picture.jpeg";
+
+const { userEmail, userSocials } = userContact;
+const picture = USER_PICTURE.src;
+const email = userEmail.trim();
+const linkedin = userSocials.find((s) => s.title === "LinkedIn");
+const github = userSocials.find((s) => s.title === "GitHub");
+---
+
+<div class="profile-card">
+  <img class="avatar" src={picture} alt="Profile picture" />
+  <div class="contact">
+    <a href={`mailto:${email}`} class="email-link">{email}</a>
+    <div class="socials">
+      {linkedin && <a href={linkedin.url} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+      {github && <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>}
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-card {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .contact {
+    width: 200px;
+    font-size: 1rem;
+  }
+
+  .email-link {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .email-link:hover {
+    color: hsl(240, 100%, 50%);
+  }
+
+  .socials {
+    display: flex;
+    width: 200px;
+  }
+
+  .socials a {
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .socials a:hover {
+    color: hsl(240, 100%, 50%);
+  }
+</style>
+
+<script>
+  document.fonts.ready.then(() => {
+    const avatar = document.querySelector<HTMLImageElement>('.avatar');
+    const emailLink = document.querySelector<HTMLAnchorElement>('.email-link');
+    if (!avatar || !emailLink) return;
+
+    const targetWidth = avatar.getBoundingClientRect().width;
+    if (targetWidth <= 0) return;
+
+    function measureText() {
+      const probe = document.createElement('span');
+      probe.style.cssText = 'position:absolute;white-space:nowrap;visibility:hidden;pointer-events:none;';
+      probe.textContent = emailLink!.textContent;
+      emailLink!.appendChild(probe);
+      const w = probe.getBoundingClientRect().width;
+      emailLink!.removeChild(probe);
+      return w;
+    }
+
+    const w1 = measureText();
+    if (w1 <= 0) return;
+    emailLink.style.fontSize = (parseFloat(getComputedStyle(emailLink).fontSize) * targetWidth / w1) + 'px';
+
+    // second pass corrects for font hinting delta at the new size
+    const w2 = measureText();
+    if (w2 > 0) {
+      emailLink.style.fontSize = (parseFloat(getComputedStyle(emailLink).fontSize) * targetWidth / w2) + 'px';
+    }
+
+    // socials: same font size as email, gap fills remaining width
+    const socialsEl = document.querySelector<HTMLElement>('.socials');
+    const socialLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.socials a'));
+    if (socialsEl && socialLinks.length > 1) {
+      const emailFontSize = getComputedStyle(emailLink).fontSize;
+      socialsEl.style.fontSize = emailFontSize;
+
+      const probes = socialLinks.map(link => {
+        const p = document.createElement('span');
+        p.style.cssText = 'position:absolute;white-space:nowrap;visibility:hidden;pointer-events:none;';
+        p.textContent = link.textContent;
+        link.appendChild(p);
+        return p;
+      });
+      const totalText = probes.reduce((sum, p) => sum + p.getBoundingClientRect().width, 0);
+      probes.forEach((p, i) => socialLinks[i].removeChild(p));
+
+      const gap = (targetWidth - totalText) / (socialLinks.length - 1);
+      socialsEl.style.gap = Math.max(0, gap) + 'px';
+    }
+  });
+</script>

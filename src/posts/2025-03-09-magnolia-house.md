@@ -1,13 +1,18 @@
 ---
 published: true
-title: Magnolia House 🏡
+title: Magnolia House
 description: The official virtual reality tour of the Historic Magnolia House,
   experienced by visitors of the house.
 tags:
   - C#
   - Unity
   - Arch-viz
-date: 2025-03-09
+  - VR
+  - 3D
+date: 2021-02-01
+organization: UNC Greensboro
+location: Greensboro, NC
+role: VR Engineer
 ---
 I had the opportunity to bring the history of the Magnolia House to life in virtual reality. The goal of this project was to showcase the rooms where famous visitors of the Magnolia House stayed in.
 

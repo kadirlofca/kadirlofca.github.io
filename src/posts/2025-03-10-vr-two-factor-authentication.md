@@ -1,6 +1,6 @@
 ---
 published: true
-title: XR Kinetic Authentication — IEEE VR Contest Winner
+title: XR Kinetic Authentication
 description: Won Best 3DUI Authentication Method at IEEE VR Shanghai by engineering a novel continuous 2FA framework for XR using motion-matched hardware keys and Morse Code OTP input.
 tags:
   - C#

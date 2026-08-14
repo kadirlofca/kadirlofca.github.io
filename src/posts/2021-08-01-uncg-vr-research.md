@@ -1,6 +1,6 @@
 ---
 published: true
-title: VR Research Engineer at UNCG
+title: VR Time Perception Research
 description: Conducted human-subject VR experiments on time perception and virtual embodiment, co-authored two IEEE VR papers cited by 14+ studies, and built custom Unity tooling to automate trial data collection.
 tags:
   - C#

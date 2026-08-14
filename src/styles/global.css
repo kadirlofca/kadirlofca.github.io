@@ -1,10 +1,10 @@
 :root {
-  --bg: #111;
-  --fg: #f0ece4;
-  --accent: #ff6400;
-  --muted: #888;
-  --border: #2a2a2a;
-  --max-width: 760px;
+  --bg: #FFFFFF;
+  --fg: #111827;
+  --accent: hsl(240, 100%, 50%);
+  --muted: #666;
+  --border: #d1d5db;
+  --max-width: 1100px;
   --mono: "Fira Code", "Cascadia Code", monospace;
 }
 
@@ -70,6 +70,34 @@ main {
 
 .site-footer a:hover { color: var(--fg); }
 
+/* Home layout */
+.home-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 9rem;
+  align-items: start;
+}
+
+.entries-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar {
+  /* grid placeholder — keeps the left column in flow */
+}
+
+.sidebar-fixed {
+  position: fixed;
+  top: 0;
+  left: max(1.5rem, calc((100vw - var(--max-width)) / 2 + 1.5rem));
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Posts list */
 .posts-list {
   list-style: none;
@@ -82,10 +110,24 @@ main {
 
 .post-card a { display: block; }
 
+.post-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.post-date {
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .post-title {
   font-size: 1.35rem;
   font-weight: 600;
-  margin-bottom: 0.3rem;
   transition: color 0.15s;
 }
 
@@ -111,6 +153,17 @@ main {
   padding: 0.1rem 0.45rem;
   border-radius: 3px;
   font-size: 0.75rem;
+}
+
+.post-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.post-location {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .post-description { color: #bbb; font-size: 0.95rem; }
@@ -167,7 +220,7 @@ main {
 }
 
 .prose pre {
-  background: #1a1a1a;
+  background: #e2e5ea;
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1.25rem;
@@ -213,4 +266,4 @@ main {
   text-align: left;
 }
 
-.prose th { background: #1a1a1a; }
+.prose th { background: #e2e5ea; }

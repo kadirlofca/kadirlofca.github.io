@@ -1,6 +1,6 @@
 ---
-published: true
-title: Quick Character 🏃
+published: false
+title: Quick Character
 description: A flexible character movement state framework that helps game
   developers quickly create unique and robust movement mechanics.
 tags:

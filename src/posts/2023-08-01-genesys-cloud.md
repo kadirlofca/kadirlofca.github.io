@@ -1,6 +1,6 @@
 ---
 published: true
-title: Software Engineering Intern at Genesys
+title: Screen-Share Customer Service App
 description: Built full-stack features for a customer service screen-sharing application serving 2,000,000+ customers using Next.js, TypeScript, Redux, and Terraform.
 tags:
   - TypeScript

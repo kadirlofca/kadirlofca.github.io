@@ -1,6 +1,6 @@
 ---
-published: true
-title: Programming Mentor at Stiegler EdTech
+published: false
+title: LLM Grading System
 description: Led technical education for 200+ students achieving a 100% pass rate, mentored junior TAs, and improved an AI-driven grading system to reduce LLM hallucinations by 30%.
 tags:
   - Python

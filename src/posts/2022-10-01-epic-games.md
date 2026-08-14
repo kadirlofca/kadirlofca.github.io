@@ -1,6 +1,6 @@
 ---
-published: true
-title: Unreal Engine Technician at Epic Games
+published: false
+title: Unreal Engine 5 Workshop
 description: Taught Unreal Engine 5 graphics, materials, cameras, and render targets at an Epic Games event, supporting 20+ attendees.
 tags:
   - Unreal Engine
