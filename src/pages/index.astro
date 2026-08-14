@@ -80,9 +80,10 @@ const formatDate = (date: Date) =>
         const lastCardBottom = lastCard?.getBoundingClientRect().bottom ?? 0;
         window.scrollTo(0, 0);
 
-        // padding pushes last card up at max scroll: P = lastCardBottom - socialsBottom
+        // padding after footer pushes last card up at max scroll: P = lastCardBottom - socialsBottom
+        const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
         const needed = lastCardBottom - socialsBottom;
-        if (needed > 0) postsList.style.paddingBottom = needed + 'px';
+        if (needed > 0 && entriesColumn) entriesColumn.style.paddingBottom = needed + 'px';
       });
     });
   });

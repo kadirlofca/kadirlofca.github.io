@@ -59,8 +59,7 @@ main {
 .site-footer {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  border-top: 1px solid var(--border);
+  padding: 4rem 3rem;
   font-size: 0.82rem;
   color: var(--muted);
   display: flex;
