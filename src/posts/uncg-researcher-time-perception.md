@@ -1,7 +1,8 @@
 ---
 published: true
-title: VR Time Perception Research
-description: Conducted human-subject VR experiments on time perception and virtual embodiment, co-authored two IEEE VR papers cited by 14+ studies, and built custom Unity tooling to automate trial data collection.
+title: Time Perception in VR
+shortDescription: IEEE VR papers on time perception in VR
+longDescription: Conducted human-subject VR experiments on time perception and virtual embodiment, co-authored two IEEE VR papers cited by 14+ studies, and built custom Unity tooling to automate trial data collection.
 tags:
   - C#
   - Unity
@@ -9,9 +10,9 @@ tags:
   - XR
   - Research
 date: 2021-08-01
-organization: UNC Greensboro
+organization: UNCG
 location: Greensboro, NC
-role: VR Engineer & Undergraduate Researcher
+role: Researcher
 ---
 
 ## Overview

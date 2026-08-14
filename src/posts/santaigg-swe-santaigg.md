@@ -1,7 +1,8 @@
 ---
 published: true
-title: Game Statistics Platform
-description: Architected and maintained a high-performance open-source statistics platform for the tactical shooter Spectre Divide, growing to 300+ weekly active users within 3 months.
+title: Statistics Tracker for Competitive Game
+shortDescription: Open-source stats platform for Spectre Divide
+longDescription: Architected and maintained a high-performance open-source statistics platform for the tactical shooter Spectre Divide, growing to 300+ weekly active users within 3 months.
 tags:
   - TypeScript
   - React
@@ -11,9 +12,9 @@ tags:
   - Backend
   - Frontend
 date: 2024-09-01
-organization: Santai.GG
+organization: Santai.gg
 location: Remote
-role: Open Source Contributor & Maintainer
+role: SWE
 ---
 
 ## Overview

@@ -59,7 +59,7 @@ main {
 .site-footer {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 4rem 3rem;
+  padding: 4rem 0;
   font-size: 0.82rem;
   color: var(--muted);
   display: flex;
@@ -68,6 +68,8 @@ main {
 }
 
 .site-footer a:hover { color: var(--fg); }
+
+.entries-column .site-footer { margin: 0; max-width: none; }
 
 /* Home layout */
 .home-layout {
@@ -104,24 +106,27 @@ main {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3.125rem;
 }
 
-.post-card a { display: block; }
+.post-card a { display: block; color: inherit; }
+.post-card a:hover { color: inherit; }
 
 .post-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.05rem;
 }
 
 .post-date {
   font-size: 0.8rem;
-  color: var(--muted);
+  color: rgba(0, 0, 0, 0.8);
   white-space: nowrap;
   flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .post-title {
@@ -130,12 +135,13 @@ main {
   transition: color 0.15s;
 }
 
-.post-card:hover .post-title { color: var(--accent); }
+.post-card:hover .post-date,
+.post-card:hover .post-location { opacity: 1; }
 
 .post-meta {
   font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.05rem;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -163,9 +169,12 @@ main {
 .post-location {
   white-space: nowrap;
   flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: rgba(0, 0, 0, 0.8);
 }
 
-.post-description { color: #bbb; font-size: 0.95rem; }
+.post-description { color: rgba(0, 0, 0, 0.8); font-size: 0.95rem; margin-top: 0.5rem; }
 
 /* Post page */
 .post-header {

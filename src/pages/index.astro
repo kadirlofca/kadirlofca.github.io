@@ -7,7 +7,7 @@ import siteData from "../data/site.json";
 
 const allPosts = (await getCollection("posts"))
   .filter((post) => post.data.published)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => (a.data.order - b.data.order) || (b.data.date.getTime() - a.data.date.getTime()));
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("en-US", {
@@ -30,10 +30,6 @@ const formatDate = (date: Date) =>
         allPosts.map((post) => (
           <li class="post-card">
             <a href={`/posts/${post.id}`}>
-              <div class="post-title-row">
-                <div class="post-title">{post.data.title}</div>
-                <div class="post-date">{formatDate(post.data.date)}</div>
-              </div>
               <div class="post-meta">
                 {(post.data.role || post.data.organization) && (
                   <div class="post-meta-row">
@@ -46,7 +42,13 @@ const formatDate = (date: Date) =>
                   </div>
                 )}
               </div>
-              <div class="post-description">{post.data.description}</div>
+              <div class="post-title-row">
+                <div class="post-title">{post.data.title}</div>
+                <div class="post-date">{formatDate(post.data.date)}</div>
+              </div>
+              <div class="post-meta">
+              </div>
+              <div class="post-description">{post.data.shortDescription}</div>
             </a>
           </li>
         ))

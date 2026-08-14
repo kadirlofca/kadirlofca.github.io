@@ -1,7 +1,8 @@
 ---
 published: true
-title: XR Kinetic Authentication
-description: Won Best 3DUI Authentication Method at IEEE VR Shanghai by engineering a novel continuous 2FA framework for XR using motion-matched hardware keys and Morse Code OTP input.
+title: Biometric Authentication for XR
+shortDescription: IEEE VR award-winning XR authentication system
+longDescription: Won Best 3DUI Authentication Method at IEEE VR Shanghai by engineering a novel continuous 2FA framework for XR using motion-matched hardware keys and Morse Code OTP input.
 tags:
   - C#
   - Unity
@@ -11,7 +12,7 @@ tags:
 date: 2022-10-01
 organization: IEEE VR
 location: Shanghai, China
-role: VR Engineer & Researcher
+role: Researcher
 ---
 
 ## Overview

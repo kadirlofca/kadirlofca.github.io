@@ -1,7 +1,8 @@
 ---
 published: true
-title: Screen-Share Customer Service App
-description: Built full-stack features for a customer service screen-sharing application serving 2,000,000+ customers using Next.js, TypeScript, Redux, and Terraform.
+title: Screen Sharing for Customer Support
+shortDescription: Full-stack screen-sharing app for 2M+ customers
+longDescription: Built full-stack features for a customer service screen-sharing application serving 2,000,000+ customers using Next.js, TypeScript, Redux, and Terraform.
 tags:
   - TypeScript
   - React
@@ -13,7 +14,7 @@ tags:
 date: 2023-08-01
 organization: Genesys Cloud
 location: Durham, NC
-role: Software Engineering Intern
+role: SWE
 ---
 
 ## Overview

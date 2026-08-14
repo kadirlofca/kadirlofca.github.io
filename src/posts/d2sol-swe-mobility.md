@@ -1,7 +1,8 @@
 ---
 published: true
 title: Government Mobile App
-description: Building mission-critical mobile government applications serving 300,000+ citizens across two US states using a unified Flutter codebase.
+shortDescription: Flutter apps serving 300k+ government users
+longDescription: Building mission-critical mobile government applications serving 300,000+ citizens across two US states using a unified Flutter codebase.
 tags:
   - Flutter
   - Dart
@@ -12,8 +13,8 @@ tags:
   - Backend
 date: 2025-06-01
 organization: D2Sol Inc.
-location: Raleigh, NC
-role: Software Engineer
+location: Research Triangle Park, NC
+role: SWE
 ---
 
 ## Overview

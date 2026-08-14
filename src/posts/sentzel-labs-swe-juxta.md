@@ -1,7 +1,9 @@
 ---
 published: true
-title: AI Game Intelligence Platform
-description: Built an AI-powered game discovery and intelligence platform end-to-end as sole engineer, featuring semantic search, ELO ranking, and a durable AI ingestion pipeline.
+order: -1
+title: AI Game Discovery Platform
+shortDescription: AI game discovery platform with semantic search
+longDescription: Built an AI-powered game discovery and intelligence platform end-to-end as sole engineer, featuring semantic search, ELO ranking, and a durable AI ingestion pipeline.
 tags:
   - TypeScript
   - Hono
@@ -14,8 +16,8 @@ tags:
   - Frontend
 date: 2025-05-01
 organization: Sentzel Labs
-location: Remote
-role: Founder
+location: Research Triangle Park, NC
+role: Founding Engineer
 ---
 
 ## Overview
