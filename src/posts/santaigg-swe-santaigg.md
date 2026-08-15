@@ -1,8 +1,8 @@
 ---
 published: true
 title: Statistics Tracker for Competitive Game
-shortDescription: Open-source stats platform for Spectre Divide
-longDescription: Architected and maintained a high-performance open-source statistics platform for the tactical shooter Spectre Divide, growing to 300+ weekly active users within 3 months.
+descriptionHead: 300+ weekly active users within 3 months
+descriptionTail: " — open-source stats platform for the tactical shooter Spectre Divide."
 tags:
   - TypeScript
   - React

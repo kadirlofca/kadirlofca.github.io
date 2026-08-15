@@ -1,8 +1,8 @@
 ---
 published: true
 title: Biometric Authentication for XR
-shortDescription: IEEE VR award-winning XR authentication system
-longDescription: Won Best 3DUI Authentication Method at IEEE VR Shanghai by engineering a novel continuous 2FA framework for XR using motion-matched hardware keys and Morse Code OTP input.
+descriptionHead: Won Best 3DUI Authentication Method at IEEE VR Shanghai
+descriptionTail: " by engineering a novel continuous 2FA framework for XR using motion-matched hardware keys and Morse Code OTP input."
 tags:
   - C#
   - Unity

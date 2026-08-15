@@ -2,8 +2,8 @@
 published: true
 order: -1
 title: AI Game Discovery Platform
-shortDescription: AI game discovery platform with semantic search
-longDescription: Built an AI-powered game discovery and intelligence platform end-to-end as sole engineer, featuring semantic search, ELO ranking, and a durable AI ingestion pipeline.
+descriptionHead: Sole engineer on an AI-powered game discovery platform
+descriptionTail: ", featuring semantic search, ELO ranking, and a durable AI ingestion pipeline."
 tags:
   - TypeScript
   - Hono

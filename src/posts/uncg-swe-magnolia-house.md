@@ -1,9 +1,8 @@
 ---
 published: true
 title: Magnolia House in VR
-shortDescription: VR tour of the historic Magnolia House
-longDescription: The official virtual reality tour of the Historic Magnolia House,
-  experienced by visitors of the house.
+descriptionHead: Official VR tour of the Historic Magnolia House
+descriptionTail: ", experienced by in-person visitors of the landmark."
 tags:
   - C#
   - Unity

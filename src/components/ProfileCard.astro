@@ -56,10 +56,11 @@ const github = userSocials.find((s) => s.title === "GitHub");
   .socials {
     display: flex;
     width: 200px;
+    font-size: 0.8rem;
   }
 
   .socials a {
-    color: inherit;
+    color: rgba(0, 0, 0, 0.8);
     text-decoration: none;
     white-space: nowrap;
   }
@@ -102,9 +103,6 @@ const github = userSocials.find((s) => s.title === "GitHub");
     const socialsEl = document.querySelector<HTMLElement>('.socials');
     const socialLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.socials a'));
     if (socialsEl && socialLinks.length > 1) {
-      const emailFontSize = getComputedStyle(emailLink).fontSize;
-      socialsEl.style.fontSize = emailFontSize;
-
       const probes = socialLinks.map(link => {
         const p = document.createElement('span');
         p.style.cssText = 'position:absolute;white-space:nowrap;visibility:hidden;pointer-events:none;';

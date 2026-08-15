@@ -9,12 +9,11 @@ const allPosts = (await getCollection("posts"))
   .filter((post) => post.data.published)
   .sort((a, b) => (a.data.order - b.data.order) || (b.data.date.getTime() - a.data.date.getTime()));
 
-const formatDate = (date: Date) =>
-  date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+const formatMonth = (date: Date) =>
+  date.toLocaleDateString("en-US", { month: "long" });
+const formatYear = (date: Date) =>
+  date.toLocaleDateString("en-US", { year: "numeric" });
+
 ---
 
 <Layout title={siteData.siteTitle} description={siteData.siteDescription} hideFooter>
@@ -38,17 +37,18 @@ const formatDate = (date: Date) =>
                       {post.data.role && post.data.organization && " @ "}
                       {post.data.organization}
                     </span>
-                    {post.data.location && <span class="post-location">{post.data.location}</span>}
                   </div>
                 )}
               </div>
               <div class="post-title-row">
                 <div class="post-title">{post.data.title}</div>
-                <div class="post-date">{formatDate(post.data.date)}</div>
+                <div class="post-date">{formatYear(post.data.date)}</div>
               </div>
               <div class="post-meta">
               </div>
-              <div class="post-description">{post.data.shortDescription}</div>
+              <div class="post-description">
+                <span class="desc-head">{post.data.descriptionHead}</span><span class="desc-tail">{post.data.descriptionTail}</span>
+              </div>
             </a>
           </li>
         ))

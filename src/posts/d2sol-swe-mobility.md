@@ -1,8 +1,8 @@
 ---
 published: true
 title: Government Mobile App
-shortDescription: Flutter apps serving 300k+ government users
-longDescription: Building mission-critical mobile government applications serving 300,000+ citizens across two US states using a unified Flutter codebase.
+descriptionHead: Flutter apps serving 300,000+ government users
+descriptionTail: " across two US states via a unified, mission-critical mobile codebase."
 tags:
   - Flutter
   - Dart

@@ -1,8 +1,8 @@
 ---
 published: true
 title: Time Perception in VR
-shortDescription: IEEE VR papers on time perception in VR
-longDescription: Conducted human-subject VR experiments on time perception and virtual embodiment, co-authored two IEEE VR papers cited by 14+ studies, and built custom Unity tooling to automate trial data collection.
+descriptionHead: Two IEEE VR papers cited by 14+ studies
+descriptionTail: " on time perception and virtual embodiment; built custom Unity tooling to automate trial data collection."
 tags:
   - C#
   - Unity

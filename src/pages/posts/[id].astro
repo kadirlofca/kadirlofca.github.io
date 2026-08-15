@@ -28,7 +28,7 @@ const isYouTube = (url: string) =>
 
 <Layout
   title={post.data.title}
-  description={post.data.longDescription}
+  description={post.data.descriptionHead + post.data.descriptionTail}
   ogImage={`/og/${post.id}.png`}
 >
   <div class="post-header">
