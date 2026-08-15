@@ -21,7 +21,7 @@ body {
 }
 
 a { color: var(--fg); text-decoration: none; }
-a:hover { color: var(--accent); }
+a:hover { color: inherit; }
 img { max-width: 100%; display: block; }
 
 /* Layout */
