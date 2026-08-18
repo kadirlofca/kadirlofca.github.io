@@ -7,12 +7,23 @@ import siteData from "../data/site.json";
 
 const allPosts = (await getCollection("posts"))
   .filter((post) => post.data.published)
-  .sort((a, b) => (a.data.order - b.data.order) || (b.data.date.getTime() - a.data.date.getTime()));
+  .sort((a, b) => {
+    const orderDiff = a.data.order - b.data.order;
+    if (orderDiff !== 0) return orderDiff;
+    const aEnd = a.data.endDate?.getTime() ?? Infinity;
+    const bEnd = b.data.endDate?.getTime() ?? Infinity;
+    return bEnd - aEnd;
+  });
 
-const formatMonth = (date: Date) =>
-  date.toLocaleDateString("en-US", { month: "long" });
 const formatYear = (date: Date) =>
   date.toLocaleDateString("en-US", { year: "numeric" });
+
+const formatDateRange = (start: Date, end?: Date) => {
+  const startYear = formatYear(start);
+  if (!end) return `${startYear} – Present`;
+  const endYear = formatYear(end);
+  return startYear === endYear ? startYear : `${startYear} – ${endYear}`;
+};
 
 ---
 
@@ -42,7 +53,7 @@ const formatYear = (date: Date) =>
               </div>
               <div class="post-title-row">
                 <div class="post-title">{post.data.title}</div>
-                <div class="post-date">{formatYear(post.data.date)}</div>
+                <div class="post-date">{post.data.endDate ? formatYear(post.data.endDate) : "Present"}</div>
               </div>
               <div class="post-meta">
               </div>

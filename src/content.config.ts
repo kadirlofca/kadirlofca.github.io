@@ -11,6 +11,7 @@ const posts = defineCollection({
     descriptionHead: z.string(),
     descriptionTail: z.string(),
     date: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
     video: z.string().url().optional(),
     organization: z.string().optional(),
     location: z.string().optional(),

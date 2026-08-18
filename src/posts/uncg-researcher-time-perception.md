@@ -10,6 +10,7 @@ tags:
   - XR
   - Research
 date: 2021-08-01
+endDate: 2023-05-01
 organization: UNCG
 location: Greensboro, NC
 role: Researcher

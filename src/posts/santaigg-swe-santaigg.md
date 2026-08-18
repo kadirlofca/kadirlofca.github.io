@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: Statistics Tracker for Competitive Game
 descriptionHead: 300+ weekly active users within 3 months
 descriptionTail: " — open-source stats platform for the tactical shooter Spectre Divide."
@@ -12,6 +12,7 @@ tags:
   - Backend
   - Frontend
 date: 2024-09-01
+endDate: 2025-03-01
 organization: Santai.gg
 location: Remote
 role: SWE

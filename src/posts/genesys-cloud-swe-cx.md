@@ -12,6 +12,7 @@ tags:
   - AWS
   - Fullstack
 date: 2023-08-01
+endDate: 2024-05-01
 organization: Genesys Cloud
 location: Durham, NC
 role: SWE

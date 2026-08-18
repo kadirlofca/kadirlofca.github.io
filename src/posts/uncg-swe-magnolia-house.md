@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: Magnolia House in VR
 descriptionHead: Official VR tour of the Historic Magnolia House
 descriptionTail: ", experienced by in-person visitors of the landmark."
@@ -10,6 +10,7 @@ tags:
   - VR
   - 3D
 date: 2021-02-01
+endDate: 2022-05-01
 organization: UNCG
 location: Greensboro, NC
 role: SWE

@@ -12,7 +12,7 @@ tags:
   - Android
   - Backend
 date: 2025-06-01
-organization: D2Sol Inc.
+organization: D2Sol
 location: Research Triangle Park, NC
 role: SWE
 ---

@@ -10,7 +10,8 @@ tags:
   - XR
   - Security
 date: 2022-10-01
-organization: IEEE VR
+endDate: 2022-10-01
+organization: IEEE
 location: Shanghai, China
 role: Researcher
 ---
