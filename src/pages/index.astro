@@ -81,22 +81,36 @@ const formatDateRange = (start: Date, end?: Date) => {
       const postsTop = postsList.getBoundingClientRect().top;
       postsList.style.paddingTop = Math.max(0, avatarRect.top - postsTop) + 'px';
 
-      // wait for reflow, then measure bottom alignment by actually scrolling
+      // align last card bottom with bio bottom at max scroll — no scrolling needed
+      // derivation: at max scroll, lastCard.bottom = -H_after_lastCard - mainPaddingBottom + innerHeight
+      // for this to equal bioBottom: H_after_lastCard = innerHeight - bioBottom - mainPaddingBottom
       requestAnimationFrame(() => {
-        const socials = document.querySelector<HTMLElement>('.socials');
-        if (!socials) return;
-
-        const socialsBottom = socials.getBoundingClientRect().bottom;
-
-        window.scrollTo(0, document.body.scrollHeight);
-        const lastCard = document.querySelector<HTMLElement>('.post-card:last-child');
-        const lastCardBottom = lastCard?.getBoundingClientRect().bottom ?? 0;
-        window.scrollTo(0, 0);
-
-        // padding after footer pushes last card up at max scroll: P = lastCardBottom - socialsBottom
+        const bio = document.querySelector<HTMLElement>('.bio') ?? document.querySelector<HTMLElement>('.socials');
         const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
-        const needed = lastCardBottom - socialsBottom;
-        if (needed > 0 && entriesColumn) entriesColumn.style.paddingBottom = needed + 'px';
+        const footer = document.querySelector<HTMLElement>('.site-footer');
+        const mainEl = document.querySelector<HTMLElement>('main');
+        if (!bio || !entriesColumn || !footer || !mainEl) return;
+
+        const bioBottom = bio.getBoundingClientRect().bottom;
+        const mainPB = parseFloat(getComputedStyle(mainEl).paddingBottom);
+
+        // measure how much the invisible desc-tail overhangs below desc-head in the last card
+        const lastCard = document.querySelector<HTMLElement>('.post-card:last-child');
+        const lastDescHead = lastCard?.querySelector<HTMLElement>('.desc-head');
+        const tailOverhang = (lastCard && lastDescHead)
+          ? lastCard.getBoundingClientRect().bottom - lastDescHead.getBoundingClientRect().bottom
+          : 0;
+
+        const required = window.innerHeight - bioBottom - mainPB - tailOverhang;
+        const footerHeight = footer.getBoundingClientRect().height;
+        const extra = required - footerHeight;
+
+        if (extra > 0) {
+          entriesColumn.style.paddingBottom = extra + 'px';
+        } else {
+          const curPT = parseFloat(getComputedStyle(footer).paddingTop);
+          footer.style.paddingTop = Math.max(0, curPT + extra) + 'px';
+        }
       });
     });
   });

@@ -1,8 +1,10 @@
 ---
 import userContact from "../data/user-contact.json";
+import userData from "../data/user-personal.json";
 import USER_PICTURE from "../../public/user-picture.jpeg";
 
 const { userEmail, userSocials } = userContact;
+const { bio } = userData;
 const picture = USER_PICTURE.src;
 const email = userEmail.trim();
 const linkedin = userSocials.find((s) => s.title === "LinkedIn");
@@ -17,6 +19,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
       {linkedin && <a href={linkedin.url} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
       {github && <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>}
     </div>
+    {bio && <p class="bio">{bio}</p>}
   </div>
 </div>
 
@@ -67,6 +70,14 @@ const github = userSocials.find((s) => s.title === "GitHub");
 
   .socials a:hover {
     color: inherit;
+  }
+
+  .bio {
+    margin: 1rem 0 0;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.4;
+    width: 200px;
   }
 </style>
 
