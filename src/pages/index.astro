@@ -72,41 +72,45 @@ const formatDateRange = (start: Date, end?: Date) => {
   </div>
 
 <script>
-  document.fonts.ready.then(() => {
+  function align() {
     if (window.innerWidth <= 768) return;
-    requestAnimationFrame(() => {
-      const avatar = document.querySelector<HTMLImageElement>('.avatar');
-      const postsList = document.querySelector<HTMLUListElement>('.posts-list');
-      if (!avatar || !postsList) return;
 
-      // set top padding first
-      const avatarRect = avatar.getBoundingClientRect();
-      const postsTop = postsList.getBoundingClientRect().top;
-      postsList.style.paddingTop = Math.max(0, avatarRect.top - postsTop) + 'px';
+    const avatar = document.querySelector<HTMLImageElement>('.avatar');
+    const postsList = document.querySelector<HTMLUListElement>('.posts-list');
+    const bio = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
+    const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
+    const footer = document.querySelector<HTMLElement>('.site-footer');
+    const mainEl = document.querySelector<HTMLElement>('main');
+    if (!avatar || !postsList || !bio || !entriesColumn || !footer || !mainEl) return;
 
-      // align last card bottom with bio bottom at max scroll — no scrolling needed
-      // derivation: at max scroll, lastCard.bottom = -H_after_lastCard - mainPaddingBottom + innerHeight
-      // for this to equal bioBottom: H_after_lastCard = innerHeight - bioBottom - mainPaddingBottom
-      requestAnimationFrame(() => {
-        const bio = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
-        const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
-        const footer = document.querySelector<HTMLElement>('.site-footer');
-        const mainEl = document.querySelector<HTMLElement>('main');
-        if (!bio || !entriesColumn || !footer || !mainEl) return;
+    // Reset before measuring so stale inline styles don't influence layout
+    postsList.style.paddingTop = '';
+    entriesColumn.style.paddingBottom = '';
+    footer.style.paddingTop = '';
 
-        const bioBottom = bio.getBoundingClientRect().bottom;
-        const mainPB = parseFloat(getComputedStyle(mainEl).paddingBottom);
-        const footerHeight = footer.getBoundingClientRect().height;
-        const extra = window.innerHeight - bioBottom - mainPB - footerHeight;
+    const avatarRect = avatar.getBoundingClientRect();
+    const postsTop = postsList.getBoundingClientRect().top;
+    postsList.style.paddingTop = Math.max(0, avatarRect.top - postsTop) + 'px';
 
-        if (extra > 0) {
-          entriesColumn.style.paddingBottom = extra + 'px';
-        } else {
-          const curPT = parseFloat(getComputedStyle(footer).paddingTop);
-          footer.style.paddingTop = Math.max(0, curPT + extra) + 'px';
-        }
-      });
-    });
+    const bioBottom = bio.getBoundingClientRect().bottom;
+    const mainPB = parseFloat(getComputedStyle(mainEl).paddingBottom);
+    const footerHeight = footer.getBoundingClientRect().height;
+    const extra = window.innerHeight - bioBottom - mainPB - footerHeight;
+
+    if (extra > 0) {
+      entriesColumn.style.paddingBottom = extra + 'px';
+    } else {
+      const curPT = parseFloat(getComputedStyle(footer).paddingTop);
+      footer.style.paddingTop = Math.max(0, curPT + extra) + 'px';
+    }
+  }
+
+  document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(align)));
+
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(align, 100);
   });
 </script>
 </Layout>
