@@ -354,6 +354,7 @@ main {
     top: auto;
     display: flex;
     justify-content: center;
+    padding: 1.5rem 0;
   }
 
   /* Entries list */
