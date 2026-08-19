@@ -85,7 +85,7 @@ const formatDateRange = (start: Date, end?: Date) => {
       // derivation: at max scroll, lastCard.bottom = -H_after_lastCard - mainPaddingBottom + innerHeight
       // for this to equal bioBottom: H_after_lastCard = innerHeight - bioBottom - mainPaddingBottom
       requestAnimationFrame(() => {
-        const bio = document.querySelector<HTMLElement>('.bio') ?? document.querySelector<HTMLElement>('.socials');
+        const bio = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
         const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
         const footer = document.querySelector<HTMLElement>('.site-footer');
         const mainEl = document.querySelector<HTMLElement>('main');

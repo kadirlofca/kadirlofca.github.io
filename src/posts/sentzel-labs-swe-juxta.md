@@ -16,8 +16,8 @@ tags:
   - Frontend
 date: 2025-05-01
 organization: Sentzel Labs
-location: Research Triangle Park, NC
-role: Founding Engineer
+location: Research Triangle Park
+role: Founder
 ---
 
 ## Overview

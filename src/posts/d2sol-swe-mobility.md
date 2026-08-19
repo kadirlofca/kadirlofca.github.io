@@ -13,7 +13,7 @@ tags:
   - Backend
 date: 2025-06-01
 organization: D2Sol
-location: Research Triangle Park, NC
+location: Research Triangle Park
 role: SWE
 ---
 

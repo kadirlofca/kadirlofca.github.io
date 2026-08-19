@@ -65,9 +65,12 @@ main {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.site-footer a:hover { color: var(--fg); }
+.site-footer a { color: var(--muted); text-decoration: none; }
+.footer-links { display: flex; gap: 0.5rem; align-items: center; }
+.site-footer a:hover { color: var(--muted); text-decoration: underline; }
 
 .entries-column .site-footer { margin: 0; max-width: none; }
 
