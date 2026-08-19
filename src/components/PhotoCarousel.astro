@@ -9,13 +9,20 @@ const photos = Object.values(photoModules).map(m => m.default.src);
 ---
 
 {photos.length > 0 && (
-  <div class="photo-carousel">
-    <div class="carousel-track">
-      {photos.map((src) => (
-        <img class="carousel-photo" src={src} alt="" />
-      ))}
+  <>
+    <div class="photo-carousel">
+      <div class="carousel-track">
+        {photos.map((src) => (
+          <img class="carousel-photo" src={src} alt="" />
+        ))}
+      </div>
     </div>
-  </div>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    </div>
+  </>
 )}
 
 <style>
@@ -36,7 +43,6 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     animation: carousel-scroll var(--duration, 40s) linear infinite;
   }
 
-
   .carousel-photo {
     width: 120px;
     height: 120px;
@@ -44,6 +50,7 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     object-fit: cover;
     border-radius: 50%;
     flex-shrink: 0;
+    cursor: pointer;
   }
 
   @keyframes carousel-scroll {
@@ -53,6 +60,50 @@ const photos = Object.values(photoModules).map(m => m.default.src);
 
   @media (prefers-reduced-motion: reduce) {
     .carousel-track { animation: none; }
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 1000;
+  }
+
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+
+  .lightbox-close:hover {
+    opacity: 1;
   }
 </style>
 
@@ -68,7 +119,6 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     const photoWidth = origItems[0].getBoundingClientRect().width || 120;
     const setWidth = origItems.length * (photoWidth + gap);
 
-    // Clone until track is at least 2x the container width so it's always full
     const containerWidth = carousel.getBoundingClientRect().width;
     while (track.getBoundingClientRect().width < containerWidth * 2 + setWidth) {
       origItems.forEach(item => track.appendChild(item.cloneNode(true)));
@@ -83,5 +133,39 @@ const photos = Object.values(photoModules).map(m => m.default.src);
       carousel.addEventListener('mouseenter', () => { anim.playbackRate = 0.5; });
       carousel.addEventListener('mouseleave', () => { anim.playbackRate = 1; });
     }
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  function openLightbox(src: string) {
+    lightboxImg.src = src;
+    lightbox?.classList.add('open');
+    lightbox?.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox?.classList.remove('open');
+    lightbox?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('carousel-photo')) {
+      openLightbox((target as HTMLImageElement).src);
+    }
+  });
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>
