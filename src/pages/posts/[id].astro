@@ -16,11 +16,13 @@ const post = Astro.props;
 const { Content } = await render(post);
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+
+const formatDateRange = (start: Date, end?: Date) => {
+  if (!end) return `${formatDate(start)} – Present`;
+  if (formatDate(start) === formatDate(end)) return formatDate(end);
+  return `${formatDate(start)} – ${formatDate(end)}`;
+};
 
 const isYouTube = (url: string) =>
   url.includes("youtube.com") || url.includes("youtu.be");
@@ -31,23 +33,50 @@ const isYouTube = (url: string) =>
   description={post.data.descriptionHead + post.data.descriptionTail}
   ogImage={`/og/${post.id}.png`}
 >
+  <button class="back-btn" onclick="history.back()">← Back</button>
+
   <div class="post-header">
-    <h1>{post.data.title}</h1>
     <div class="post-meta">
-      <div>{formatDate(post.data.date)}</div>
-      {(post.data.role || post.data.organization) && (
-        <div>
+      <div class="post-meta-row">
+        <span>
           {post.data.role}
           {post.data.role && post.data.organization && " @ "}
           {post.data.organization}
-          {post.data.location && ` — ${post.data.location}`}
+        </span>
+        {post.data.location && <span class="post-date">{post.data.location}</span>}
+      </div>
+    </div>
+    <div class="post-title-row">
+      <div class="post-title-col">
+        <h1 class="post-title">{post.data.title}</h1>
+        <p class="post-description">{post.data.descriptionHead}{post.data.descriptionTail}</p>
+      </div>
+      <div class="post-right-col">
+        <span class="post-date">{formatDateRange(post.data.date, post.data.endDate)}</span>
+        <div class="post-tags">
+          {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
         </div>
-      )}
-      <div class="post-tags">
-        {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
       </div>
     </div>
   </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      const desc = document.querySelector<HTMLElement>('.post-title-col .post-description');
+      const tags = document.querySelector<HTMLElement>('.post-right-col .post-tags');
+      const firstTag = tags?.querySelector<HTMLElement>('.tag');
+      if (!desc || !tags || !firstTag) return;
+
+      const descHeight = desc.getBoundingClientRect().height;
+      const tagHeight = firstTag.getBoundingClientRect().height;
+      const gap = parseFloat(getComputedStyle(tags).gap) || 6;
+      const tagCount = tags.querySelectorAll('.tag').length;
+      const rows = Math.max(1, Math.round(descHeight / (tagHeight + gap)));
+      const cols = Math.ceil(tagCount / rows);
+      tags.style.gridTemplateRows = `repeat(${rows}, auto)`;
+      tags.style.gridTemplateColumns = `repeat(${cols}, auto)`;
+    });
+  </script>
 
   {
     post.data.video && (

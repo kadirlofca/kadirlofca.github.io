@@ -181,6 +181,22 @@ main {
 .desc-tail { opacity: 0; transition: opacity 0.2s; }
 .post-card:hover .desc-tail { opacity: 1; }
 
+/* Back button */
+.back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.back-btn:hover {
+  color: var(--fg);
+}
+
 /* Post page */
 .post-header {
   margin-bottom: 2rem;
@@ -188,10 +204,34 @@ main {
   border-bottom: 1px solid var(--border);
 }
 
-.post-header h1 {
+.post-header h1.post-title {
   font-size: 2rem;
   line-height: 1.25;
-  margin: 0 0 0.75rem;
+  margin: 0;
+}
+
+.post-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.post-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.post-right-col .post-tags {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0.4rem;
+  justify-content: end;
+  justify-items: end;
 }
 
 /* Video */
