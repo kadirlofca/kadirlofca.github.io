@@ -99,6 +99,18 @@ const github = userSocials.find((s) => s.title === "GitHub");
   .profile-card:hover .bio-tail {
     opacity: 1;
   }
+
+  @media (max-width: 768px) {
+    .bio {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      word-spacing: normal;
+    }
+
+    .bio-tail {
+      display: none;
+    }
+  }
 </style>
 
 <script>

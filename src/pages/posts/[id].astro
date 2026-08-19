@@ -62,6 +62,7 @@ const isYouTube = (url: string) =>
 
   <script>
     document.fonts.ready.then(() => {
+      if (window.innerWidth <= 768) return;
       const desc = document.querySelector<HTMLElement>('.post-title-col .post-description');
       const tags = document.querySelector<HTMLElement>('.post-right-col .post-tags');
       const firstTag = tags?.querySelector<HTMLElement>('.tag');

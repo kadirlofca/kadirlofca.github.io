@@ -62,6 +62,17 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     .carousel-track { animation: none; }
   }
 
+  @media (max-width: 768px) {
+    .photo-carousel {
+      margin-top: 2.5rem;
+    }
+
+    .carousel-photo {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
   /* Lightbox */
   .lightbox {
     position: fixed;
