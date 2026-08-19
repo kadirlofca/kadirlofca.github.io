@@ -103,6 +103,36 @@ main {
   align-items: center;
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .sidebar-fixed {
+    position: static;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    display: block;
+  }
+
+  .posts-list {
+    gap: 3rem;
+  }
+
+  .desc-tail {
+    display: none;
+  }
+
+  .post-description {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
 /* Posts list */
 .posts-list {
   list-style: none;
@@ -113,6 +143,7 @@ main {
   gap: 5rem;
 }
 
+.post-card { min-width: 0; }
 .post-card a { display: block; color: inherit; }
 .post-card a:hover { color: inherit; }
 

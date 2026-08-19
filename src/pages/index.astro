@@ -73,6 +73,7 @@ const formatDateRange = (start: Date, end?: Date) => {
 
 <script>
   document.fonts.ready.then(() => {
+    if (window.innerWidth <= 768) return;
     requestAnimationFrame(() => {
       const avatar = document.querySelector<HTMLImageElement>('.avatar');
       const postsList = document.querySelector<HTMLUListElement>('.posts-list');
