@@ -103,36 +103,6 @@ main {
   align-items: center;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .home-layout {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .sidebar-fixed {
-    position: static;
-    width: auto;
-    height: auto;
-    left: auto;
-    top: auto;
-    display: block;
-  }
-
-  .posts-list {
-    gap: 3rem;
-  }
-
-  .desc-tail {
-    display: none;
-  }
-
-  .post-description {
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-}
-
 /* Posts list */
 .posts-list {
   list-style: none;
@@ -351,3 +321,74 @@ main {
 }
 
 .prose th { background: #e2e5ea; }
+
+/* Mobile — placed last so overrides win the cascade */
+@media (max-width: 768px) {
+  main {
+    padding: 1.25rem 1.25rem;
+    overflow-x: hidden;
+  }
+
+  .site-footer {
+    padding: 2rem 0;
+  }
+
+  .home-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .sidebar-fixed {
+    position: static;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .posts-list {
+    gap: 3rem;
+  }
+
+  .desc-tail {
+    display: none;
+  }
+
+  .post-description {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Post detail page */
+  .post-header h1.post-title {
+    font-size: 1.5rem;
+  }
+
+  .post-header .post-title-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .post-meta-row {
+    flex-wrap: wrap;
+  }
+
+  .post-right-col {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .post-right-col .post-tags {
+    justify-content: start;
+    justify-items: start;
+  }
+
+  /* Prose */
+  .prose h1 { font-size: 1.4rem; }
+  .prose h2 { font-size: 1.2rem; }
+  .prose h3 { font-size: 1.05rem; }
+}
