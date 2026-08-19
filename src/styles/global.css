@@ -1,9 +1,11 @@
 :root {
   --bg: #FFFFFF;
   --fg: #111827;
-  --accent: hsl(240, 100%, 50%);
+  --secondary: var(--secondary);
   --muted: #666;
+  --accent: hsl(240, 100%, 50%);
   --border: #d1d5db;
+  --surface: var(--surface);
   --max-width: 1100px;
   --mono: "Fira Code", "Cascadia Code", monospace;
 }
@@ -127,7 +129,7 @@ main {
 
 .post-date {
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--secondary);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -144,7 +146,7 @@ main {
 
 .post-meta {
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--secondary);
   margin-bottom: 0.05rem;
   display: flex;
   flex-direction: column;
@@ -175,10 +177,10 @@ main {
   flex-shrink: 0;
   opacity: 0;
   transition: opacity 0.2s;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--secondary);
 }
 
-.post-description { color: rgba(0, 0, 0, 0.8); font-size: 0.95rem; margin-top: 0.5rem; }
+.post-description { color: var(--secondary); font-size: 0.95rem; margin: 0.5rem 0 0; }
 .desc-tail { opacity: 0; transition: opacity 0.2s; }
 .post-card:hover .desc-tail { opacity: 1; }
 
@@ -187,7 +189,7 @@ main {
   background: none;
   border: none;
   padding: 0;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--muted);
   cursor: pointer;
   margin-bottom: 1.5rem;
@@ -274,7 +276,7 @@ main {
 }
 
 .prose pre {
-  background: #e2e5ea;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1.25rem;
@@ -320,7 +322,7 @@ main {
   text-align: left;
 }
 
-.prose th { background: #e2e5ea; }
+.prose th { background: var(--surface); }
 
 /* Mobile — placed last so overrides win the cascade */
 @media (max-width: 768px) {
