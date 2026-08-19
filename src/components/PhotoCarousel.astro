@@ -1,0 +1,87 @@
+---
+import type { ImageMetadata } from 'astro';
+
+const photoModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../photos/*.{jpg,jpeg,png,webp,avif}',
+  { eager: true }
+);
+const photos = Object.values(photoModules).map(m => m.default.src);
+---
+
+{photos.length > 0 && (
+  <div class="photo-carousel">
+    <div class="carousel-track">
+      {photos.map((src) => (
+        <img class="carousel-photo" src={src} alt="" />
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .photo-carousel {
+    overflow: hidden;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin-top: 5rem;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: carousel-scroll var(--duration, 40s) linear infinite;
+  }
+
+
+  .carousel-photo {
+    width: 120px;
+    height: 120px;
+    max-width: none;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes carousel-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(var(--scroll-distance, -50%)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track { animation: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.photo-carousel').forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>('.carousel-track');
+    if (!track) return;
+
+    const origItems = Array.from(track.children) as HTMLElement[];
+    if (origItems.length === 0) return;
+
+    const gap = parseFloat(getComputedStyle(track).gap) || 16;
+    const photoWidth = origItems[0].getBoundingClientRect().width || 120;
+    const setWidth = origItems.length * (photoWidth + gap);
+
+    // Clone until track is at least 2x the container width so it's always full
+    const containerWidth = carousel.getBoundingClientRect().width;
+    while (track.getBoundingClientRect().width < containerWidth * 2 + setWidth) {
+      origItems.forEach(item => track.appendChild(item.cloneNode(true)));
+    }
+
+    const duration = setWidth / 22.5;
+    track.style.setProperty('--scroll-distance', `-${setWidth}px`);
+    track.style.setProperty('--duration', `${duration}s`);
+
+    const anim = track.getAnimations()[0];
+    if (anim) {
+      carousel.addEventListener('mouseenter', () => { anim.playbackRate = 0.5; });
+      carousel.addEventListener('mouseleave', () => { anim.playbackRate = 1; });
+    }
+  });
+</script>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProfileCard from "../components/ProfileCard.astro";
+import PhotoCarousel from "../components/PhotoCarousel.astro";
 import Footer from "../components/Footer.astro";
 import { getCollection } from "astro:content";
 import siteData from "../data/site.json";
@@ -65,6 +66,7 @@ const formatDateRange = (start: Date, end?: Date) => {
         ))
       }
     </ul>
+    <PhotoCarousel />
     <Footer />
     </div>
   </div>

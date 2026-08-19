@@ -85,6 +85,7 @@ main {
 .entries-column {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .sidebar {
