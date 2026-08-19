@@ -358,7 +358,7 @@ main {
 
   /* Entries list */
   .posts-list {
-    gap: 2.5rem;
+    gap: 4rem;
   }
 
   .post-title {
