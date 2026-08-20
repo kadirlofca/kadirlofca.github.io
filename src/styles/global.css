@@ -230,11 +230,10 @@ main {
 }
 
 .post-right-col .post-tags {
-  display: grid;
-  grid-auto-flow: row;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
-  justify-content: end;
-  justify-items: end;
+  justify-content: flex-end;
 }
 
 /* Video */
@@ -419,11 +418,8 @@ main {
     gap: 0.5rem;
   }
 
-  /* Tags become a plain flex-wrap; JS grid is disabled on mobile */
+  /* Tags left-align on mobile since they're full-width below the title */
   .post-right-col .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
     justify-content: flex-start;
   }
 

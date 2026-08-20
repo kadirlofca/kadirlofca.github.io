@@ -60,25 +60,6 @@ const isYouTube = (url: string) =>
     </div>
   </div>
 
-  <script>
-    document.fonts.ready.then(() => {
-      if (window.innerWidth <= 768) return;
-      const desc = document.querySelector<HTMLElement>('.post-title-col .post-description');
-      const tags = document.querySelector<HTMLElement>('.post-right-col .post-tags');
-      const firstTag = tags?.querySelector<HTMLElement>('.tag');
-      if (!desc || !tags || !firstTag) return;
-
-      const descHeight = desc.getBoundingClientRect().height;
-      const tagHeight = firstTag.getBoundingClientRect().height;
-      const gap = parseFloat(getComputedStyle(tags).gap) || 6;
-      const tagCount = tags.querySelectorAll('.tag').length;
-      const rows = Math.max(1, Math.round(descHeight / (tagHeight + gap)));
-      const cols = Math.ceil(tagCount / rows);
-      tags.style.gridTemplateRows = `repeat(${rows}, auto)`;
-      tags.style.gridTemplateColumns = `repeat(${cols}, auto)`;
-    });
-  </script>
-
   {
     post.data.video && (
       <div class="video-wrapper">
