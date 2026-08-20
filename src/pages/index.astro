@@ -73,13 +73,19 @@ const formatDateRange = (start: Date, end?: Date) => {
 
 <script>
   function align() {
-    if (window.innerWidth <= 768) return;
-
-    const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const postsList = document.querySelector<HTMLUListElement>('.posts-list');
-    const bio = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
     const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
     const footer = document.querySelector<HTMLElement>('.site-footer');
+
+    if (window.innerWidth <= 768) {
+      if (postsList) postsList.style.paddingTop = '';
+      if (entriesColumn) entriesColumn.style.paddingBottom = '';
+      if (footer) footer.style.paddingTop = '';
+      return;
+    }
+
+    const avatar = document.querySelector<HTMLImageElement>('.avatar');
+    const bio = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
     const mainEl = document.querySelector<HTMLElement>('main');
     if (!avatar || !postsList || !bio || !entriesColumn || !footer || !mainEl) return;
 
