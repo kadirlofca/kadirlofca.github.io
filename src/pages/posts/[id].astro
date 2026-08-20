@@ -60,6 +60,51 @@ const isYouTube = (url: string) =>
     </div>
   </div>
 
+  <script>
+    const desc = document.querySelector<HTMLElement>('.post-title-col .post-description');
+    const tagsContainer = document.querySelector<HTMLElement>('.post-right-col .post-tags');
+    const originalTags = tagsContainer
+      ? Array.from(tagsContainer.querySelectorAll<HTMLElement>('.tag'))
+      : [];
+
+    function layoutTags() {
+      if (!desc || !tagsContainer || originalTags.length === 0) return;
+
+      if (window.innerWidth <= 768) {
+        tagsContainer.innerHTML = '';
+        originalTags.forEach(tag => tagsContainer.appendChild(tag));
+        tagsContainer.style.marginTop = '';
+        return;
+      }
+
+      const lineHeight = parseFloat(getComputedStyle(desc).lineHeight);
+      const rows = Math.max(1, Math.round(desc.getBoundingClientRect().height / lineHeight));
+      const perRow = Math.ceil(originalTags.length / rows);
+
+      tagsContainer.innerHTML = '';
+      for (let r = 0; r < rows; r++) {
+        const slice = originalTags.slice(r * perRow, (r + 1) * perRow);
+        if (slice.length === 0) break;
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'tag-row';
+        slice.forEach(tag => rowDiv.appendChild(tag));
+        tagsContainer.appendChild(rowDiv);
+      }
+
+      tagsContainer.style.marginTop = '';
+      const delta = desc.getBoundingClientRect().top - tagsContainer.getBoundingClientRect().top;
+      if (delta > 0) tagsContainer.style.marginTop = delta + 'px';
+    }
+
+    document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(layoutTags)));
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layoutTags, 100);
+    });
+  </script>
+
   {
     post.data.video && (
       <div class="video-wrapper">

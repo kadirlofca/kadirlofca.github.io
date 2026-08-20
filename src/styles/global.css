@@ -1,11 +1,11 @@
 :root {
   --bg: #FFFFFF;
   --fg: #111827;
-  --secondary: var(--secondary);
+  --secondary: rgba(0, 0, 0, 0.8);
   --muted: #666;
   --accent: hsl(240, 100%, 50%);
   --border: #d1d5db;
-  --surface: var(--surface);
+  --surface: #e2e5ea;
   --max-width: 1100px;
   --mono: "Fira Code", "Cascadia Code", monospace;
 }
@@ -123,7 +123,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 5rem;
   margin-bottom: 0.05rem;
 }
 
@@ -231,7 +231,13 @@ main {
 
 .post-right-col .post-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.tag-row {
+  display: flex;
   gap: 0.4rem;
   justify-content: flex-end;
 }
@@ -420,6 +426,9 @@ main {
 
   /* Tags left-align on mobile since they're full-width below the title */
   .post-right-col .post-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: flex-start;
   }
 
