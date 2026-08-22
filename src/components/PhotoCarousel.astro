@@ -32,8 +32,25 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     min-width: 0;
     max-width: 100%;
     margin-top: 5rem;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    position: relative;
+  }
+
+  .photo-carousel::before,
+  .photo-carousel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: color-dodge;
+  }
+
+  .photo-carousel::before {
+    background: radial-gradient(circle 200px at 0px center, var(--bg), var(--carousel-dodge) 75%, transparent);
+  }
+
+  .photo-carousel::after {
+    background: radial-gradient(circle 200px at 100% center, var(--bg), var(--carousel-dodge) 75%, transparent);
   }
 
   .carousel-track {

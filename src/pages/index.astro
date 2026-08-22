@@ -88,9 +88,7 @@ const formatDateRange = (start: Date, end?: Date) => {
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const mainEl = document.querySelector<HTMLElement>('main');
 
-    const bioLines = Array.from(document.querySelectorAll<HTMLElement>('.bio-tail .bio-line'));
-    const lastVisibleLine = bioLines.filter(el => parseFloat(el.style.getPropertyValue('--line-opacity') || '0') > 0).at(-1);
-    const anchorEl = lastVisibleLine ?? document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
+    const anchorEl = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
 
     if (!avatar || !postsList || !anchorEl || !entriesColumn || !footer || !mainEl) return;
 
@@ -116,7 +114,6 @@ const formatDateRange = (start: Date, end?: Date) => {
   }
 
   document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(align)));
-  document.addEventListener('bio-ready', () => requestAnimationFrame(align));
 
   let resizeTimer: ReturnType<typeof setTimeout>;
   window.addEventListener('resize', () => {

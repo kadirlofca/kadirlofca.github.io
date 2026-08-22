@@ -20,7 +20,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
       {linkedin && github && <span class="separator">·</span>}
       {github && <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>}
     </div>
-    {bioHead && <p class="bio"><span class="bio-head">{bioHead}</span>{' '}<span class="bio-tail">{bioTail}</span></p>}
+    {bioHead && <p class="bio"><span class="bio-head">{bioHead}</span><span class="bio-ellipsis">...</span><span class="bio-tail">{bioTail}</span></p>}
   </div>
 </div>
 
@@ -95,8 +95,38 @@ const github = userSocials.find((s) => s.title === "GitHub");
   }
 
 
+  .bio {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.3rem;
+  }
+
+  .bio-head {
+    grid-row: 1;
+  }
+
+  .bio-ellipsis,
   .bio-tail {
+    grid-row: 2;
+    grid-column: 1;
     transition: opacity var(--transition-fade);
+  }
+
+  .bio-ellipsis {
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .bio-tail {
+    opacity: 0;
+  }
+
+  .profile-card:hover .bio-tail {
+    opacity: 1;
+  }
+
+  .profile-card:hover .bio-ellipsis {
+    opacity: 0;
   }
 
   @media (max-width: 768px) {
@@ -111,7 +141,8 @@ const github = userSocials.find((s) => s.title === "GitHub");
       text-align: center;
     }
 
-    .bio-tail {
+    .bio-tail,
+    .bio-ellipsis {
       display: none;
     }
   }
@@ -119,42 +150,6 @@ const github = userSocials.find((s) => s.title === "GitHub");
 
 <script>
   document.fonts.ready.then(() => {
-    // Bio tail line-by-line opacity: 0.5 at top → 0 at midway
-    const bioTail = document.querySelector<HTMLElement>('.bio-tail');
-    if (bioTail) {
-      const text = bioTail.textContent ?? '';
-      const words = text.trim().split(/\s+/).filter(Boolean);
-
-      bioTail.innerHTML = words.map(w => `<span>${w}</span>`).join(' ');
-
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        const wordEls = Array.from(bioTail.querySelectorAll<HTMLElement>('span'));
-        const lineMap = new Map<number, string[]>();
-        for (const el of wordEls) {
-          const top = Math.round(el.getBoundingClientRect().top);
-          if (!lineMap.has(top)) lineMap.set(top, []);
-          lineMap.get(top)!.push(el.textContent ?? '');
-        }
-
-        const lines = Array.from(lineMap.values());
-        const n = lines.length;
-        bioTail.innerHTML = '';
-        lines.forEach((group, i) => {
-          if (i > 0) bioTail.appendChild(document.createTextNode(' '));
-          const span = document.createElement('span');
-          span.className = 'bio-line';
-          const opacity = Math.max(0, 0.4 - 2 * i / n);
-          const blur = 1 + Math.max(0, (0.4 - opacity) / 0.4 * 2);
-          span.style.setProperty('--line-opacity', opacity.toFixed(3));
-          span.style.setProperty('--line-blur', blur.toFixed(2) + 'px');
-          span.textContent = group.join(' ');
-          bioTail.appendChild(span);
-        });
-
-        document.dispatchEvent(new CustomEvent('bio-ready'));
-      }));
-    }
-
     // Email width fitting
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const emailLink = document.querySelector<HTMLAnchorElement>('.email-link');
