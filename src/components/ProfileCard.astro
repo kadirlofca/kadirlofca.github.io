@@ -130,20 +130,34 @@ const github = userSocials.find((s) => s.title === "GitHub");
   }
 
   @media (max-width: 768px) {
+    .profile-card {
+      transform: scale(1.2);
+      transform-origin: top center;
+    }
+
     .socials {
       justify-content: center;
+      margin: 0 auto;
+    }
+
+    .contact {
+      width: 300px;
     }
 
     .bio {
       margin-top: 1rem;
       font-size: 0.85rem;
       word-spacing: normal;
-      text-align: center;
+      text-align: left;
+      width: 300px;
     }
 
-    .bio-tail,
     .bio-ellipsis {
       display: none;
+    }
+
+    .bio-tail {
+      opacity: 1;
     }
   }
 </style>

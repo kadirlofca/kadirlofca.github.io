@@ -83,11 +83,23 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     .photo-carousel {
       margin-top: 4rem;
       margin-bottom: 2rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      width: calc(100% + 2rem);
+      max-width: calc(100% + 2rem);
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .photo-carousel::before,
+    .photo-carousel::after {
+      display: none;
     }
 
     .carousel-photo {
-      width: 120px;
-      height: 120px;
+      width: 180px;
+      height: 180px;
+      border-radius: 16px;
     }
   }
 

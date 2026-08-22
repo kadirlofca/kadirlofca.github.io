@@ -355,7 +355,7 @@ main {
   /* Home layout */
   .home-layout {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 8rem;
   }
 
   .sidebar-fixed {
