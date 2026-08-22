@@ -6,8 +6,11 @@
   --accent: hsl(240, 100%, 50%);
   --border: #d1d5db;
   --surface: #e2e5ea;
+  --overlay: rgba(0, 0, 0, 0.85);
   --max-width: 1100px;
   --mono: "Fira Code", "Cascadia Code", monospace;
+  --transition-color: 0.15s;
+  --transition-fade: 0.2s;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -79,7 +82,7 @@ main {
 /* Home layout */
 .home-layout {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 243px 1fr;
   gap: 9rem;
   align-items: start;
 }
@@ -98,7 +101,7 @@ main {
   position: fixed;
   top: 0;
   left: max(1.5rem, calc((100vw - var(--max-width)) / 2 + 1.5rem));
-  width: 200px;
+  width: 243px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -137,11 +140,11 @@ main {
 .post-title {
   font-size: 1.35rem;
   font-weight: 600;
-  transition: color 0.15s;
+  transition: color var(--transition-color);
 }
 
 .post-card:hover .post-location { opacity: 1; }
-.date-month { opacity: 0; transition: opacity 0.2s; }
+.date-month { opacity: 0; transition: opacity var(--transition-fade); }
 .post-card:hover .date-month { opacity: 1; }
 
 .post-meta {
@@ -176,12 +179,23 @@ main {
   white-space: nowrap;
   flex-shrink: 0;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity var(--transition-fade);
   color: var(--secondary);
 }
 
+.bio-line {
+  opacity: var(--line-opacity, 1);
+  filter: blur(var(--line-blur, 0px));
+  transition: opacity var(--transition-fade), filter var(--transition-fade);
+}
+
+.profile-card:hover .bio-line {
+  opacity: 1;
+  filter: blur(0px);
+}
+
 .post-description { color: var(--secondary); font-size: 0.95rem; margin: 0.5rem 0 0; }
-.desc-tail { opacity: 0; transition: opacity 0.2s; }
+.desc-tail { opacity: 0; transition: opacity var(--transition-fade); }
 .post-card:hover .desc-tail { opacity: 1; }
 
 /* Back button */

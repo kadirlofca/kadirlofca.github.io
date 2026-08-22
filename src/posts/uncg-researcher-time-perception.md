@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: Time Perception in VR
 descriptionHead: Two IEEE VR papers cited by 14+ studies
 descriptionTail: " on time perception and virtual embodiment; built custom Unity tooling to automate trial data collection."

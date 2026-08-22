@@ -71,6 +71,7 @@ const formatDateRange = (start: Date, end?: Date) => {
     </div>
   </div>
 
+
 <script>
   function align() {
     const postsList = document.querySelector<HTMLUListElement>('.posts-list');
@@ -85,11 +86,14 @@ const formatDateRange = (start: Date, end?: Date) => {
     }
 
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
-    const bio = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
     const mainEl = document.querySelector<HTMLElement>('main');
-    if (!avatar || !postsList || !bio || !entriesColumn || !footer || !mainEl) return;
 
-    // Reset before measuring so stale inline styles don't influence layout
+    const bioLines = Array.from(document.querySelectorAll<HTMLElement>('.bio-tail .bio-line'));
+    const lastVisibleLine = bioLines.filter(el => parseFloat(el.style.getPropertyValue('--line-opacity') || '0') > 0).at(-1);
+    const anchorEl = lastVisibleLine ?? document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
+
+    if (!avatar || !postsList || !anchorEl || !entriesColumn || !footer || !mainEl) return;
+
     postsList.style.paddingTop = '';
     entriesColumn.style.paddingBottom = '';
     footer.style.paddingTop = '';
@@ -98,7 +102,7 @@ const formatDateRange = (start: Date, end?: Date) => {
     const postsTop = postsList.getBoundingClientRect().top;
     postsList.style.paddingTop = Math.max(0, avatarRect.top - postsTop) + 'px';
 
-    const bioBottom = bio.getBoundingClientRect().bottom;
+    const bioBottom = anchorEl.getBoundingClientRect().bottom;
     const mainPB = parseFloat(getComputedStyle(mainEl).paddingBottom);
     const footerHeight = footer.getBoundingClientRect().height;
     const extra = window.innerHeight - bioBottom - mainPB - footerHeight;
@@ -112,6 +116,7 @@ const formatDateRange = (start: Date, end?: Date) => {
   }
 
   document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(align)));
+  document.addEventListener('bio-ready', () => requestAnimationFrame(align));
 
   let resizeTimer: ReturnType<typeof setTimeout>;
   window.addEventListener('resize', () => {
