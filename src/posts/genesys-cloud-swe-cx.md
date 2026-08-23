@@ -2,7 +2,7 @@
 published: true
 title: Screen Sharing for Customer Support
 descriptionHead: Full-stack screen-sharing app for 2,000,000+ customers
-descriptionTail: ", built with Next.js, TypeScript, Redux, and Terraform."
+descriptionTail: ", built with Next.js, TypeScript, Redux, and Terraform"
 tags:
   - TypeScript
   - React

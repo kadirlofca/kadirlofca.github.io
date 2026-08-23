@@ -2,7 +2,7 @@
 published: true
 title: Government Mobile App
 descriptionHead: Flutter apps serving hundreds of millions of government users
-descriptionTail: " across multiple US states via a unified, mission-critical mobile codebase."
+descriptionTail: " across multiple US states via a unified, mission-critical mobile codebase"
 tags:
   - Flutter
   - Dart

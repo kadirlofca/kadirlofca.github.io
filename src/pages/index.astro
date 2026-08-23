@@ -81,35 +81,30 @@ const formatDateRange = (start: Date, end?: Date) => {
     if (window.innerWidth <= 768) {
       if (postsList) postsList.style.paddingTop = '';
       if (entriesColumn) entriesColumn.style.paddingBottom = '';
-      if (footer) footer.style.paddingTop = '';
       return;
     }
 
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const mainEl = document.querySelector<HTMLElement>('main');
-
     const anchorEl = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
 
     if (!avatar || !postsList || !anchorEl || !entriesColumn || !footer || !mainEl) return;
 
     postsList.style.paddingTop = '';
     entriesColumn.style.paddingBottom = '';
-    footer.style.paddingTop = '';
 
     const avatarRect = avatar.getBoundingClientRect();
     const postsTop = postsList.getBoundingClientRect().top;
     postsList.style.paddingTop = Math.max(0, avatarRect.top - postsTop) + 'px';
 
-    const bioBottom = anchorEl.getBoundingClientRect().bottom;
+    const anchorRect = anchorEl.getBoundingClientRect();
+    const bioCenter = (anchorRect.top + anchorRect.bottom) / 2;
+    const footerH = footer.getBoundingClientRect().height;
     const mainPB = parseFloat(getComputedStyle(mainEl).paddingBottom);
-    const footerHeight = footer.getBoundingClientRect().height;
-    const extra = window.innerHeight - bioBottom - mainPB - footerHeight;
-
+    // Extend entries column so that at max scroll, footer text center aligns with bio-head center
+    const extra = window.innerHeight - bioCenter - mainPB - footerH / 2;
     if (extra > 0) {
       entriesColumn.style.paddingBottom = extra + 'px';
-    } else {
-      const curPT = parseFloat(getComputedStyle(footer).paddingTop);
-      footer.style.paddingTop = Math.max(0, curPT + extra) + 'px';
     }
   }
 
