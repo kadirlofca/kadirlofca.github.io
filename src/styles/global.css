@@ -344,6 +344,12 @@ main {
 
 .prose th { background: var(--surface); }
 
+@media (min-width: 769px) and (max-width: 1100px) {
+  .home-layout {
+    gap: 3rem;
+  }
+}
+
 /* Mobile — placed last so overrides win the cascade */
 @media (max-width: 768px) {
   main {
@@ -365,7 +371,7 @@ main {
   /* Home layout */
   .home-layout {
     grid-template-columns: 1fr;
-    gap: 8rem;
+    gap: 12rem;
   }
 
   .sidebar-fixed {
