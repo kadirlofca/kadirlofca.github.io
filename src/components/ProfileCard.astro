@@ -20,7 +20,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
       {linkedin && github && <span class="separator">·</span>}
       {github && <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>}
     </div>
-    {bioHead && <p class="bio"><span class="bio-head">{bioHead}</span><span class="bio-ellipsis">...</span><span class="bio-tail">{bioTail}</span></p>}
+    <!-- {bioHead && <p class="bio"><span class="bio-head">{bioHead}</span><span class="bio-ellipsis">...</span><span class="bio-tail">{bioTail}</span></p>} -->
   </div>
 </div>
 
@@ -103,6 +103,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
 
   .bio-head {
     grid-row: 1;
+    text-align: center;
   }
 
   .bio-ellipsis,
@@ -201,4 +202,3 @@ const github = userSocials.find((s) => s.title === "GitHub");
     }
   });
 </script>
-
