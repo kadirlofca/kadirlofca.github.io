@@ -1,0 +1,19 @@
+---
+import userData from "../data/user-personal.json";
+const { bio } = userData;
+---
+
+<div class="bio-block">
+  <p class="post-description">{bio}</p>
+</div>
+
+<style>
+  .bio-block {
+    margin-top: 0;
+    margin-bottom: 4rem;
+  }
+
+  .post-description {
+    white-space: pre-wrap;
+  }
+</style>

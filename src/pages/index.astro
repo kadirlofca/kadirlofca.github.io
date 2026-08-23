@@ -5,6 +5,7 @@ import PhotoCarousel from "../components/PhotoCarousel.astro";
 import Footer from "../components/Footer.astro";
 import { getCollection } from "astro:content";
 import siteData from "../data/site.json";
+import BioBlock from "../components/BioBlock.astro";
 
 const allPosts = (await getCollection("posts"))
   .filter((post) => post.data.published)
@@ -37,6 +38,7 @@ const formatDateRange = (start: Date, end?: Date) => {
     </aside>
     <div class="entries-column">
     <ul class="posts-list">
+      <li><BioBlock /></li>
       {
         allPosts.map((post) => (
           <li class="post-card">

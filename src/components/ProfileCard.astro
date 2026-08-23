@@ -1,10 +1,8 @@
 ---
 import userContact from "../data/user-contact.json";
-import userData from "../data/user-personal.json";
 import USER_PICTURE from "../../public/user-picture.jpeg";
 
 const { userEmail, userSocials } = userContact;
-const { bioHead, bioTail } = userData;
 const picture = USER_PICTURE.src;
 const email = userEmail.trim();
 const linkedin = userSocials.find((s) => s.title === "LinkedIn");
@@ -20,7 +18,6 @@ const github = userSocials.find((s) => s.title === "GitHub");
       {linkedin && github && <span class="separator">·</span>}
       {github && <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>}
     </div>
-    <!-- {bioHead && <p class="bio"><span class="bio-head">{bioHead}</span><span class="bio-ellipsis">...</span><span class="bio-tail">{bioTail}</span></p>} -->
   </div>
 </div>
 
@@ -85,52 +82,6 @@ const github = userSocials.find((s) => s.title === "GitHub");
     text-decoration: underline;
   }
 
-  .bio {
-    margin: 2rem 0 0;
-    font-size: 0.9rem;
-    color: var(--secondary);
-    line-height: 1.5;
-    width: 270px;
-    text-align: left;
-  }
-
-
-  .bio {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 0.3rem;
-  }
-
-  .bio-head {
-    grid-row: 1;
-    text-align: center;
-  }
-
-  .bio-ellipsis,
-  .bio-tail {
-    grid-row: 2;
-    grid-column: 1;
-  }
-
-  .bio-ellipsis {
-    text-align: center;
-    color: var(--muted);
-    transition: opacity var(--transition-reveal) ease, transform var(--transition-reveal) ease;
-  }
-
-  .bio-tail {
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path var(--transition-reveal) ease;
-  }
-
-  .profile-card:hover .bio-tail {
-    clip-path: inset(0 0 0% 0);
-  }
-
-  .profile-card:hover .bio-ellipsis {
-    opacity: 0;
-    transform: translateY(var(--tail-height, 3rem));
-  }
 
   @media (max-width: 768px) {
     .profile-card {
@@ -147,33 +98,11 @@ const github = userSocials.find((s) => s.title === "GitHub");
       width: 300px;
     }
 
-    .bio {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      word-spacing: normal;
-      text-align: left;
-      width: 300px;
-    }
-
-    .bio-ellipsis {
-      display: none;
-    }
-
-    .bio-tail {
-      clip-path: inset(0 0 0% 0);
-    }
-  }
+}
 </style>
 
 <script>
   document.fonts.ready.then(() => {
-    // Bio tail height for ellipsis tracking animation
-    const bioTail = document.querySelector<HTMLElement>('.bio-tail');
-    const bioEllipsis = document.querySelector<HTMLElement>('.bio-ellipsis');
-    if (bioTail && bioEllipsis) {
-      bioEllipsis.style.setProperty('--tail-height', bioTail.getBoundingClientRect().height + 'px');
-    }
-
     // Email width fitting
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const emailLink = document.querySelector<HTMLAnchorElement>('.email-link');

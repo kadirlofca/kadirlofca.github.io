@@ -80,7 +80,7 @@ main {
 .footer-links { display: flex; gap: 0.5rem; align-items: center; }
 .site-footer a:hover { color: var(--fg); text-decoration: underline; }
 
-.entries-column .site-footer { margin: 0; max-width: none; }
+.entries-column .site-footer { margin: 0; max-width: none; padding: 2rem 0; }
 
 /* Home layout */
 .home-layout {
@@ -118,7 +118,7 @@ main {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3.8rem;
 }
 
 .post-card { min-width: 0; }
@@ -387,7 +387,7 @@ main {
 
   /* Entries list */
   .posts-list {
-    gap: 4rem;
+    gap: 3rem;
   }
 
   .post-title {
