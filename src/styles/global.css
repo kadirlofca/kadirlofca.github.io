@@ -12,6 +12,7 @@
   --mono: "Fira Code", "Cascadia Code", monospace;
   --transition-color: 0.15s;
   --transition-fade: 0.2s;
+  --transition-reveal: 0.35s;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -66,24 +67,25 @@ main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 4rem 0;
-  font-size: 0.82rem;
-  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--secondary);
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.site-footer a { color: var(--muted); text-decoration: none; }
+.site-footer a { color: var(--fg); text-decoration: none; }
 .footer-links { display: flex; gap: 0.5rem; align-items: center; }
-.site-footer a:hover { color: var(--muted); text-decoration: underline; }
+.site-footer a:hover { color: var(--fg); text-decoration: underline; }
 
 .entries-column .site-footer { margin: 0; max-width: none; }
 
 /* Home layout */
 .home-layout {
   display: grid;
-  grid-template-columns: 243px 1fr;
+  grid-template-columns: 270px 1fr;
   gap: 9rem;
   align-items: start;
 }
@@ -102,7 +104,7 @@ main {
   position: fixed;
   top: 0;
   left: max(1.5rem, calc((100vw - var(--max-width)) / 2 + 1.5rem));
-  width: 243px;
+  width: 270px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -139,7 +141,7 @@ main {
 }
 
 .post-title {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 600;
   transition: color var(--transition-color);
 }
@@ -185,9 +187,17 @@ main {
 }
 
 
-.post-description { color: var(--secondary); font-size: 0.95rem; margin: 0.5rem 0 0; }
-.desc-tail { opacity: 0; transition: opacity var(--transition-fade); }
-.post-card:hover .desc-tail { opacity: 1; }
+.post-description { color: var(--secondary); font-size: 0.9rem; margin: 0.5rem 0 0; line-height: 1.5; }
+.desc-tail {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(to right, var(--secondary) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position var(--transition-reveal) ease;
+}
+.post-card:hover .desc-tail { background-position: 0%; }
 
 /* Back button */
 .back-btn {

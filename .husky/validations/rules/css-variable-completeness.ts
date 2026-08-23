@@ -4,7 +4,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 // Variables set at runtime via element.style.setProperty() — not in global.css by design.
-const DYNAMIC = new Set(["--scroll-distance", "--duration"]);
+const DYNAMIC = new Set(["--scroll-distance", "--duration", "--tail-height"]);
 
 function loadDefined(): Set<string> {
   const css = readFileSync(join(ROOT, "src/styles/global.css"), "utf-8");
