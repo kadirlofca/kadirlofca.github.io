@@ -88,7 +88,7 @@ const formatDateRange = (start: Date, end?: Date) => {
 
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const mainEl = document.querySelector<HTMLElement>('main');
-    const anchorEl = document.querySelector<HTMLElement>('.bio-head') ?? document.querySelector<HTMLElement>('.socials');
+    const anchorEl = document.querySelector<HTMLElement>('.socials');
 
     if (!avatar || !postsList || !anchorEl || !entriesColumn || !footer || !mainEl) return;
 

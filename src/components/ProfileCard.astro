@@ -82,7 +82,6 @@ const github = userSocials.find((s) => s.title === "GitHub");
     text-decoration: underline;
   }
 
-
   @media (max-width: 768px) {
     .profile-card {
       transform: scale(1.2);
@@ -97,13 +96,11 @@ const github = userSocials.find((s) => s.title === "GitHub");
     .contact {
       width: 300px;
     }
-
-}
+  }
 </style>
 
 <script>
   document.fonts.ready.then(() => {
-    // Email width fitting
     const avatar = document.querySelector<HTMLImageElement>('.avatar');
     const emailLink = document.querySelector<HTMLAnchorElement>('.email-link');
     if (!avatar || !emailLink) return;
@@ -131,3 +128,4 @@ const github = userSocials.find((s) => s.title === "GitHub");
     }
   });
 </script>
+
