@@ -186,6 +186,7 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     lightbox?.classList.add('open');
     lightbox?.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
+    window.posthog?.capture('photo_opened');
   }
 
   function closeLightbox() {

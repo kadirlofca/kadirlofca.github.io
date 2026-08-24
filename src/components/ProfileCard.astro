@@ -127,5 +127,18 @@ const github = userSocials.find((s) => s.title === "GitHub");
       emailLink.style.fontSize = (parseFloat(getComputedStyle(emailLink).fontSize) * targetWidth / w2) + 'px';
     }
   });
+
+  document.querySelector('.email-link')?.addEventListener('click', () => {
+    window.posthog?.capture('email_link_clicked');
+  });
+
+  document.querySelectorAll('.socials a').forEach((link) => {
+    link.addEventListener('click', () => {
+      window.posthog?.capture('social_link_clicked', {
+        link_title: link.textContent?.trim(),
+        source: 'profile_card'
+      });
+    });
+  });
 </script>
 

@@ -117,5 +117,13 @@ const formatDateRange = (start: Date, end?: Date) => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(align, 100);
   });
+
+  document.querySelectorAll<HTMLElement>('.post-card a').forEach((link) => {
+    link.addEventListener('click', () => {
+      const card = link.closest('.post-card');
+      const title = card?.querySelector('.post-title')?.textContent?.trim();
+      (window as any).posthog?.capture('entry_clicked', { post_title: title });
+    });
+  });
 </script>
 </Layout>

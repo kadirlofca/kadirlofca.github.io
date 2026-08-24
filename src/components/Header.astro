@@ -16,3 +16,14 @@ import userContactData from "../data/user-contact.json";
     <a href={`mailto:${userContactData.userEmail.trim()}`}>Email</a>
   </nav>
 </header>
+
+<script is:inline>
+  document.querySelector('.site-header nav')?.addEventListener('click', function(e) {
+    var target = e.target;
+    if (target && target.tagName === 'A') {
+      window.posthog?.capture('social_link_clicked', {
+        link_title: target.textContent?.trim()
+      });
+    }
+  });
+</script>

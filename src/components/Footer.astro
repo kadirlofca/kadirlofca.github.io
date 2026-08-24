@@ -10,3 +10,18 @@ import userPersonalData from "../data/user-personal.json";
     <a href="/rss.xml">RSS</a>
   </div>
 </footer>
+
+<script is:inline>
+  document.querySelector('.site-footer .footer-links')?.addEventListener('click', function(e) {
+    var target = e.target;
+    if (!target || target.tagName !== 'A') return;
+    var href = target.getAttribute('href') || '';
+    if (href.includes('rss')) {
+      window.posthog?.capture('rss_link_clicked');
+    } else {
+      window.posthog?.capture('social_link_clicked', {
+        link_title: target.textContent?.trim()
+      });
+    }
+  });
+</script>

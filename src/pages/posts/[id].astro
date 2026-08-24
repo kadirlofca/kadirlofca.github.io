@@ -120,4 +120,14 @@ const isYouTube = (url: string) =>
   <div class="prose">
     <Content />
   </div>
+
+  <script is:inline define:vars={{ postId: post.id, postTitle: post.data.title, postTags: post.data.tags, postOrganization: post.data.organization ?? null, postRole: post.data.role ?? null }}>
+    window.posthog?.capture('post_viewed', {
+      post_id: postId,
+      post_title: postTitle,
+      post_tags: postTags,
+      post_organization: postOrganization,
+      post_role: postRole
+    });
+  </script>
 </Layout>
