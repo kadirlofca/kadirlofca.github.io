@@ -96,8 +96,8 @@ const formatDateRange = (start: Date, end?: Date) => {
     entriesColumn.style.paddingBottom = '';
 
     const avatarRect = avatar.getBoundingClientRect();
-    const postsTop = postsList.getBoundingClientRect().top;
-    postsList.style.paddingTop = Math.max(0, avatarRect.top - postsTop) + 'px';
+    const postsDocTop = postsList.getBoundingClientRect().top + window.scrollY;
+    postsList.style.paddingTop = Math.max(0, avatarRect.top - postsDocTop) + 'px';
 
     const anchorRect = anchorEl.getBoundingClientRect();
     const bioCenter = (anchorRect.top + anchorRect.bottom) / 2;
@@ -116,6 +116,10 @@ const formatDateRange = (start: Date, end?: Date) => {
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(align, 100);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') requestAnimationFrame(align);
   });
 
   document.querySelectorAll<HTMLElement>('.post-card a').forEach((link) => {
