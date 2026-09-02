@@ -1,21 +1,24 @@
 ---
+import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 const photoModules = import.meta.glob<{ default: ImageMetadata }>(
   '../photos/*.{jpg,jpeg,png,webp,avif}',
   { eager: true }
 );
-const photos = Object.values(photoModules).map(m => m.default.src);
+const photos = Object.values(photoModules).map(m => m.default);
 ---
 
 {photos.length > 0 && (
   <>
     <div class="photo-carousel">
+      <div class="carousel-fade carousel-fade-left"></div>
       <div class="carousel-track">
-        {photos.map((src) => (
-          <img class="carousel-photo" src={src} alt="" />
+        {photos.map((photo) => (
+          <Image class="carousel-photo" src={photo} width={540} height={540} alt="" decoding="async" loading="eager" />
         ))}
       </div>
+      <div class="carousel-fade carousel-fade-right"></div>
     </div>
 
     <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -35,22 +38,21 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     position: relative;
   }
 
-  .photo-carousel::before,
-  .photo-carousel::after {
-    content: '';
+  .carousel-fade {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    width: 120px;
     z-index: 1;
     pointer-events: none;
-    width: 120px;
   }
 
-  .photo-carousel::before {
+  .carousel-fade-left {
+    left: 0;
     background: linear-gradient(to right, var(--bg), transparent);
   }
 
-  .photo-carousel::after {
-    left: auto;
+  .carousel-fade-right {
     right: 0;
     background: linear-gradient(to left, var(--bg), transparent);
   }
@@ -60,6 +62,7 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     gap: 1rem;
     width: max-content;
     animation: carousel-scroll var(--duration, 40s) linear infinite;
+    will-change: transform;
   }
 
   .carousel-photo {
@@ -90,6 +93,8 @@ const photos = Object.values(photoModules).map(m => m.default.src);
       width: calc(100% + 2rem);
       max-width: calc(100% + 2rem);
     }
+
+    .carousel-fade { display: none; }
 
     .carousel-photo {
       width: 270px;
@@ -156,7 +161,7 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     const setWidth = origItems.length * (photoWidth + gap);
 
     const containerWidth = carousel.getBoundingClientRect().width;
-    while (track.getBoundingClientRect().width < containerWidth * 2 + setWidth) {
+    while (track.getBoundingClientRect().width < containerWidth + setWidth) {
       origItems.forEach(item => track.appendChild(item.cloneNode(true)));
     }
 
@@ -168,6 +173,12 @@ const photos = Object.values(photoModules).map(m => m.default.src);
     if (anim) {
       carousel.addEventListener('mouseenter', () => { anim.playbackRate = 0.5; });
       carousel.addEventListener('mouseleave', () => { anim.playbackRate = 1; });
+
+      const observer = new IntersectionObserver(
+        ([entry]) => { entry.isIntersecting ? anim.play() : anim.pause(); },
+        { threshold: 0 }
+      );
+      observer.observe(carousel);
     }
   });
 

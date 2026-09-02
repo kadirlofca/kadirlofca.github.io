@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 order: -1
 title: AI Game Discovery Platform
 descriptionHead: Sole engineer on an AI-powered game discovery platform
