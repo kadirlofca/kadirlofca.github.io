@@ -1,12 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import manifest from '../photos/manifest.json';
 
 const photoModules = import.meta.glob<{ default: ImageMetadata }>(
   '../photos/*.{jpg,jpeg,png,webp,avif}',
   { eager: true }
 );
-const photos = Object.values(photoModules).map(m => m.default);
+const photos = Object.entries(photoModules).map(([path, m]) => {
+  const filename = path.split('/').pop() ?? '';
+  return { img: m.default, caption: (manifest as Record<string, string>)[filename] ?? '' };
+});
 ---
 
 {photos.length > 0 && (
@@ -14,8 +18,8 @@ const photos = Object.values(photoModules).map(m => m.default);
     <div class="photo-carousel">
       <div class="carousel-fade carousel-fade-left"></div>
       <div class="carousel-track">
-        {photos.map((photo) => (
-          <Image class="carousel-photo" src={photo} width={540} height={540} alt="" decoding="async" loading="eager" />
+        {photos.map(({ img, caption }) => (
+          <Image class="carousel-photo" src={img} width={540} height={540} alt={caption} data-caption={caption} decoding="async" loading="eager" />
         ))}
       </div>
       <div class="carousel-fade carousel-fade-right"></div>
@@ -24,6 +28,7 @@ const photos = Object.values(photoModules).map(m => m.default);
     <div class="lightbox" id="lightbox" aria-hidden="true">
       <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
       <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+      <p class="lightbox-caption" id="lightbox-caption"></p>
     </div>
   </>
 )}
@@ -146,6 +151,19 @@ const photos = Object.values(photoModules).map(m => m.default);
   .lightbox-close:hover {
     opacity: 1;
   }
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    margin: 0;
+  }
 </style>
 
 <script>
@@ -185,10 +203,12 @@ const photos = Object.values(photoModules).map(m => m.default);
   // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption') as HTMLParagraphElement;
   const lightboxClose = document.getElementById('lightbox-close');
 
-  function openLightbox(src: string) {
+  function openLightbox(src: string, caption: string) {
     lightboxImg.src = src;
+    lightboxCaption.textContent = caption;
     lightbox?.classList.add('open');
     lightbox?.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
@@ -204,7 +224,8 @@ const photos = Object.values(photoModules).map(m => m.default);
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('carousel-photo')) {
-      openLightbox((target as HTMLImageElement).src);
+      const caption = target.dataset.caption ?? '';
+      openLightbox((target as HTMLImageElement).src, caption);
     }
   });
 

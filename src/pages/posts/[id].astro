@@ -15,13 +15,13 @@ type Props = CollectionEntry<"posts">;
 const post = Astro.props;
 const { Content } = await render(post);
 
-const formatDate = (date: Date) =>
-  date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+const formatYear = (date: Date) =>
+  date.toLocaleDateString("en-US", { year: "numeric" });
 
 const formatDateRange = (start: Date, end?: Date) => {
-  if (!end) return `${formatDate(start)} – Present`;
-  if (formatDate(start) === formatDate(end)) return formatDate(end);
-  return `${formatDate(start)} – ${formatDate(end)}`;
+  if (!end) return `${formatYear(start)} – Present`;
+  if (formatYear(start) === formatYear(end)) return formatYear(end);
+  return `${formatYear(start)} – ${formatYear(end)}`;
 };
 
 const isYouTube = (url: string) =>
@@ -36,23 +36,24 @@ const isYouTube = (url: string) =>
   <button class="back-btn" onclick="history.back()">← Back</button>
 
   <div class="post-header">
-    <div class="post-meta">
-      <div class="post-meta-row">
-        <span>
-          {post.data.role}
-          {post.data.role && post.data.organization && " @ "}
-          {post.data.organization}
-        </span>
-        {post.data.location && <span class="post-date">{post.data.location}</span>}
-      </div>
-    </div>
     <div class="post-title-row">
       <div class="post-title-col">
         <h1 class="post-title">{post.data.title}</h1>
         <p class="post-description">{post.data.descriptionHead}{post.data.descriptionTail}</p>
       </div>
       <div class="post-right-col">
-        <span class="post-date">{formatDateRange(post.data.date, post.data.endDate)}</span>
+        <div class="post-date-location">
+          <span class="post-date">
+            {post.data.location && `${post.data.location} – `}{formatDateRange(post.data.date, post.data.endDate)}
+          </span>
+          {(post.data.role || post.data.organization) && (
+            <span class="post-date">
+              {post.data.role}
+              {post.data.role && post.data.organization && " @ "}
+              {post.data.organization}
+            </span>
+          )}
+        </div>
         <div class="post-tags">
           {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
         </div>

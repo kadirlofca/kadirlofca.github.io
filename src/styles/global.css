@@ -111,6 +111,12 @@ main {
   align-items: center;
 }
 
+/* Scroll opacity */
+.posts-list > li,
+.photo-carousel {
+  transition: opacity var(--transition-fade);
+}
+
 /* Posts list */
 .posts-list {
   list-style: none;
@@ -240,8 +246,17 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: flex-start;
   gap: 0.5rem;
   flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.post-date-location {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
 }
 
 .post-right-col .post-tags {
