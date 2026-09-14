@@ -117,31 +117,87 @@ const formatDateRange = (start: Date, end?: Date) => {
     if (extra > 0) entriesColumn.style.paddingBottom = extra + 'px';
   }
 
+  const supportsVT = 'startViewTransition' in document;
+  let currentPostUrl = '';
+
+  function vt(el: HTMLElement | null | undefined, name: string) {
+    el?.style.setProperty('view-transition-name', name);
+  }
+  function clearVT(...els: (HTMLElement | null | undefined)[]) {
+    els.forEach(el => el?.style.removeProperty('view-transition-name'));
+  }
+
   async function navigateToPost(url: string, push = true) {
+    const card = document.querySelector<HTMLElement>(`.post-card a[href="${url}"]`)?.closest<HTMLElement>('.post-card');
+    const cardTitle = card?.querySelector<HTMLElement>('.post-title');
+    const cardDesc = card?.querySelector<HTMLElement>('.post-description');
+
     const res = await fetch(url);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
-    postContent.innerHTML = '';
-    for (const sel of ['.back-btn', '.post-header', '.video-wrapper', '.prose']) {
-      const el = doc.querySelector(sel);
-      if (el) postContent.appendChild(document.adoptNode(el));
-    }
-
     savedScrollY = window.scrollY;
-    homeContent.style.display = 'none';
-    postContent.style.display = '';
-    postContent.style.paddingTop = document.querySelector<HTMLElement>('.posts-list')?.style.paddingTop ?? '';
-    window.scrollTo(0, 0);
+    currentPostUrl = url;
+
+    // Old state: name the card elements (currently visible)
+    vt(cardTitle, 'vt-title');
+    vt(cardDesc, 'vt-desc');
+
+    const swap = () => {
+      postContent.innerHTML = '';
+      for (const sel of ['.back-btn', '.post-header', '.video-wrapper', '.prose']) {
+        const el = doc.querySelector(sel);
+        if (el) postContent.appendChild(document.adoptNode(el));
+      }
+      // Clear from card (now hidden), name the adopted elements (new state)
+      clearVT(cardTitle, cardDesc);
+      vt(postContent.querySelector<HTMLElement>('h1.post-title'), 'vt-title');
+      vt(postContent.querySelector<HTMLElement>('.post-description'), 'vt-desc');
+
+      homeContent.style.display = 'none';
+      postContent.style.display = '';
+      postContent.style.paddingTop = document.querySelector<HTMLElement>('.posts-list')?.style.paddingTop ?? '';
+      window.scrollTo(0, 0);
+    };
+
+    if (supportsVT) {
+      await (document as any).startViewTransition(swap).finished;
+    } else {
+      swap();
+    }
 
     if (push) history.pushState({ spa: true, url }, '', url);
     document.title = doc.title;
   }
 
-  function navigateHome(push = true) {
-    postContent.style.display = 'none';
-    postContent.innerHTML = '';
-    homeContent.style.display = '';
+  async function navigateHome(push = true) {
+    const card = document.querySelector<HTMLElement>(`.post-card a[href="${currentPostUrl}"]`)?.closest<HTMLElement>('.post-card');
+    const cardTitle = card?.querySelector<HTMLElement>('.post-title');
+    const cardDesc = card?.querySelector<HTMLElement>('.post-description');
+    const postTitle = postContent.querySelector<HTMLElement>('h1.post-title');
+    const postDesc = postContent.querySelector<HTMLElement>('.post-description');
+
+    // Old state: name the post elements (currently visible)
+    vt(postTitle, 'vt-title');
+    vt(postDesc, 'vt-desc');
+
+    const swap = () => {
+      // postContent.innerHTML = '' removes post elements from DOM
+      postContent.style.display = 'none';
+      postContent.innerHTML = '';
+      homeContent.style.display = '';
+      // Name the card elements (now visible in new state)
+      vt(cardTitle, 'vt-title');
+      vt(cardDesc, 'vt-desc');
+    };
+
+    if (supportsVT) {
+      await (document as any).startViewTransition(swap).finished;
+    } else {
+      swap();
+    }
+
+    clearVT(cardTitle, cardDesc);
 
     if (push) history.pushState({ spa: false }, '', '/');
     document.title = savedTitle;
@@ -152,11 +208,8 @@ const formatDateRange = (start: Date, end?: Date) => {
   }
 
   window.addEventListener('popstate', (e) => {
-    if ((e.state as any)?.spa) {
-      navigateToPost((e.state as any).url, false);
-    } else {
-      navigateHome(false);
-    }
+    if ((e.state as any)?.spa) navigateToPost((e.state as any).url, false);
+    else navigateHome(false);
   });
 
   history.replaceState({ spa: false }, '', location.href);
@@ -167,7 +220,7 @@ const formatDateRange = (start: Date, end?: Date) => {
       const card = link.closest('.post-card');
       const title = card?.querySelector('.post-title')?.textContent?.trim();
       (window as any).posthog?.capture('entry_clicked', { post_title: title });
-      navigateToPost(link.href);
+      navigateToPost(link.getAttribute('href')!);
     });
   });
 
