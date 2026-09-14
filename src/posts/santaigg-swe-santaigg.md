@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: Statistics Tracker for Competitive Game
 descriptionHead: 300+ weekly active users within 3 months
 descriptionTail: " — open-source stats platform for the tactical shooter Spectre Divide."

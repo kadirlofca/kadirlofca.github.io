@@ -1,6 +1,6 @@
 ---
 published: false
-title: Screen Sharing for Customer Support
+title: 2M+ Sessions Per Day CX
 descriptionHead: Full-stack screen-sharing app for 2,000,000+ customers
 descriptionTail: ", built with Next.js, TypeScript, Redux, and Terraform"
 tags:
