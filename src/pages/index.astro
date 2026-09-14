@@ -37,47 +37,57 @@ const formatDateRange = (start: Date, end?: Date) => {
       </div>
     </aside>
     <div class="entries-column">
-    <ul class="posts-list">
-      <li><BioBlock /></li>
-      {
-        allPosts.map((post) => (
-          <li class="post-card">
-            <a href={`/posts/${post.id}`}>
-              <div class="post-meta">
-                {(post.data.role || post.data.organization) && (
-                  <div class="post-meta-row">
-                    <span>
-                      {post.data.role}
-                      {post.data.role && post.data.organization && " @ "}
-                      {post.data.organization}
-                    </span>
+      <div class="home-content">
+        <ul class="posts-list">
+          <li><BioBlock /></li>
+          {
+            allPosts.map((post) => (
+              <li class="post-card">
+                <a href={`/posts/${post.id}`}>
+                  <div class="post-meta">
+                    {(post.data.role || post.data.organization) && (
+                      <div class="post-meta-row">
+                        <span>
+                          {post.data.role}
+                          {post.data.role && post.data.organization && " @ "}
+                          {post.data.organization}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <div class="post-title-row">
-                <div class="post-title">{post.data.title}</div>
-                <div class="post-date">{post.data.endDate ? formatYear(post.data.endDate) : "Present"}</div>
-              </div>
-              <div class="post-meta">
-              </div>
-              <div class="post-description">
-                <span class="desc-head">{post.data.descriptionHead}</span><span class="desc-tail">{post.data.descriptionTail}</span>
-              </div>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <PhotoCarousel />
-    <Footer />
+                  <div class="post-title-row">
+                    <div class="post-title">{post.data.title}</div>
+                    <div class="post-date">{post.data.endDate ? formatYear(post.data.endDate) : "Present"}</div>
+                  </div>
+                  <div class="post-meta">
+                  </div>
+                  <div class="post-description">
+                    <span class="desc-head">{post.data.descriptionHead}</span><span class="desc-tail">{post.data.descriptionTail}</span>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <PhotoCarousel />
+        <Footer />
+      </div>
+      <div class="post-content" style="display:none"></div>
     </div>
   </div>
 
 
 <script>
+  history.scrollRestoration = 'manual';
+
+  const homeContent = document.querySelector<HTMLElement>('.home-content')!;
+  const postContent = document.querySelector<HTMLElement>('.post-content')!;
+  const entriesColumn = document.querySelector<HTMLElement>('.entries-column')!;
+  const savedTitle = document.title;
+  let savedScrollY = 0;
+
   function align() {
     const postsList = document.querySelector<HTMLUListElement>('.posts-list');
-    const entriesColumn = document.querySelector<HTMLElement>('.entries-column');
     const footer = document.querySelector<HTMLElement>('.site-footer');
 
     if (window.innerWidth <= 768) {
@@ -90,7 +100,7 @@ const formatDateRange = (start: Date, end?: Date) => {
     const mainEl = document.querySelector<HTMLElement>('main');
     const anchorEl = document.querySelector<HTMLElement>('.socials');
 
-    if (!avatar || !postsList || !anchorEl || !entriesColumn || !footer || !mainEl) return;
+    if (!avatar || !postsList || !anchorEl || !footer || !mainEl) return;
 
     postsList.style.paddingTop = '';
     entriesColumn.style.paddingBottom = '';
@@ -103,12 +113,63 @@ const formatDateRange = (start: Date, end?: Date) => {
     const bioCenter = (anchorRect.top + anchorRect.bottom) / 2;
     const footerH = footer.getBoundingClientRect().height;
     const mainPB = parseFloat(getComputedStyle(mainEl).paddingBottom);
-    // Extend entries column so that at max scroll, footer text center aligns with bio-head center
     const extra = window.innerHeight - bioCenter - mainPB - footerH / 2;
-    if (extra > 0) {
-      entriesColumn.style.paddingBottom = extra + 'px';
-    }
+    if (extra > 0) entriesColumn.style.paddingBottom = extra + 'px';
   }
+
+  async function navigateToPost(url: string, push = true) {
+    const res = await fetch(url);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+
+    postContent.innerHTML = '';
+    for (const sel of ['.back-btn', '.post-header', '.video-wrapper', '.prose']) {
+      const el = doc.querySelector(sel);
+      if (el) postContent.appendChild(document.adoptNode(el));
+    }
+
+    savedScrollY = window.scrollY;
+    homeContent.style.display = 'none';
+    postContent.style.display = '';
+    postContent.style.paddingTop = document.querySelector<HTMLElement>('.posts-list')?.style.paddingTop ?? '';
+    window.scrollTo(0, 0);
+
+    if (push) history.pushState({ spa: true, url }, '', url);
+    document.title = doc.title;
+  }
+
+  function navigateHome(push = true) {
+    postContent.style.display = 'none';
+    postContent.innerHTML = '';
+    homeContent.style.display = '';
+
+    if (push) history.pushState({ spa: false }, '', '/');
+    document.title = savedTitle;
+    requestAnimationFrame(() => {
+      window.scrollTo(0, savedScrollY);
+      align();
+    });
+  }
+
+  window.addEventListener('popstate', (e) => {
+    if ((e.state as any)?.spa) {
+      navigateToPost((e.state as any).url, false);
+    } else {
+      navigateHome(false);
+    }
+  });
+
+  history.replaceState({ spa: false }, '', location.href);
+
+  document.querySelectorAll<HTMLAnchorElement>('.post-card a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = link.closest('.post-card');
+      const title = card?.querySelector('.post-title')?.textContent?.trim();
+      (window as any).posthog?.capture('entry_clicked', { post_title: title });
+      navigateToPost(link.href);
+    });
+  });
 
   document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(align)));
 
@@ -120,14 +181,6 @@ const formatDateRange = (start: Date, end?: Date) => {
 
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') requestAnimationFrame(align);
-  });
-
-  document.querySelectorAll<HTMLElement>('.post-card a').forEach((link) => {
-    link.addEventListener('click', () => {
-      const card = link.closest('.post-card');
-      const title = card?.querySelector('.post-title')?.textContent?.trim();
-      (window as any).posthog?.capture('entry_clicked', { post_title: title });
-    });
   });
 </script>
 </Layout>
