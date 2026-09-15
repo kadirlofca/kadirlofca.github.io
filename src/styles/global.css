@@ -14,6 +14,8 @@
   --transition-fade: 0.2s;
   --transition-reveal: 0.35s;
   --transition-enter: 0.3s;
+  --transition-exit: 0.1s;
+  --overlay-text: rgba(255, 255, 255, 0.75);
 }
 
 /* Suppress root page cross-fade; only named elements morph */
@@ -31,6 +33,12 @@
 ::view-transition-new(vt-prose) { animation: vt-prose-in var(--transition-enter) cubic-bezier(0.2, 0, 0, 1); }
 
 *, *::before, *::after { box-sizing: border-box; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 body {
   margin: 0;
@@ -68,6 +76,11 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
   color: var(--muted);
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.site-header nav a {
+  padding: 0.5rem 0;
 }
 
 .site-header nav a:hover { color: var(--fg); }

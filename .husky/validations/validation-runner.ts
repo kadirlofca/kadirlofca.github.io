@@ -2,8 +2,9 @@ import { check as noHardcodedColors } from "./rules/no-hardcoded-colors";
 import { check as cssVariableCompleteness } from "./rules/css-variable-completeness";
 import { check as noHardcodedDurations } from "./rules/no-hardcoded-durations";
 import { check as noTodos } from "./rules/no-todos";
+import { check as noPxFontSizes } from "./rules/no-px-font-sizes";
 
-const rules = [noHardcodedColors, cssVariableCompleteness, noHardcodedDurations, noTodos];
+const rules = [noHardcodedColors, cssVariableCompleteness, noHardcodedDurations, noTodos, noPxFontSizes];
 
 const failures: Array<{ label: string; violations: string[] }> = [];
 

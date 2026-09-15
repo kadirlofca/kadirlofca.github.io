@@ -20,13 +20,6 @@ const allPosts = (await getCollection("posts"))
 const formatYear = (date: Date) =>
   date.toLocaleDateString("en-US", { year: "numeric" });
 
-const formatDateRange = (start: Date, end?: Date) => {
-  const startYear = formatYear(start);
-  if (!end) return `${startYear} – Present`;
-  const endYear = formatYear(end);
-  return startYear === endYear ? startYear : `${startYear} – ${endYear}`;
-};
-
 ---
 
 <Layout title={siteData.siteTitle} description={siteData.siteDescription} hideFooter>
@@ -120,6 +113,10 @@ const formatDateRange = (start: Date, end?: Date) => {
   const supportsVT = 'startViewTransition' in document;
   let currentPostUrl = '';
 
+  function cssMs(varName: string): number {
+    return parseFloat(getComputedStyle(document.documentElement).getPropertyValue(varName)) * 1000;
+  }
+
   function vt(el: HTMLElement | null | undefined, name: string) {
     el?.style.setProperty('view-transition-name', name);
   }
@@ -180,17 +177,16 @@ const formatDateRange = (start: Date, end?: Date) => {
     const prose     = postContent.querySelector<HTMLElement>('.prose');
 
     // Start prose fade while capturing FIRST positions
-    if (prose) { prose.style.transition = 'opacity 0.1s ease'; prose.style.opacity = '0'; }
+    if (prose) { prose.style.transition = 'opacity var(--transition-exit) ease'; prose.style.opacity = '0'; }
     const postTitleRect = postTitle?.getBoundingClientRect();
     const postDescRect  = postDesc?.getBoundingClientRect();
 
-    await new Promise<void>(r => setTimeout(r, 100));
+    await new Promise<void>(r => setTimeout(r, cssMs('--transition-exit')));
 
-    // Instant swap: hide post, reveal home
-    postContent.style.display = 'none';
-    homeContent.style.display = '';
-    // Stabilize layout (paddingTop) before scrolling — if align() runs after
-    // scrollTo it shifts content and makes the scroll land in the wrong place
+    // Swap: hide post, reveal home invisible so it can fade in
+    postContent.style.display  = 'none';
+    homeContent.style.opacity  = '0';
+    homeContent.style.display  = '';
     align();
     window.scrollTo(0, savedScrollY);
 
@@ -206,14 +202,18 @@ const formatDateRange = (start: Date, end?: Date) => {
 
     void cardTitle?.offsetWidth; // force reflow before animating
 
-    // FLIP play
-    await new Promise<void>(r => requestAnimationFrame(r));
+    // Play: fade in everything + FLIP translate title/desc simultaneously
+    await new Promise<void>(r => requestAnimationFrame(() => r()));
     const ease = 'cubic-bezier(0.2, 0, 0, 1)';
-    if (cardTitle) { cardTitle.style.transition = `transform 0.3s ${ease}`; cardTitle.style.transform = ''; }
-    if (cardDesc)  { cardDesc.style.transition  = `transform 0.3s ${ease}`; cardDesc.style.transform  = ''; }
+    homeContent.style.transition = 'opacity var(--transition-enter) ease';
+    homeContent.style.opacity    = '1';
+    if (cardTitle) { cardTitle.style.transition = `transform var(--transition-enter) ${ease}`; cardTitle.style.transform = ''; }
+    if (cardDesc)  { cardDesc.style.transition  = `transform var(--transition-enter) ${ease}`; cardDesc.style.transform  = ''; }
 
-    await new Promise<void>(r => setTimeout(r, 300));
+    await new Promise<void>(r => setTimeout(r, cssMs('--transition-enter')));
 
+    homeContent.style.transition = '';
+    homeContent.style.opacity    = '';
     if (cardTitle) cardTitle.style.transition = '';
     if (cardDesc)  cardDesc.style.transition  = '';
     postContent.innerHTML = '';

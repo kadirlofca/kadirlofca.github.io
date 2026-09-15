@@ -46,7 +46,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
 
   .email-link {
     display: block;
-    margin-bottom: 0.3rem;
+    padding: 0.4rem 0;
     color: inherit;
     text-decoration: none;
     white-space: nowrap;
@@ -72,6 +72,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
   }
 
   .socials a {
+    padding: 0.5rem 0.25rem;
     color: var(--fg);
     text-decoration: none;
     white-space: nowrap;
@@ -84,17 +85,17 @@ const github = userSocials.find((s) => s.title === "GitHub");
 
   @media (max-width: 768px) {
     .profile-card {
-      transform: scale(1.2);
-      transform-origin: top center;
+      width: min(100%, 324px);
     }
 
+    .avatar {
+      width: min(90%, 292px);
+      height: min(90%, 292px);
+    }
+
+    .contact,
     .socials {
-      justify-content: center;
-      margin: 0 auto;
-    }
-
-    .contact {
-      width: 300px;
+      width: min(100%, 324px);
     }
   }
 </style>

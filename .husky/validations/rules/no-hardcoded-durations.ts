@@ -2,6 +2,8 @@
 import { allStyling, read, rel } from "../helpers";
 
 const TIMING = /(?:transition|animation)\s*:[^;]*\b\d+(?:\.\d+)?(?:ms|s)\b/;
+// Matches .style.transition = '...' or .style.animation = '...' with a bare number+unit
+const SCRIPT_STYLE_TIMING = /\.style\.(transition|animation)\s*=\s*(?:`|'|")[^`'"]*\d+(?:\.\d+)?(?:ms|s)\b/;
 
 export function check(): Array<{ label: string; violations: string[] }> {
   const violations: string[] = [];
@@ -9,22 +11,30 @@ export function check(): Array<{ label: string; violations: string[] }> {
   for (const file of allStyling()) {
     const lines = read(file).split("\n");
     let inStyle = false;
+    let inScript = false;
 
     for (let i = 0; i < lines.length; i++) {
       if (/<style[^>]*>/.test(lines[i])) { inStyle = true; continue; }
       if (/<\/style>/.test(lines[i])) { inStyle = false; continue; }
+      if (/<script[^>]*>/.test(lines[i])) { inScript = true; continue; }
+      if (/<\/script>/.test(lines[i])) { inScript = false; continue; }
 
       const isCss = file.endsWith(".css");
-      if (!isCss && !inStyle) continue;
-
       const line = lines[i].trim();
       if (!line || line.startsWith("/*") || line.startsWith("*") || line.startsWith("//")) continue;
 
-      if (!TIMING.test(line)) continue;
-      // Strip var(...) calls (including fallback values) before checking
-      const stripped = line.replace(/var\([^)]*\)/g, "var()");
-      if (TIMING.test(stripped)) {
-        violations.push(`${rel(file)}:${i + 1} — hardcoded timing value (use var(--transition-*))`);
+      if (isCss || inStyle) {
+        if (!TIMING.test(line)) continue;
+        const stripped = line.replace(/var\([^)]*\)/g, "var()");
+        if (TIMING.test(stripped)) {
+          violations.push(`${rel(file)}:${i + 1} — hardcoded timing value (use var(--transition-*))`);
+        }
+      } else if (inScript) {
+        if (!SCRIPT_STYLE_TIMING.test(line)) continue;
+        const stripped = line.replace(/var\([^)]*\)/g, "var()");
+        if (SCRIPT_STYLE_TIMING.test(stripped)) {
+          violations.push(`${rel(file)}:${i + 1} — hardcoded timing in style assignment (use var(--transition-*))`);
+        }
       }
     }
   }
