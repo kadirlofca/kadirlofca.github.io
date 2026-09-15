@@ -153,6 +153,7 @@ const formatDateRange = (start: Date, end?: Date) => {
       clearVT(cardTitle, cardDesc);
       vt(postContent.querySelector<HTMLElement>('h1.post-title'), 'vt-title');
       vt(postContent.querySelector<HTMLElement>('.post-description'), 'vt-desc');
+      vt(postContent.querySelector<HTMLElement>('.prose'), 'vt-prose');
 
       homeContent.style.display = 'none';
       postContent.style.display = '';
@@ -173,38 +174,52 @@ const formatDateRange = (start: Date, end?: Date) => {
   async function navigateHome(push = true) {
     const card = document.querySelector<HTMLElement>(`.post-card a[href="${currentPostUrl}"]`)?.closest<HTMLElement>('.post-card');
     const cardTitle = card?.querySelector<HTMLElement>('.post-title');
-    const cardDesc = card?.querySelector<HTMLElement>('.post-description');
+    const cardDesc  = card?.querySelector<HTMLElement>('.post-description');
     const postTitle = postContent.querySelector<HTMLElement>('h1.post-title');
-    const postDesc = postContent.querySelector<HTMLElement>('.post-description');
+    const postDesc  = postContent.querySelector<HTMLElement>('.post-description');
+    const prose     = postContent.querySelector<HTMLElement>('.prose');
 
-    // Old state: name the post elements (currently visible)
-    vt(postTitle, 'vt-title');
-    vt(postDesc, 'vt-desc');
+    // Start prose fade while capturing FIRST positions
+    if (prose) { prose.style.transition = 'opacity 0.1s ease'; prose.style.opacity = '0'; }
+    const postTitleRect = postTitle?.getBoundingClientRect();
+    const postDescRect  = postDesc?.getBoundingClientRect();
 
-    const swap = () => {
-      // postContent.innerHTML = '' removes post elements from DOM
-      postContent.style.display = 'none';
-      postContent.innerHTML = '';
-      homeContent.style.display = '';
-      // Name the card elements (now visible in new state)
-      vt(cardTitle, 'vt-title');
-      vt(cardDesc, 'vt-desc');
-    };
+    await new Promise<void>(r => setTimeout(r, 100));
 
-    if (supportsVT) {
-      await (document as any).startViewTransition(swap).finished;
-    } else {
-      swap();
-    }
+    // Instant swap: hide post, reveal home
+    postContent.style.display = 'none';
+    homeContent.style.display = '';
+    // Stabilize layout (paddingTop) before scrolling — if align() runs after
+    // scrollTo it shifts content and makes the scroll land in the wrong place
+    align();
+    window.scrollTo(0, savedScrollY);
 
-    clearVT(cardTitle, cardDesc);
+    // Capture LAST positions
+    const cardTitleRect = cardTitle?.getBoundingClientRect();
+    const cardDescRect  = cardDesc?.getBoundingClientRect();
+
+    // FLIP invert: place card elements at post positions
+    if (cardTitle && postTitleRect && cardTitleRect)
+      cardTitle.style.transform = `translate(${postTitleRect.left - cardTitleRect.left}px,${postTitleRect.top - cardTitleRect.top}px)`;
+    if (cardDesc && postDescRect && cardDescRect)
+      cardDesc.style.transform  = `translate(${postDescRect.left - cardDescRect.left}px,${postDescRect.top - cardDescRect.top}px)`;
+
+    void cardTitle?.offsetWidth; // force reflow before animating
+
+    // FLIP play
+    await new Promise<void>(r => requestAnimationFrame(r));
+    const ease = 'cubic-bezier(0.2, 0, 0, 1)';
+    if (cardTitle) { cardTitle.style.transition = `transform 0.3s ${ease}`; cardTitle.style.transform = ''; }
+    if (cardDesc)  { cardDesc.style.transition  = `transform 0.3s ${ease}`; cardDesc.style.transform  = ''; }
+
+    await new Promise<void>(r => setTimeout(r, 300));
+
+    if (cardTitle) cardTitle.style.transition = '';
+    if (cardDesc)  cardDesc.style.transition  = '';
+    postContent.innerHTML = '';
 
     if (push) history.pushState({ spa: false }, '', '/');
     document.title = savedTitle;
-    requestAnimationFrame(() => {
-      window.scrollTo(0, savedScrollY);
-      align();
-    });
   }
 
   window.addEventListener('popstate', (e) => {

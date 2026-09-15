@@ -13,7 +13,22 @@
   --transition-color: 0.15s;
   --transition-fade: 0.2s;
   --transition-reveal: 0.35s;
+  --transition-enter: 0.3s;
 }
+
+/* Suppress root page cross-fade; only named elements morph */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* Forward: prose cascades down from the title into place */
+@keyframes vt-prose-in {
+  from { opacity: 0; transform: translateY(-0.6rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+::view-transition-new(vt-prose) { animation: vt-prose-in var(--transition-enter) cubic-bezier(0.2, 0, 0, 1); }
 
 *, *::before, *::after { box-sizing: border-box; }
 

@@ -1,7 +1,7 @@
 ---
 published: true
 order: -1
-title: AWS Funded Game Suggestions
+title: AWS Funded Game Suggestion Platform
 descriptionHead: Recommending games based on user interests
 descriptionTail: " from an ever-growing database and millions of parameters"
 tags:
