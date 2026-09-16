@@ -40,7 +40,7 @@ const personSchema = {
     {
       "@type": "WebSite",
       "@id": `${siteData.siteUrl}/#website`,
-      "name": siteData.siteTitle,
+      "name": siteData.siteName,
       "url": siteData.siteUrl,
       "author": { "@id": `${siteData.siteUrl}/#person` },
     },
@@ -72,6 +72,7 @@ const personSchema = {
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content={siteData.siteName} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImageURL} />
