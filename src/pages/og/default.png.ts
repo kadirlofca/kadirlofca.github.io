@@ -48,8 +48,8 @@ export const GET: APIRoute = async () => {
   <text x="72" y="575" font-family="sans-serif" font-size="20" fill="${accentColor}">kadirlofca.com</text>
 
   <!-- CTA -->
-  <rect x="${W - 220}" y="541" width="160" height="36" rx="6" fill="${accentColor}"/>
-  <text x="${W - 140}" y="565" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">View Portfolio →</text>
+  <rect x="${W - 236}" y="537" width="184" height="44" rx="8" fill="${accentColor}"/>
+  <text x="${W - 144}" y="566" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">View Portfolio →</text>
 </svg>`;
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
