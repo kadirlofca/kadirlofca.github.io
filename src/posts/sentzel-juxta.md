@@ -4,6 +4,7 @@ order: -1
 title: AWS Funded Game Suggestion Platform
 descriptionHead: Recommending games based on user interests
 descriptionTail: " from an ever-growing database and millions of parameters"
+metaDescription: "AWS-funded game ranking platform using AI to score and compare game aspects. Built with TypeScript, PostgreSQL, pgvector, and AWS Bedrock. Founder at Sentzel Labs."
 tags:
   - AWS Bedrock
   - Temporal.io

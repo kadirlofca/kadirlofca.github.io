@@ -127,8 +127,6 @@ export const GET: APIRoute = async ({ props }) => {
   <!-- Left accent bar -->
   <rect x="0" y="0" width="6" height="${H}" fill="${accentColor}"/>
 
-  <!-- Subtle right background panel -->
-  <rect x="${picCx - picR - 30}" y="0" width="${W - (picCx - picR - 30)}" height="${H}" fill="#f9fafb"/>
 
   <!-- Profile picture clipped to circle -->
   <defs>
@@ -156,8 +154,8 @@ export const GET: APIRoute = async ({ props }) => {
   <text x="${padLeft}" y="${siteY}" font-family="sans-serif" font-size="20" fill="${accentColor}">kadirlofca.com</text>
 
   <!-- CTA -->
-  <rect x="${W - 236}" y="${siteY - 40}" width="184" height="44" rx="8" fill="${accentColor}"/>
-  <text x="${W - 144}" y="${siteY - 11}" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">View Portfolio →</text>
+  <rect x="${W - 200}" y="${siteY - 46}" width="148" height="52" rx="8" fill="${accentColor}"/>
+  <text x="${W - 126}" y="${siteY - 13}" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="bold" fill="#ffffff">VIEW</text>
 </svg>`;
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();

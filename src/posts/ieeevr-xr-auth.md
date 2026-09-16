@@ -3,6 +3,7 @@ published: true
 title: Award Winning XR Auth
 descriptionHead: Keeping XR sessions secure
 descriptionTail: " via motion-matching and morse code"
+metaDescription: "Award-winning XR authentication using haptics and motion-matching. Best 3DUI Contest at IEEE VR 2023. Built with C#, Unity, and SteamVR."
 tags:
   - C#
   - Unity

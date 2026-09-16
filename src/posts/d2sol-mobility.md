@@ -3,6 +3,7 @@ published: true
 title: 300k+ User Government App
 descriptionHead: "Serving governments across the globe"
 descriptionTail: " via multi-tenant, highly-available, cross-platform architecture"
+metaDescription: "Flutter mobile app serving 300k+ government benefits users. Multi-tenant AWS backend with Lambda, DynamoDB, and push notifications. Mobile Engineer at D2Sol."
 tags:
   - Flutter
   - Dart

@@ -26,7 +26,7 @@ const isYouTube = (url: string) =>
 
 <Layout
   title={`${post.data.title} | Kadir Lofca`}
-  description={post.data.descriptionHead + post.data.descriptionTail}
+  description={post.data.metaDescription ?? post.data.descriptionHead + post.data.descriptionTail}
   ogImage={`/og/${post.id}.png`}
 >
   <button class="back-btn" onclick="history.back()">← Back</button>

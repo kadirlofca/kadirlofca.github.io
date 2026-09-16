@@ -29,7 +29,6 @@ export const GET: APIRoute = async () => {
   const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <rect width="${W}" height="${H}" fill="${bgColor}"/>
   <rect x="0" y="0" width="6" height="${H}" fill="${accentColor}"/>
-  <rect x="${picCx - picR - 40}" y="0" width="${W - (picCx - picR - 40)}" height="${H}" fill="#f9fafb"/>
 
   <defs>
     <clipPath id="pic-clip">
@@ -48,8 +47,8 @@ export const GET: APIRoute = async () => {
   <text x="72" y="575" font-family="sans-serif" font-size="20" fill="${accentColor}">kadirlofca.com</text>
 
   <!-- CTA -->
-  <rect x="${W - 236}" y="537" width="184" height="44" rx="8" fill="${accentColor}"/>
-  <text x="${W - 144}" y="566" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">View Portfolio →</text>
+  <rect x="${W - 200}" y="531" width="148" height="52" rx="8" fill="${accentColor}"/>
+  <text x="${W - 126}" y="565" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="bold" fill="#ffffff">VIEW</text>
 </svg>`;
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();

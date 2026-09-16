@@ -10,6 +10,7 @@ const posts = defineCollection({
     tags: z.string().array(),
     descriptionHead: z.string(),
     descriptionTail: z.string(),
+    metaDescription: z.string().optional(),
     date: z.coerce.date(),
     endDate: z.coerce.date().optional(),
     video: z.string().url().optional(),
