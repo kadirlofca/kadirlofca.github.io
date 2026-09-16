@@ -9,8 +9,6 @@ const instagram = userContactData.userSocials.find((s) => s.title === "Instagram
   <div class="footer-links">
     {instagram && <a href={instagram.url} target="_blank" rel="noopener noreferrer">Instagram</a>}
     <span aria-hidden="true">·</span>
-    <a href="/rss.xml">RSS</a>
-    <span aria-hidden="true">·</span>
     <a href="/kadir-lofca-software-engineer.pdf" download>Resume</a>
   </div>
 </footer>
@@ -19,13 +17,8 @@ const instagram = userContactData.userSocials.find((s) => s.title === "Instagram
   document.querySelector('.site-footer .footer-links')?.addEventListener('click', function(e) {
     var target = e.target;
     if (!target || target.tagName !== 'A') return;
-    var href = target.getAttribute('href') || '';
-    if (href.includes('rss')) {
-      window.posthog?.capture('rss_link_clicked');
-    } else {
-      window.posthog?.capture('social_link_clicked', {
-        link_title: target.textContent?.trim()
-      });
-    }
+    window.posthog?.capture('social_link_clicked', {
+      link_title: target.textContent?.trim()
+    });
   });
 </script>
