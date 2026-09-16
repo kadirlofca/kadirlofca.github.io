@@ -1,8 +1,7 @@
 ---
 published: true
 name: Regis Kopper
-title: Assistant Professor of Computer Science
-company: Iowa State University
+relationship: Research Mentor, UNCG
 year: 2024
 ---
 

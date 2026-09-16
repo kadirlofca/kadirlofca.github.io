@@ -1,8 +1,7 @@
 ---
 published: true
 name: Oyku Erdenlig
-title: Concept Artist
-company: Dark Dog Games
+relationship: Collaborator, Mini Jam 154
 year: 2024
 ---
 

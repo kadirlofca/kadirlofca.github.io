@@ -25,8 +25,7 @@ const endorsements = defineCollection({
   schema: z.object({
     published: z.boolean(),
     name: z.string(),
-    title: z.string(),
-    company: z.string(),
+    relationship: z.string(),
     year: z.number(),
   }),
 });

@@ -1,8 +1,7 @@
 ---
 published: false
 name: Jane Doe
-title: Engineering Manager
-company: Acme Corp
+relationship: Direct Manager, Acme Corp
 year: 2024
 ---
 

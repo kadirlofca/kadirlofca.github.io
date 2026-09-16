@@ -14,19 +14,19 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"endorsements">;
 const endorsement = Astro.props;
 const { Content } = await render(endorsement);
-const { name, title, company, year } = endorsement.data;
+const { name, relationship, year } = endorsement.data;
 ---
 
 <Layout
   title={`Endorsed by ${name} | Kadir Lofca`}
-  description={`${name}, ${title} at ${company} — endorsement of Kadir Lofca.`}
+  description={`${name}, ${relationship} — endorsement of Kadir Lofca.`}
 >
   <button class="back-btn" onclick="history.back()">← Back</button>
 
   <div class="prose">
     <Content />
     <footer class="endorsement-citation">
-      — {name}, {title} @ {company} · {year}
+      — {name}, {relationship} · {year}
     </footer>
   </div>
 
