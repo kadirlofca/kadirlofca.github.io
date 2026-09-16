@@ -1,16 +1,16 @@
 ---
+import { Image } from 'astro:assets';
 import userContact from "../data/user-contact.json";
 import USER_PICTURE from "../../public/user-picture.jpeg";
 
 const { userEmail, userSocials } = userContact;
-const picture = USER_PICTURE.src;
 const email = userEmail.trim();
 const linkedin = userSocials.find((s) => s.title === "LinkedIn");
 const github = userSocials.find((s) => s.title === "GitHub");
 ---
 
 <div class="profile-card">
-  <img class="avatar" src={picture} alt="Profile picture" />
+  <Image class="avatar" src={USER_PICTURE} width={584} height={584} format="avif" quality={80} alt="Profile picture" fetchpriority="high" loading="eager" />
   <div class="contact">
     <a href={`mailto:${email}`} class="email-link">{email}</a>
     <div class="socials">
