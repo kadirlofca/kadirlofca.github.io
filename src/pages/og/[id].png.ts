@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
+import personalData from "../../data/user-personal.json";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => data.published);
@@ -142,7 +143,7 @@ export const GET: APIRoute = async ({ props }) => {
   <circle cx="${picCx}" cy="${picCy}" r="${picR}" fill="none" stroke="#e5e7eb" stroke-width="2"/>
 
   <!-- Name label -->
-  <text x="${padLeft}" y="${nameY}" font-family="sans-serif" font-size="${nameFontSize}" fill="${mutedColor}">Kadir Lofca</text>
+  <text x="${padLeft}" y="${nameY}" font-family="sans-serif" font-size="${nameFontSize}" fill="${mutedColor}">${personalData.userName}</text>
 
   <!-- Title -->
   ${titleSvg}

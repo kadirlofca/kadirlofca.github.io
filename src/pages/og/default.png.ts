@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import sharp from "sharp";
 import path from "path";
 import siteData from "../../data/site.json";
+import personalData from "../../data/user-personal.json";
 
 export const GET: APIRoute = async () => {
   const W = 1200;
@@ -23,7 +24,7 @@ export const GET: APIRoute = async () => {
     .toBuffer();
   const picDataUrl = `data:image/jpeg;base64,${picBuf.toString("base64")}`;
 
-  const name = "Kadir Lofca";
+  const name = personalData.userName;
   const tagline = "Software Engineer · Founder · Builder";
 
   const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

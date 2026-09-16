@@ -1,11 +1,13 @@
 ---
 import userPersonalData from "../data/user-personal.json";
+import userContactData from "../data/user-contact.json";
+const instagram = userContactData.userSocials.find((s) => s.title === "Instagram");
 ---
 
 <footer class="site-footer">
   <span>{userPersonalData.userName} · Raleigh, NC</span>
   <div class="footer-links">
-    <a href="https://instagram.com/kadirlofca" target="_blank" rel="noopener noreferrer">Instagram</a>
+    {instagram && <a href={instagram.url} target="_blank" rel="noopener noreferrer">Instagram</a>}
     <span aria-hidden="true">·</span>
     <a href="/rss.xml">RSS</a>
   </div>

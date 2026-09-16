@@ -1,6 +1,7 @@
 ---
 import siteData from "../data/site.json";
 import contactData from "../data/user-contact.json";
+import personalData from "../data/user-personal.json";
 import expData from "../data/user-experience.json";
 
 interface Props {
@@ -28,7 +29,7 @@ const personSchema = {
     {
       "@type": "Person",
       "@id": `${siteData.siteUrl}/#person`,
-      "name": "Kadir Lofca",
+      "name": personalData.userName,
       "url": siteData.siteUrl,
       "email": contactData.userEmail.trim(),
       "image": `${siteData.siteUrl}/user-picture.jpeg`,
@@ -92,7 +93,7 @@ const personSchema = {
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="author" content="Kadir Lofca" />
+<meta name="author" content={personalData.userName} />
 <meta name="robots" content="index, follow" />
 
 <link rel="me" href="https://www.linkedin.com/in/kadirlofca/" />

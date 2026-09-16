@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import { siteTitle, siteDescription } from "../data/site.json";
+import { siteTitle, siteDescriptionShort as siteDescription } from "../data/site.json";
 
 export async function GET(context) {
   const posts = await getCollection("posts", ({ data }) => data.published);
