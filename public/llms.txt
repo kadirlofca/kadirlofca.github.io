@@ -1,0 +1,26 @@
+# Kadir Lofca
+
+> Software engineer specializing in mobile development (Flutter/iOS/Android), AWS cloud infrastructure, and interactive/XR applications. Founder of Sentzel Labs. Based in Raleigh, NC, USA.
+
+Kadir Lofca is a software engineer with a B.S. in Computer Science from the University of North Carolina at Greensboro. He builds consumer and enterprise products at scale, with deep experience in cross-platform mobile development, cloud backend systems, and interactive experiences. He is the founder of Sentzel Labs, which builds Juxta.gg — an AWS-funded, AI-powered game suggestion and ranking platform in production.
+
+His published research on XR continuous authentication won Best 3DUI Contest Award at IEEE VR 2023 (Shanghai).
+
+## Projects & Work
+
+- [Portfolio Home](https://kadirlofca.com): Overview of all projects and work history
+- [Juxta.gg — AWS Funded Game Suggestion Platform](https://kadirlofca.com/posts/sentzel-juxta): Founder of Sentzel Labs; built an AI-powered game ranking platform funded by AWS using AWS Bedrock, PostgreSQL/pgvector, Temporal.io, TypeScript, Svelte, Astro, and Cloudflare Pages
+- [300k+ User Government Mobile App at D2Sol](https://kadirlofca.com/posts/d2sol-mobility): Mobile Engineer; built Flutter app with AWS backend (Lambda, SQS, DynamoDB, Cognito, FCM) serving government benefits programs at global scale
+- [Award Winning XR Authentication Research — IEEE VR 2023](https://kadirlofca.com/posts/ieeevr-xr-auth): VR Researcher at UNCG; designed and built a continuous XR authentication framework using haptics and motion-matching; won Best 3DUI Contest Award; published on IEEE Xplore
+
+## Contact & Profiles
+
+- Email: kadirlofca@outlook.com
+- [LinkedIn](https://www.linkedin.com/in/kadirlofca/): Professional profile and work history
+- [GitHub](https://github.com/kadirlofca): Open source code and projects
+- [YouTube](https://www.youtube.com/@haftindie): Video content
+
+## Site
+
+- [RSS Feed](https://kadirlofca.com/rss.xml): Site content updates
+- [Sitemap](https://kadirlofca.com/sitemap-index.xml): All pages

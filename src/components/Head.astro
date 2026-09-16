@@ -1,5 +1,6 @@
 ---
 import siteData from "../data/site.json";
+import contactData from "../data/user-contact.json";
 
 interface Props {
   title: string;
@@ -12,6 +13,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = ogImage
   ? new URL(ogImage, Astro.site)
   : new URL("/og/default.png", Astro.site);
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteData.siteUrl}/#person`,
+      "name": "Kadir Lofca",
+      "url": siteData.siteUrl,
+      "email": contactData.userEmail.trim(),
+      "image": `${siteData.siteUrl}/user-picture.jpeg`,
+      "description": "Software engineer specializing in mobile development, AWS cloud infrastructure, and interactive applications. Founder of Sentzel Labs.",
+      "jobTitle": "Software Engineer",
+      "knowsAbout": [
+        "Flutter", "iOS", "Android", "AWS", "Mobile Engineering",
+        "Cloud Infrastructure", "XR", "VR", "TypeScript", "Python",
+        "Game Development", "PostgreSQL"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of North Carolina at Greensboro"
+      },
+      "sameAs": contactData.userSocials.map((s) => s.url),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteData.siteUrl}/#website`,
+      "name": siteData.siteTitle,
+      "url": siteData.siteUrl,
+      "author": { "@id": `${siteData.siteUrl}/#person` },
+    },
+  ],
+};
 ---
 
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:;" />
@@ -30,6 +64,11 @@ const ogImageURL = ogImage
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="author" content="Kadir Lofca" />
+<meta name="robots" content="index, follow" />
+
+<link rel="me" href="https://www.linkedin.com/in/kadirlofca/" />
+<link rel="me" href="https://github.com/kadirlofca" />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
@@ -42,4 +81,6 @@ const ogImageURL = ogImage
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImageURL} />
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
