@@ -74,12 +74,3 @@ content:
         label: User Introduction
         description: A short paragraph to show a glimpse of your personality outside of work. 
         type: string
-  - name: professional
-    label: Professional Information
-    path: src/data/user-professional.json
-    type: file
-    fields:
-      - name: professionalDescription
-        label: Professional Description
-        description: A one-line descriptor of your career.
-        type: string
