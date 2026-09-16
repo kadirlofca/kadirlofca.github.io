@@ -25,7 +25,12 @@ const { name, relationship, year } = endorsement.data;
 
   <div class="post-header">
     <div class="post-title-row">
-      <h1 class="post-title">Endorsement by {name}, {year}</h1>
+      <h1 class="post-title">Endorsement by {name}</h1>
+      <div class="post-right-col">
+        <div class="post-date-location">
+          <span class="post-date">{year}</span>
+        </div>
+      </div>
     </div>
     <p class="post-description">{relationship}</p>
   </div>
