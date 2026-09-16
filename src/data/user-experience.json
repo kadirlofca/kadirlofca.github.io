@@ -1,0 +1,138 @@
+{
+  "skills": {
+    "languages": ["TypeScript", "JavaScript", "Python", "C++", "C#", "Dart", "Java", "C", "SQL", "Rust"],
+    "frameworks": ["React", "Next.js", "Flutter", "Node.js", "Unity", "Unreal Engine", "Godot", "Redux", "Express", "Meta Quest SDK", "Hono", "Astro", "Svelte"],
+    "databases": ["PostgreSQL", "SQLite", "Redis", "DynamoDB", "Supabase", "Firebase"],
+    "infrastructure": ["AWS Lambda", "AWS S3", "AWS SQS", "AWS DynamoDB", "AWS Cognito", "AWS Bedrock", "AWS EC2", "AWS ECR", "Docker", "Terraform", "Pulumi", "Jenkins", "Git", "Linux", "OpenAPI", "OAuth2"]
+  },
+  "experience": [
+    {
+      "organization": "D2Sol Inc.",
+      "role": "Software Engineer",
+      "location": "Raleigh, NC",
+      "startDate": "2025-06",
+      "endDate": null,
+      "highlights": [
+        "Spearheaded delivery of mission-critical mobile applications for two US states, serving 300,000+ citizens.",
+        "Reduced estimated development costs by 70% by architecting a unified Flutter codebase with 99% code sharing across iOS, Android, and multiple government clients.",
+        "Architected a Flutter Hosted Server Driven UI system using MVVM to decouple logic from presentation, enabling dynamic tenant configuration.",
+        "Secured PII data and reduced login duration by 80% via Biometric Authentication (FaceID/TouchID) and encrypted Keychain storage.",
+        "Hardened mobile security with OAuth 2.0 + PKCE, Certificate Pinning, and App Attestation against MITM attacks.",
+        "Delivered real-time alerts to 300,000+ devices via a serverless Notification Service using AWS Lambda, SQS, and DynamoDB.",
+        "Eliminated 90% of routine App Store update cycles with a custom Hot-Update Remote Configuration engine.",
+        "Achieved 60fps scrolling performance on low-end hardware via reactive state management architecture.",
+        "Built a Hybrid Web-Native bridge enabling zero-friction sessions within legacy government portals.",
+        "Implemented dynamic caching localization for instant language switching across multiple locales.",
+        "Established CI/CD pipeline with automated integration, unit, and widget tests for critical user flows."
+      ]
+    },
+    {
+      "organization": "Sentzel Labs",
+      "role": "Founder & Engineer",
+      "location": "Remote",
+      "startDate": "2025-05",
+      "endDate": null,
+      "highlights": [
+        "Architected and shipped juxta.gg — a production AI-powered game intelligence and discovery platform — end-to-end as sole engineer.",
+        "Engineered a 10-activity durable AI ingestion pipeline on Temporal.io: YouTube transcript ingestion → aspect extraction via AWS Bedrock → pgvector deduplication → ELO ranking → description generation → DB commit.",
+        "Built hybrid semantic search delivering <500ms results combining ILIKE text scoring with pgvector HNSW-indexed cosine similarity over 1024-dim Amazon Titan V2 embeddings.",
+        "Designed an AI-adjudicated ELO ranking system using Amazon Nova Lite via AWS Bedrock for pairwise comparisons with authority-weighted K-factor scaling.",
+        "Provisioned all cloud infrastructure via Pulumi IaC (EC2, ECR, S3, IAM) with zero manual resource creation; SSH-less deployment via AWS SSM.",
+        "Enforced 26 codebase quality rules across 263 TypeScript source files with a custom guidelines test suite and 90% coverage gate.",
+        "Authored 32 REST API endpoints covering game stats, aspect intelligence, ELO trajectories, and embedding landscape visualization."
+      ]
+    },
+    {
+      "organization": "Stiegler EdTech",
+      "role": "Programming Mentor",
+      "location": "Charlotte, NC",
+      "startDate": "2023-11",
+      "endDate": "2025-06",
+      "highlights": [
+        "Led technical education for 200+ students, achieving 100% pass rate via targeted C++ remediation plans.",
+        "Mentored 15+ junior teaching assistants on pedagogy and debugging techniques.",
+        "Directed Arduino-based robotics projects involving real-time sensor integration and PID control loops.",
+        "Mitigated LLM hallucinations by 30% in automated assessments by architecting evaluation benchmarks for a custom AI grading system.",
+        "Reduced student debugging time by ~40% by systematizing common low-level failure patterns."
+      ]
+    },
+    {
+      "organization": "Genesys Cloud",
+      "role": "Software Engineering Intern",
+      "location": "Durham, NC",
+      "startDate": "2023-08",
+      "endDate": "2023-11",
+      "highlights": [
+        "Engineered full-stack features for a high-traffic screen-sharing application using Next.js, TypeScript, and Redux, serving 2,000,000+ customers.",
+        "Reduced infrastructure provisioning time by 50% via reusable Terraform modules.",
+        "Decreased regression bugs by 20% with 30+ unit and integration tests in Docker/Redis CI environments.",
+        "Optimized backend API endpoints for 99.99% availability and <200ms response times.",
+        "Ensured 100% HIPAA Security and Privacy compliance."
+      ]
+    },
+    {
+      "organization": "University of North Carolina at Greensboro",
+      "role": "VR Researcher & Software Engineer",
+      "location": "Greensboro, NC",
+      "startDate": "2021-02",
+      "endDate": "2023-08",
+      "highlights": [
+        "Achieved <1mm tracking accuracy for VR experiments by engineering a controlled environment to resolve IR tracking interference.",
+        "Eliminated 10+ hours/week of manual data entry with a custom C# Unity telemetry logging plugin.",
+        "Enabled physical-virtual interaction with <5ms latency using Leap Motion and HTC Vive Trackers.",
+        "Co-authored 2 research papers presented at IEEE VR 2022 and 2023, cited by 14+ subsequent studies.",
+        "Validated research on human time perception via human-subject trials with 20+ participants."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Juxta.gg",
+      "organization": "Sentzel Labs",
+      "url": "https://juxta.gg",
+      "description": "AWS-funded AI-powered game intelligence and discovery platform. Uses LLMs for aspect extraction and ELO-based ranking. Production system built end-to-end as sole engineer."
+    },
+    {
+      "name": "IEEE VR 2023 XR Authentication",
+      "organization": "IEEE",
+      "award": "Best 3DUI Authentication Method",
+      "description": "Novel two-factor authentication framework for XR using motion-matching, haptic TOTP, and Morse code OTP. Won Best 3DUI Contest Award at IEEE VR 2023 in Shanghai.",
+      "publication": "https://ieeexplore.ieee.org/document/10108572/"
+    },
+    {
+      "name": "Santai.GG",
+      "description": "High-performance open-source game statistics platform built with Next.js, TypeScript, Supabase, and Redis. Grew to 300+ weekly active users within 3 months."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Solutions Architect Associate",
+      "validFrom": "2026-04",
+      "validUntil": "2029-04"
+    },
+    {
+      "name": "CompTIA Security+",
+      "validFrom": "2025-03",
+      "validUntil": "2028-03"
+    },
+    {
+      "name": "IBM Cybersecurity Analyst",
+      "validFrom": "2025-04"
+    },
+    {
+      "name": "Microsoft Azure Fundamentals",
+      "validFrom": "2025-04"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of North Carolina at Greensboro",
+      "degree": "Bachelor of Science in Computer Science",
+      "location": "Greensboro, NC",
+      "startDate": "2020-05",
+      "endDate": "2024-05",
+      "honors": ["Dean's List"],
+      "activities": ["ACM Vice President", "VR Lab Manager", "Chess Club Founder"]
+    }
+  ]
+}

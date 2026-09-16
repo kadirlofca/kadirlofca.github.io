@@ -1,6 +1,7 @@
 ---
 import siteData from "../data/site.json";
 import contactData from "../data/user-contact.json";
+import expData from "../data/user-experience.json";
 
 interface Props {
   title: string;
@@ -14,6 +15,13 @@ const ogImageURL = ogImage
   ? new URL(ogImage, Astro.site)
   : new URL("/og/default.png", Astro.site);
 
+const allSkills = [
+  ...expData.skills.languages,
+  ...expData.skills.frameworks,
+  ...expData.skills.databases,
+  ...expData.skills.infrastructure,
+];
+
 const personSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -24,17 +32,37 @@ const personSchema = {
       "url": siteData.siteUrl,
       "email": contactData.userEmail.trim(),
       "image": `${siteData.siteUrl}/user-picture.jpeg`,
-      "description": "Software engineer specializing in mobile development, AWS cloud infrastructure, and interactive applications. Founder of Sentzel Labs.",
+      "description": siteData.siteDescription,
       "jobTitle": "Software Engineer",
-      "knowsAbout": [
-        "Flutter", "iOS", "Android", "AWS", "Mobile Engineering",
-        "Cloud Infrastructure", "XR", "VR", "TypeScript", "Python",
-        "Game Development", "PostgreSQL"
-      ],
-      "alumniOf": {
+      "knowsAbout": allSkills,
+      "award": "Best 3DUI Authentication Method, IEEE VR 2023, Shanghai",
+      "alumniOf": expData.education.map((e) => ({
         "@type": "CollegeOrUniversity",
-        "name": "University of North Carolina at Greensboro"
-      },
+        "name": e.institution,
+        "address": e.location,
+      })),
+      "hasCredential": expData.certifications.map((c) => ({
+        "@type": "EducationalOccupationalCredential",
+        "name": c.name,
+        "validFrom": c.validFrom,
+        ...(c.validUntil ? { "validUntil": c.validUntil } : {}),
+      })),
+      "hasOccupation": expData.experience.map((e) => ({
+        "@type": "Role",
+        "roleName": e.role,
+        "startDate": e.startDate,
+        ...(e.endDate ? { "endDate": e.endDate } : {}),
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": e.role,
+          "occupationLocation": { "@type": "City", "name": e.location },
+          "description": e.highlights[0],
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": e.organization,
+        },
+      })),
       "sameAs": contactData.userSocials.map((s) => s.url),
     },
     {

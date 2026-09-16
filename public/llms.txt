@@ -2,25 +2,109 @@
 
 > Software engineer specializing in mobile development (Flutter/iOS/Android), AWS cloud infrastructure, and interactive/XR applications. Founder of Sentzel Labs. Based in Raleigh, NC, USA.
 
-Kadir Lofca is a software engineer with a B.S. in Computer Science from the University of North Carolina at Greensboro. He builds consumer and enterprise products at scale, with deep experience in cross-platform mobile development, cloud backend systems, and interactive experiences. He is the founder of Sentzel Labs, which builds Juxta.gg — an AWS-funded, AI-powered game suggestion and ranking platform in production.
+Kadir Lofca is a software engineer with a B.S. in Computer Science from the University of North Carolina at Greensboro (2024). He builds consumer and enterprise products at global scale, with deep expertise in cross-platform mobile development, cloud backend systems, and AI-powered platforms. He is the founder of Sentzel Labs and won Best 3DUI Contest Award at IEEE VR 2023 in Shanghai for published XR authentication research.
 
-His published research on XR continuous authentication won Best 3DUI Contest Award at IEEE VR 2023 (Shanghai).
+## Experience
 
-## Projects & Work
+### Software Engineer — D2Sol Inc. (June 2025 – Present) | Raleigh, NC
 
-- [Portfolio Home](https://kadirlofca.com): Overview of all projects and work history
-- [Juxta.gg — AWS Funded Game Suggestion Platform](https://kadirlofca.com/posts/sentzel-juxta): Founder of Sentzel Labs; built an AI-powered game ranking platform funded by AWS using AWS Bedrock, PostgreSQL/pgvector, Temporal.io, TypeScript, Svelte, Astro, and Cloudflare Pages
-- [300k+ User Government Mobile App at D2Sol](https://kadirlofca.com/posts/d2sol-mobility): Mobile Engineer; built Flutter app with AWS backend (Lambda, SQS, DynamoDB, Cognito, FCM) serving government benefits programs at global scale
-- [Award Winning XR Authentication Research — IEEE VR 2023](https://kadirlofca.com/posts/ieeevr-xr-auth): VR Researcher at UNCG; designed and built a continuous XR authentication framework using haptics and motion-matching; won Best 3DUI Contest Award; published on IEEE Xplore
+D2Sol builds government benefits platforms. Kadir leads mobile engineering for mission-critical applications serving 300,000+ citizens across two US states.
+
+- Spearheaded delivery of mobile applications for two US states, ensuring scalable access for 300,000+ citizens
+- Reduced estimated development costs by 70% by architecting a unified Flutter codebase with 99% code sharing across iOS, Android, and multiple government clients
+- Architected a Flutter Hosted Server Driven UI system using MVVM to decouple logic from presentation, enabling dynamic tenant configuration across iOS, Android, and Web
+- Secured PII data and reduced average login duration by 80% via Biometric Authentication (FaceID/TouchID) and encrypted Keychain storage
+- Hardened mobile security with OAuth 2.0 + PKCE, Certificate Pinning, and App Attestation against man-in-the-middle attacks
+- Delivered real-time alerts to 300,000+ devices via a serverless Notification Service using AWS Lambda, SQS, and DynamoDB
+- Eliminated 90% of routine App Store update cycles with a custom Hot-Update Remote Configuration engine
+- Achieved 60fps scrolling performance on low-end hardware via reactive state management minimizing widget rebuilds
+- Built a Hybrid Web-Native bridge for zero-friction sessions within legacy government portals
+- Implemented dynamic caching localization for instant language switching across multiple locales
+- Established CI/CD pipeline with automated integration, unit, and widget tests for critical user flows
+
+### Founder & Engineer — Sentzel Labs (May 2025 – Present) | Remote
+
+Sentzel Labs is an AWS-funded startup building Juxta.gg, an AI-powered game intelligence and discovery platform in production.
+
+- Architected and shipped juxta.gg end-to-end as sole engineer using Hono, Astro/Svelte, PostgreSQL, and pgvector
+- Engineered a 10-activity durable AI ingestion pipeline on Temporal.io: YouTube transcript ingestion → aspect extraction via AWS Bedrock → pgvector deduplication → ELO ranking via LLM pairwise comparison → description generation → DB commit
+- Built hybrid semantic search delivering <500ms results combining ILIKE text scoring with pgvector HNSW-indexed cosine similarity over 1024-dim Amazon Titan V2 embeddings
+- Designed an AI-adjudicated ELO ranking system using Amazon Nova Lite via AWS Bedrock with authority-weighted K-factor scaling and full audit log
+- Provisioned all cloud infrastructure via Pulumi IaC (EC2, ECR, S3, IAM) with SSH-less deployment via AWS SSM
+- Enforced 26 codebase quality rules across 263 TypeScript source files with a custom guidelines test suite and 90% coverage gate
+- Authored 32 REST API endpoints covering game stats, aspect intelligence, ELO trajectories, head-to-head comparisons, and embedding landscape visualization
+- Stack: TypeScript, Hono, Drizzle ORM, PostgreSQL 16, pgvector, Temporal.io, PgBouncer, Astro, Svelte, AWS Bedrock, Pulumi, Docker, GitHub Actions
+
+### Programming Mentor — Stiegler EdTech (November 2023 – June 2025) | Charlotte, NC
+
+- Led technical education for 200+ students, achieving 100% pass rate via targeted C++ remediation plans
+- Mentored 15+ junior teaching assistants on pedagogy and debugging
+- Directed Arduino-based robotics projects involving real-time sensor integration and PID control loops
+- Mitigated LLM hallucinations by 30% in automated assessments by architecting evaluation benchmarks for a custom AI grading system
+- Reduced student debugging time by ~40% by systematizing common low-level failure patterns into a shared knowledge base
+
+### Software Engineering Intern — Genesys Cloud (August 2023 – November 2023) | Durham, NC
+
+Genesys Cloud is a global customer experience platform serving 2,000,000+ customers.
+
+- Engineered full-stack features for a high-traffic screen-sharing application using Next.js, TypeScript, and Redux
+- Reduced infrastructure provisioning time by 50% via reusable Terraform modules
+- Decreased regression bugs by 20% with 30+ unit and integration tests in Docker/Redis CI environments
+- Optimized backend API endpoints for 99.99% availability and <200ms response times
+- Ensured 100% HIPAA Security and Privacy compliance
+
+### VR Researcher & Software Engineer — UNC Greensboro (February 2021 – August 2023) | Greensboro, NC
+
+- Achieved <1mm tracking accuracy for VR experiments by engineering a controlled environment to resolve IR tracking interference
+- Eliminated 10+ hours/week of manual data entry with a custom C# Unity telemetry logging plugin
+- Enabled physical-virtual interaction with <5ms latency using Leap Motion and HTC Vive Trackers
+- Co-authored 2 research papers presented at IEEE VR 2022 and IEEE VR 2023, cited by 14+ subsequent studies
+- Validated research on human time perception via human-subject trials with 20+ participants
+
+## Projects
+
+### Juxta.gg — Sentzel Labs
+AI-powered game ranking and discovery platform. Funded by AWS. Uses LLMs for aspect extraction and ELO-based comparison ranking. Built with TypeScript, PostgreSQL, pgvector, Temporal.io, AWS Bedrock, and Cloudflare Pages. Production system built end-to-end as sole engineer.
+URL: https://juxta.gg
+
+### IEEE VR 2023 XR Authentication — Award Winner
+Novel two-factor authentication framework for XR using continuous motion-matching, haptic TOTP delivery, and Morse code OTP input. Won Best 3DUI Contest Award at IEEE VR 2023 in Shanghai, China. Published on IEEE Xplore.
+Publication: https://ieeexplore.ieee.org/document/10108572/
+
+### Santai.GG
+High-performance open-source game statistics platform built with Next.js, TypeScript, Supabase (PostgreSQL), and Redis. Grew to 300+ weekly active users within 3 months.
+
+## Skills
+
+**Languages:** TypeScript, JavaScript, Python, C++, C#, Dart, Java, C, SQL, Rust
+
+**Frameworks:** React, Next.js, Flutter (Bloc/Provider), Node.js, Unity, Unreal Engine, Godot, Redux, Express, Hono, Astro, Svelte, Meta Quest SDK
+
+**Databases:** PostgreSQL, SQLite, Redis, DynamoDB, Supabase, Firebase, pgvector
+
+**Infrastructure & Tools:** AWS Lambda, AWS S3, AWS SQS, AWS DynamoDB, AWS Cognito, AWS Bedrock, AWS EC2, AWS ECR, Docker, Terraform, Pulumi, Jenkins, Git, Linux, OpenAPI, OAuth2, Temporal.io, PgBouncer
+
+## Certifications
+
+- AWS Solutions Architect Associate (valid April 2026 – April 2029)
+- CompTIA Security+ (valid March 2025 – March 2028)
+- IBM Cybersecurity Analyst (April 2025)
+- Microsoft Azure Fundamentals (April 2025)
+
+## Education
+
+**B.S. Computer Science** — University of North Carolina at Greensboro (2020–2024)
+Honors: Dean's List | Activities: ACM Vice President, VR Lab Manager, Chess Club Founder
 
 ## Contact & Profiles
 
 - Email: kadirlofca@outlook.com
-- [LinkedIn](https://www.linkedin.com/in/kadirlofca/): Professional profile and work history
-- [GitHub](https://github.com/kadirlofca): Open source code and projects
+- [LinkedIn](https://www.linkedin.com/in/kadirlofca/): Professional profile
+- [GitHub](https://github.com/kadirlofca): Code and open source projects
 - [YouTube](https://www.youtube.com/@haftindie): Video content
 
 ## Site
 
-- [RSS Feed](https://kadirlofca.com/rss.xml): Site content updates
+- [Portfolio](https://kadirlofca.com): Project case studies and work history
+- [RSS Feed](https://kadirlofca.com/rss.xml): Site updates
 - [Sitemap](https://kadirlofca.com/sitemap-index.xml): All pages
