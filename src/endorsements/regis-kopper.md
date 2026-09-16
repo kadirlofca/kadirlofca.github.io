@@ -1,7 +1,7 @@
 ---
 published: true
 name: Regis Kopper
-relationship: Research Mentor, UNCG
+relationship: Research Mentor
 year: 2024
 ---
 

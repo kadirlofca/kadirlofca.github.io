@@ -1,7 +1,7 @@
 ---
 published: true
 name: Oyku Erdenlig
-relationship: Collaborator, Mini Jam 154
+relationship: Collaborator
 year: 2024
 ---
 
