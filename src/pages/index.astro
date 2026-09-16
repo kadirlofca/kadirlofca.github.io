@@ -31,6 +31,7 @@ const formatYear = (date: Date) =>
     </aside>
     <div class="entries-column">
       <div class="home-content">
+        <h1 class="sr-only">{siteData.siteTitle}</h1>
         <ul class="posts-list">
           <li><BioBlock /></li>
           {
@@ -38,21 +39,20 @@ const formatYear = (date: Date) =>
               <li class="post-card">
                 <a href={`/posts/${post.id}`}>
                   <div class="post-meta">
-                    {(post.data.role || post.data.organization) && (
-                      <div class="post-meta-row">
+                    <div class="post-meta-row">
+                      {(post.data.role || post.data.organization) && (
                         <span>
                           {post.data.role}
                           {post.data.role && post.data.organization && " @ "}
                           {post.data.organization}
                         </span>
-                      </div>
-                    )}
+                      )}
+                      <div class="post-date post-date--meta">{post.data.endDate ? formatYear(post.data.endDate) : "Present"}</div>
+                    </div>
                   </div>
                   <div class="post-title-row">
-                    <div class="post-title">{post.data.title}</div>
-                    <div class="post-date">{post.data.endDate ? formatYear(post.data.endDate) : "Present"}</div>
-                  </div>
-                  <div class="post-meta">
+                    <h2 class="post-title">{post.data.title}</h2>
+                    <div class="post-date post-date--title">{post.data.endDate ? formatYear(post.data.endDate) : "Present"}</div>
                   </div>
                   <div class="post-description">
                     <span class="desc-head">{post.data.descriptionHead}</span><span class="desc-tail">{post.data.descriptionTail}</span>
@@ -113,6 +113,14 @@ const formatYear = (date: Date) =>
   const supportsVT = 'startViewTransition' in document;
   let currentPostUrl = '';
 
+  const pageAnnouncer = document.getElementById('page-announcer');
+
+  function announce(msg: string) {
+    if (!pageAnnouncer) return;
+    pageAnnouncer.textContent = '';
+    requestAnimationFrame(() => { pageAnnouncer.textContent = msg; });
+  }
+
   function cssMs(varName: string): number {
     return parseFloat(getComputedStyle(document.documentElement).getPropertyValue(varName)) * 1000;
   }
@@ -166,6 +174,7 @@ const formatYear = (date: Date) =>
 
     if (push) history.pushState({ spa: true, url }, '', url);
     document.title = doc.title;
+    announce(doc.title);
   }
 
   async function navigateHome(push = true) {
@@ -220,6 +229,7 @@ const formatYear = (date: Date) =>
 
     if (push) history.pushState({ spa: false }, '', '/');
     document.title = savedTitle;
+    announce(savedTitle);
   }
 
   window.addEventListener('popstate', (e) => {

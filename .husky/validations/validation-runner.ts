@@ -3,8 +3,12 @@ import { check as cssVariableCompleteness } from "./rules/css-variable-completen
 import { check as noHardcodedDurations } from "./rules/no-hardcoded-durations";
 import { check as noTodos } from "./rules/no-todos";
 import { check as noPxFontSizes } from "./rules/no-px-font-sizes";
+import { check as requireAltText } from "./rules/require-alt-text";
+import { check as minFontSize } from "./rules/min-font-size";
+import { check as requireButtonPadding } from "./rules/require-button-padding";
+import { check as requireFlexGap } from "./rules/require-flex-gap";
 
-const rules = [noHardcodedColors, cssVariableCompleteness, noHardcodedDurations, noTodos, noPxFontSizes];
+const rules = [noHardcodedColors, cssVariableCompleteness, noHardcodedDurations, noTodos, noPxFontSizes, requireAltText, minFontSize, requireButtonPadding, requireFlexGap];
 
 const failures: Array<{ label: string; violations: string[] }> = [];
 

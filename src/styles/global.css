@@ -40,6 +40,35 @@
   border-radius: 2px;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.9rem;
+  border-radius: 0 0 4px 4px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -174,9 +203,13 @@ main {
   flex-shrink: 0;
 }
 
+.post-date--meta { display: block; margin-left: auto; }
+.post-date--title { display: none; }
+
 .post-title {
   font-size: 1.25rem;
   font-weight: 600;
+  margin: 0;
   transition: color var(--transition-color);
 }
 
@@ -237,11 +270,11 @@ main {
 .back-btn {
   background: none;
   border: none;
-  padding: 0;
+  padding: 0.5rem 0;
   font-size: 0.8rem;
   color: var(--muted);
   cursor: pointer;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: block;
 }
 
@@ -393,6 +426,11 @@ main {
   }
 }
 
+@media (min-width: 1101px) {
+  .post-date--meta { display: none; }
+  .post-date--title { display: block; }
+}
+
 /* Mobile — placed last so overrides win the cascade */
 @media (max-width: 768px) {
   main {
@@ -414,7 +452,7 @@ main {
   /* Home layout */
   .home-layout {
     grid-template-columns: 1fr;
-    gap: 12rem;
+    gap: 2rem;
   }
 
   .sidebar-fixed {
@@ -454,8 +492,7 @@ main {
 
   /* Post detail page */
   .back-btn {
-    padding: 0.5rem 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .post-header {

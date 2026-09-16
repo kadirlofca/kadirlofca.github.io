@@ -22,7 +22,9 @@ const { title, description, ogImage, hideFooter } = Astro.props;
     <PostHog />
   </head>
   <body>
-    <main>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="page-announcer" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+    <main id="main-content">
       <slot />
     </main>
     {!hideFooter && <Footer />}

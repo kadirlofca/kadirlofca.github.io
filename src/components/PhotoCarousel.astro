@@ -19,14 +19,14 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
       <div class="carousel-fade carousel-fade-left"></div>
       <div class="carousel-track">
         {photos.map(({ img, caption }) => (
-          <Image class="carousel-photo" src={img} width={540} height={540} alt={caption} data-caption={caption} decoding="async" loading="eager" />
+          <Image class="carousel-photo" src={img} width={540} height={540} alt={caption} data-caption={caption} decoding="async" loading="eager" tabindex="0" role="button" />
         ))}
       </div>
       <div class="carousel-fade carousel-fade-right"></div>
     </div>
 
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">✕</button>
       <img class="lightbox-img" id="lightbox-img" src="" alt="" />
       <p class="lightbox-caption" id="lightbox-caption"></p>
     </div>
@@ -91,7 +91,7 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
 
   @media (max-width: 768px) {
     .photo-carousel {
-      margin-top: 13rem;
+      margin-top: 8rem;
       margin-bottom: 2rem;
       margin-left: -1rem;
       margin-right: -1rem;
@@ -136,10 +136,11 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
 
   .lightbox-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 1rem;
+    right: 1rem;
     background: none;
     border: none;
+    padding: 0.5rem;
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
@@ -167,6 +168,8 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
 </style>
 
 <script>
+  let carouselAnim: Animation | undefined;
+
   document.querySelectorAll<HTMLElement>('.photo-carousel').forEach((carousel) => {
     const track = carousel.querySelector<HTMLElement>('.carousel-track');
     if (!track) return;
@@ -189,6 +192,7 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
 
     const anim = track.getAnimations()[0];
     if (anim) {
+      carouselAnim = anim;
       carousel.addEventListener('mouseenter', () => { anim.playbackRate = 0.5; });
       carousel.addEventListener('mouseleave', () => { anim.playbackRate = 1; });
 
@@ -204,14 +208,19 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
   const lightboxCaption = document.getElementById('lightbox-caption') as HTMLParagraphElement;
-  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxClose = document.getElementById('lightbox-close') as HTMLButtonElement | null;
+  let lightboxTrigger: HTMLElement | null = null;
 
-  function openLightbox(src: string, caption: string) {
+  function openLightbox(src: string, caption: string, trigger?: HTMLElement) {
+    lightboxTrigger = trigger ?? null;
     lightboxImg.src = src;
+    lightboxImg.alt = caption;
     lightboxCaption.textContent = caption;
     lightbox?.classList.add('open');
     lightbox?.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
+    carouselAnim?.pause();
+    lightboxClose?.focus();
     window.posthog?.capture('photo_opened');
   }
 
@@ -219,13 +228,16 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
     lightbox?.classList.remove('open');
     lightbox?.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    carouselAnim?.play();
+    lightboxTrigger?.focus();
+    lightboxTrigger = null;
   }
 
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('carousel-photo')) {
       const caption = target.dataset.caption ?? '';
-      openLightbox((target as HTMLImageElement).src, caption);
+      openLightbox((target as HTMLImageElement).src, caption, target);
     }
   });
 
@@ -234,7 +246,22 @@ const photos = Object.entries(photoModules).map(([path, m]) => {
     if (e.target === lightbox) closeLightbox();
   });
 
+  // Focus trap: only the close button is focusable inside the lightbox
+  lightbox?.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') { e.preventDefault(); lightboxClose?.focus(); }
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'Escape') {
+      closeLightbox();
+      return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains('carousel-photo')) {
+        e.preventDefault();
+        openLightbox((target as HTMLImageElement).src, target.dataset.caption ?? '', target);
+      }
+    }
   });
 </script>

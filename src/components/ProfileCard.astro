@@ -15,7 +15,7 @@ const github = userSocials.find((s) => s.title === "GitHub");
     <a href={`mailto:${email}`} class="email-link">{email}</a>
     <div class="socials">
       {linkedin && <a href={linkedin.url} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
-      {linkedin && github && <span class="separator">·</span>}
+      {linkedin && github && <span class="separator" aria-hidden="true">·</span>}
       {github && <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>}
     </div>
   </div>

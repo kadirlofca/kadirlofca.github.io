@@ -11,9 +11,9 @@ tags:
   - Security
 date: 2022-10-01
 endDate: 2023-03-29
-organization: UNCG
+organization: IEEE
 location: Shanghai, China
-role: Researcher
+role: VR Researcher
 ---
 
 Existing XR authentication methods verify users once at login and trust the session until logout. In shared physical spaces, that model breaks: anyone who picks up a headset inherits an active session. The IEEE VR 2023 3DUI Contest asked teams to rethink authentication for the metaverse.
