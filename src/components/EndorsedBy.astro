@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+
+const endorsements = (await getCollection("endorsements", ({ data }) => data.published))
+  .sort((a, b) => b.data.year - a.data.year);
+---
+
+{endorsements.length > 0 && (
+  <div class="endorsed-by">
+    <span class="endorsed-by-label">Endorsed by</span>
+    <div class="endorsed-by-names">
+      {endorsements.map((e, i) => (
+        <>
+          <a href={`/endorsements/${e.id}`} class="endorsement-name">{e.data.name}</a>
+          {i < endorsements.length - 1 && <span class="name-sep" aria-hidden="true">·</span>}
+        </>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .endorsed-by {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    overflow: hidden;
+    margin-bottom: 3.8rem;
+  }
+
+  .endorsed-by-label {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .endorsed-by-names {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .endorsed-by-names::-webkit-scrollbar {
+    display: none;
+  }
+
+  .endorsement-name {
+    white-space: nowrap;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .endorsement-name:hover {
+    text-decoration: underline;
+  }
+
+  .name-sep {
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+</style>

@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 import { getCollection } from "astro:content";
 import siteData from "../data/site.json";
 import BioBlock from "../components/BioBlock.astro";
+import EndorsedBy from "../components/EndorsedBy.astro";
 
 const allPosts = (await getCollection("posts"))
   .filter((post) => post.data.published)
@@ -34,6 +35,7 @@ const formatYear = (date: Date) =>
         <h1 class="sr-only">{siteData.siteTitle}</h1>
         <ul class="posts-list">
           <li><BioBlock /></li>
+          <li><EndorsedBy /></li>
           {
             allPosts.map((post) => (
               <li class="post-card">
@@ -245,6 +247,14 @@ const formatYear = (date: Date) =>
       const card = link.closest('.post-card');
       const title = card?.querySelector('.post-title')?.textContent?.trim();
       (window as any).posthog?.capture('entry_clicked', { post_title: title });
+      navigateToPost(link.getAttribute('href')!);
+    });
+  });
+
+  document.querySelectorAll<HTMLAnchorElement>('.endorsement-name').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      (window as any).posthog?.capture('endorsement_clicked', { endorser_name: link.textContent?.trim() });
       navigateToPost(link.getAttribute('href')!);
     });
   });

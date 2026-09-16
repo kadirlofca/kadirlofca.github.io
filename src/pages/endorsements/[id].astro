@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const endorsements = await getCollection("endorsements", ({ data }) => data.published);
+  return endorsements.map((endorsement) => ({
+    params: { id: endorsement.id },
+    props: endorsement,
+  }));
+}
+
+type Props = CollectionEntry<"endorsements">;
+const endorsement = Astro.props;
+const { Content } = await render(endorsement);
+const { name, title, company, year } = endorsement.data;
+---
+
+<Layout
+  title={`Endorsed by ${name} | Kadir Lofca`}
+  description={`${name}, ${title} at ${company} — endorsement of Kadir Lofca.`}
+>
+  <button class="back-btn" onclick="history.back()">← Back</button>
+
+  <div class="prose">
+    <Content />
+    <footer class="endorsement-citation">
+      — {name}, {title} @ {company} · {year}
+    </footer>
+  </div>
+
+  <script is:inline define:vars={{ endorserId: endorsement.id, endorserName: name }}>
+    window.posthog?.capture('endorsement_viewed', {
+      endorser_id: endorserId,
+      endorser_name: endorserName,
+    });
+  </script>
+</Layout>
+
+<style>
+  .endorsement-citation {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: normal;
+  }
+</style>

@@ -20,4 +20,15 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const endorsements = defineCollection({
+  loader: glob({ base: "./src/endorsements", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    published: z.boolean(),
+    name: z.string(),
+    title: z.string(),
+    company: z.string(),
+    year: z.number(),
+  }),
+});
+
+export const collections = { posts, endorsements };
