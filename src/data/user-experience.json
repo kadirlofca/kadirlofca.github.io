@@ -87,12 +87,6 @@
   ],
   "projects": [
     {
-      "name": "Juxta.gg",
-      "organization": "Sentzel Labs",
-      "url": "https://juxta.gg",
-      "description": "AWS-funded AI-powered game intelligence and discovery platform. Uses LLMs for aspect extraction and ELO-based ranking. Production system built end-to-end as sole engineer."
-    },
-    {
       "name": "IEEE VR 2023 XR Authentication",
       "organization": "IEEE",
       "award": "Best 3DUI Authentication Method",

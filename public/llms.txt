@@ -63,10 +63,6 @@ Genesys Cloud is a global customer experience platform serving 2,000,000+ custom
 
 ## Projects
 
-### Juxta.gg — Sentzel Labs
-AI-powered game ranking and discovery platform. Funded by AWS. Uses LLMs for aspect extraction and ELO-based comparison ranking. Built with TypeScript, PostgreSQL, pgvector, Temporal.io, AWS Bedrock, and Cloudflare Pages. Production system built end-to-end as sole engineer.
-URL: https://juxta.gg
-
 ### IEEE VR 2023 XR Authentication — Award Winner
 Novel two-factor authentication framework for XR using continuous motion-matching, haptic TOTP delivery, and Morse code OTP input. Won Best 3DUI Contest Award at IEEE VR 2023 in Shanghai, China. Published on IEEE Xplore.
 Publication: https://ieeexplore.ieee.org/document/10108572/
