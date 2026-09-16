@@ -23,6 +23,13 @@ const { name, relationship, year } = endorsement.data;
 >
   <button class="back-btn" onclick="history.back()">← Back</button>
 
+  <div class="post-header">
+    <div class="post-title-row">
+      <h1 class="post-title">Endorsement by {name}, {year}</h1>
+    </div>
+    <p class="post-description">{relationship}</p>
+  </div>
+
   <div class="prose">
     <Content />
     <footer class="endorsement-citation">
