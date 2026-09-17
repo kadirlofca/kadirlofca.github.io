@@ -114,6 +114,7 @@ const formatYear = (date: Date) =>
 
   const supportsVT = 'startViewTransition' in document;
   let currentPostUrl = '';
+  let currentSourceEl: HTMLElement | null = null;
 
   const pageAnnouncer = document.getElementById('page-announcer');
 
@@ -145,6 +146,7 @@ const formatYear = (date: Date) =>
 
     savedScrollY = window.scrollY;
     currentPostUrl = url;
+    currentSourceEl = sourceEl ?? null;
 
     // Old state: name the card elements (currently visible)
     vt(cardTitle, 'vt-title');
@@ -181,9 +183,9 @@ const formatYear = (date: Date) =>
 
   async function navigateHome(push = true) {
     const card = document.querySelector<HTMLElement>(`.post-card a[href="${currentPostUrl}"]`)?.closest<HTMLElement>('.post-card');
-    const cardTitle = card?.querySelector<HTMLElement>('.post-title');
-    const cardDesc  = card?.querySelector<HTMLElement>('.post-description');
-    const postTitle = postContent.querySelector<HTMLElement>('h1.post-title');
+    const cardTitle = card?.querySelector<HTMLElement>('.post-title') ?? currentSourceEl ?? null;
+    const cardDesc  = card?.querySelector<HTMLElement>('.post-description') ?? null;
+    const postTitle = postContent.querySelector<HTMLElement>('.post-title-name') ?? postContent.querySelector<HTMLElement>('h1.post-title');
     const postDesc  = postContent.querySelector<HTMLElement>('.post-description');
     const prose     = postContent.querySelector<HTMLElement>('.prose');
 
@@ -229,6 +231,7 @@ const formatYear = (date: Date) =>
     if (cardDesc)  cardDesc.style.transition  = '';
     postContent.innerHTML = '';
 
+    currentSourceEl = null;
     if (push) history.pushState({ spa: false }, '', '/');
     document.title = savedTitle;
     announce(savedTitle);
