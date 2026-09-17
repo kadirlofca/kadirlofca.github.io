@@ -158,7 +158,7 @@ const formatYear = (date: Date) =>
       }
       // Clear from card (now hidden), name the adopted elements (new state)
       clearVT(cardTitle, cardDesc);
-      vt(postContent.querySelector<HTMLElement>('h1.post-title'), 'vt-title');
+      vt(postContent.querySelector<HTMLElement>('.post-title-name') ?? postContent.querySelector<HTMLElement>('h1.post-title'), 'vt-title');
       vt(postContent.querySelector<HTMLElement>('.post-description'), 'vt-desc');
       vt(postContent.querySelector<HTMLElement>('.prose'), 'vt-prose');
 
