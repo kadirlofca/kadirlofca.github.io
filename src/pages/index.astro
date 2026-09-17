@@ -207,6 +207,10 @@ const formatYear = (date: Date) =>
     const cardTitleRect = cardTitle?.getBoundingClientRect();
     const cardDescRect  = cardDesc?.getBoundingClientRect();
 
+    // Lift overflow clipping on endorsement strip so FLIP isn't clipped
+    const flipContainer = currentSourceEl?.closest<HTMLElement>('.endorsed-by') ?? null;
+    if (flipContainer) flipContainer.style.overflow = 'visible';
+
     // FLIP invert: place card elements at post positions
     if (cardTitle && postTitleRect && cardTitleRect)
       cardTitle.style.transform = `translate(${postTitleRect.left - cardTitleRect.left}px,${postTitleRect.top - cardTitleRect.top}px)`;
@@ -229,6 +233,7 @@ const formatYear = (date: Date) =>
     homeContent.style.opacity    = '';
     if (cardTitle) cardTitle.style.transition = '';
     if (cardDesc)  cardDesc.style.transition  = '';
+    if (flipContainer) flipContainer.style.overflow = '';
     postContent.innerHTML = '';
 
     currentSourceEl = null;
