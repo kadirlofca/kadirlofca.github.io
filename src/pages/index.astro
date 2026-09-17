@@ -183,9 +183,9 @@ const formatYear = (date: Date) =>
 
   async function navigateHome(push = true) {
     const card = document.querySelector<HTMLElement>(`.post-card a[href="${currentPostUrl}"]`)?.closest<HTMLElement>('.post-card');
-    const cardTitle = card?.querySelector<HTMLElement>('.post-title') ?? currentSourceEl ?? null;
+    const cardTitle = card?.querySelector<HTMLElement>('.post-title') ?? null;
     const cardDesc  = card?.querySelector<HTMLElement>('.post-description') ?? null;
-    const postTitle = postContent.querySelector<HTMLElement>('.post-title-name') ?? postContent.querySelector<HTMLElement>('h1.post-title');
+    const postTitle = postContent.querySelector<HTMLElement>('h1.post-title');
     const postDesc  = postContent.querySelector<HTMLElement>('.post-description');
     const prose     = postContent.querySelector<HTMLElement>('.prose');
 
@@ -203,13 +203,9 @@ const formatYear = (date: Date) =>
     align();
     window.scrollTo(0, savedScrollY);
 
-    // Capture LAST positions
+    // Capture LAST positions (only for post cards — endorsements skip FLIP)
     const cardTitleRect = cardTitle?.getBoundingClientRect();
     const cardDescRect  = cardDesc?.getBoundingClientRect();
-
-    // Lift overflow clipping on endorsement strip so FLIP isn't clipped
-    const flipContainer = currentSourceEl?.closest<HTMLElement>('.endorsed-by') ?? null;
-    if (flipContainer) flipContainer.style.overflow = 'visible';
 
     // FLIP invert: place card elements at post positions
     if (cardTitle && postTitleRect && cardTitleRect)
@@ -233,7 +229,6 @@ const formatYear = (date: Date) =>
     homeContent.style.opacity    = '';
     if (cardTitle) cardTitle.style.transition = '';
     if (cardDesc)  cardDesc.style.transition  = '';
-    if (flipContainer) flipContainer.style.overflow = '';
     postContent.innerHTML = '';
 
     currentSourceEl = null;
